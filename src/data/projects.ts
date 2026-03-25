@@ -48,7 +48,7 @@ export const projects: Project[] = [
   {
     id: 'smart-time-tracker',
     name: 'Smart Time Tracker',
-    type: 'open-source',
+    type: 'in-development',
     featured: true,
     description: 'Cross-platform desktop app for automated time tracking with ClickUp integration. Detects active windows, categorizes work sessions, and syncs tracked time to ClickUp tasks without manual input.',
     tech: ['Rust', 'Tauri 2.0', 'React 19', 'TypeScript', 'ClickUp OAuth', 'SQLite'],
