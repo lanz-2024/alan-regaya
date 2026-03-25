@@ -7,19 +7,19 @@ const linkClass = 'text-sm text-[var(--color-text-muted)] hover:text-[var(--colo
 export function NavLinks() {
   const pathname = usePathname();
 
-  const scrollToTop = () => {
-    if (pathname === '/about') window.scrollTo({ top: 0, behavior: 'smooth' });
+  const scrollToTopIfCurrent = (path: string) => () => {
+    if (pathname === path) window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
-      <Link href="/about" className={linkClass} onClick={scrollToTop}>
+      <Link href="/about" className={linkClass} onClick={scrollToTopIfCurrent('/about')}>
         About
       </Link>
       <Link href="/about#experience" className={linkClass}>
         Experience
       </Link>
-      <Link href="/projects" className={linkClass}>
+      <Link href="/projects" className={linkClass} onClick={scrollToTopIfCurrent('/projects')}>
         Projects
       </Link>
     </>

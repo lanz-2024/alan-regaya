@@ -35,7 +35,7 @@ export function MobileNav() {
         </Link>
         <Link
           href="/projects"
-          onClick={() => setOpen(false)}
+          onClick={() => { setOpen(false); if (pathname === '/projects') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           className="text-2xl font-light text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
         >
           Projects
