@@ -9,3 +9,6 @@
 
 ### Fixed
 - Missing `Link` import in privacy policy page
+- Mobile/tablet header layout: hamburger left, logo center, CTA right (envelope icon <640px, "Get in Touch" text 640–767px)
+- Replace default Next.js favicon with AR logo
+- Scroll-down chevron added to Hero section
