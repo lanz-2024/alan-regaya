@@ -30,16 +30,16 @@ export function TechStack() {
   }, {});
 
   return (
-    <section className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]" aria-labelledby="techstack-heading">
+    <section className="py-24" aria-labelledby="techstack-heading">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <SectionHeading label="Tools & Tech" title="What I Build With" />
         <div id="techstack-heading" className="sr-only">Tech Stack</div>
-        <div ref={ref} className={`fade-in${isVisible ? ' visible' : ''} space-y-8`}>
+        <div ref={ref} className={`fade-in${isVisible ? ' visible' : ''} grid sm:grid-cols-2 gap-6`}>
           {categoryOrder.map((cat) => {
             const items = grouped[cat];
             if (!items?.length) return null;
             return (
-              <div key={cat}>
+              <div key={cat} className="glow-border rounded-lg p-6 bg-[var(--color-surface-2)]">
                 <p className={`text-xs font-mono uppercase tracking-widest mb-3 ${categoryColors[cat]}`}>
                   {categoryLabels[cat]}
                 </p>
