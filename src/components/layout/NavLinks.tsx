@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -6,20 +7,31 @@ const linkClass = 'text-sm text-[var(--color-text-muted)] hover:text-[var(--colo
 
 export function NavLinks() {
   const pathname = usePathname();
+  const navTargetRef = useRef<string | null>(null);
 
-  const scrollToTop = () => {
-    if (pathname === '/about') window.scrollTo({ top: 0, behavior: 'smooth' });
+  useEffect(() => {
+    if (navTargetRef.current !== null) {
+      if (navTargetRef.current === pathname) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      navTargetRef.current = null;
+    }
+  }, [pathname]);
+
+  const handleNavClick = (path: string) => () => {
+    navTargetRef.current = path;
+    if (pathname === path) window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <>
-      <Link href="/about" className={linkClass} onClick={scrollToTop}>
+      <Link href="/about" className={linkClass} onClick={handleNavClick('/about')}>
         About
       </Link>
       <Link href="/about#experience" className={linkClass}>
         Experience
       </Link>
-      <Link href="/projects" className={linkClass}>
+      <Link href="/projects" className={linkClass} onClick={handleNavClick('/projects')}>
         Projects
       </Link>
     </>

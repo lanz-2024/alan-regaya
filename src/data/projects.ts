@@ -41,7 +41,7 @@ export const projects: Project[] = [
     id: 'blaze-blocksy',
     name: 'Blaze Blocksy',
     type: 'open-source',
-    description: 'Blocksy child theme built for BlazeCommerce headless storefronts. Provides a standardized WordPress theme base with custom hooks, design tokens, and WooCommerce integration patterns used across client sites.',
+    description: 'Blocksy child theme built for BlazeCommerce client storefronts. Provides a standardized WordPress theme base with custom hooks, design tokens, and WooCommerce integration patterns used across client sites.',
     tech: ['PHP', 'WordPress', 'WooCommerce', 'Blocksy', 'CSS'],
     github: 'https://github.com/blaze-commerce/blaze-blocksy',
     stars: 1,
