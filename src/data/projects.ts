@@ -130,6 +130,6 @@ export const projects: Project[] = [
     name: 'Solutions for Screen Printers',
     type: 'in-development',
     description: 'B2B wholesale platform for screen printing supplies with trade account applications, tiered pricing, and a quote builder for bulk custom orders.',
-    tech: ['WordPress', 'WooCommerce', 'PHP', 'React', 'TypeScript'],
+    tech: ['WordPress', 'WooCommerce', 'PHP', 'Blocksy'],
   },
 ];
