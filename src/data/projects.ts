@@ -60,7 +60,7 @@ export const projects: Project[] = [
     description: 'Headless WooCommerce storefront for a premium Australian candle brand. Sub-100ms product search via Typesense, custom scent builder, and subscription bundles.',
     tech: ['Next.js', 'TypeScript', 'WooCommerce', 'Typesense', 'Tailwind CSS'],
     liveUrl: 'https://byronbaycandles.com',
-    screenshot: '/screenshots/byronbaycandles.png',
+    screenshot: '/screenshots/byronbaycandles.webp',
   },
   {
     id: 'gourmet-basket',
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     description: 'Large-scale gift basket e-commerce platform with complex product bundling, seasonal campaigns, and a corporate ordering portal handling thousands of SKUs.',
     tech: ['Next.js', 'React', 'WooCommerce', 'Typesense', 'PHP'],
     liveUrl: 'https://gourmetbasket.com.au',
-    screenshot: '/screenshots/gourmetbasket.png',
+    screenshot: '/screenshots/gourmetbasket.webp',
   },
   {
     id: 'porselli-dancewear',
@@ -78,7 +78,7 @@ export const projects: Project[] = [
     description: 'Luxury Italian dancewear brand with a headless storefront built for the UK market. Features a custom size guide, look builder, and multi-currency checkout.',
     tech: ['WordPress', 'WooCommerce', 'PHP', 'Blocksy'],
     liveUrl: 'https://dancewear.co.uk',
-    screenshot: '/screenshots/porselli.png',
+    screenshot: '/screenshots/porselli.webp',
   },
   {
     id: 'jackie-mack-designs',
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     description: 'Artisan jewelry e-commerce site with custom product configurator, engraving options, and a streamlined single-page checkout flow.',
     tech: ['Next.js', 'TypeScript', 'WooCommerce', 'Typesense', 'Tailwind CSS'],
     liveUrl: 'https://jackiemackdesigns.com',
-    screenshot: '/screenshots/jackiemackdesigns.png',
+    screenshot: '/screenshots/jackiemackdesigns.webp',
   },
   {
     id: 'henry-holsters',
@@ -96,7 +96,7 @@ export const projects: Project[] = [
     description: 'Custom leather holster retailer with a complex product builder — customers configure firearm model, carry style, hand orientation, and color. Integrated with a custom order management workflow.',
     tech: ['WordPress', 'WooCommerce', 'PHP', 'Blocksy'],
     liveUrl: 'https://henryholsters.com',
-    screenshot: '/screenshots/henryholsters.png',
+    screenshot: '/screenshots/henryholsters.webp',
   },
   {
     id: 'shine-trim',
@@ -105,7 +105,7 @@ export const projects: Project[] = [
     description: 'Automotive detailing products store with membership pricing, bulk discount tiers, and a loyalty rewards program deeply integrated into WooCommerce.',
     tech: ['WordPress', 'WooCommerce', 'PHP', 'Blocksy'],
     liveUrl: 'https://shinetrim.com',
-    screenshot: '/screenshots/shinetrim.png',
+    screenshot: '/screenshots/shinetrim.webp',
   },
   {
     id: 'squadron-nostalgia',
@@ -114,7 +114,7 @@ export const projects: Project[] = [
     description: 'Military collectibles and memorabilia store with a custom item authentication system, condition grading UI, and detailed provenance tracking per product.',
     tech: ['Next.js', 'TypeScript', 'WooCommerce', 'Typesense', 'Tailwind CSS'],
     liveUrl: 'https://squadronnostalgia.com',
-    screenshot: '/screenshots/squadronnostalgia.png',
+    screenshot: '/screenshots/squadronnostalgia.webp',
   },
   {
     id: 'choice-ammunition',
@@ -123,7 +123,7 @@ export const projects: Project[] = [
     description: 'High-volume ammunition retailer with strict age verification, state-based shipping restrictions, and real-time inventory sync across multiple warehouses.',
     tech: ['WordPress', 'WooCommerce', 'PHP', 'Blocksy'],
     liveUrl: 'https://choiceammunition.com',
-    screenshot: '/screenshots/choiceammunition.png',
+    screenshot: '/screenshots/choiceammunition.webp',
   },
   {
     id: 'solutions-screen-printers',
