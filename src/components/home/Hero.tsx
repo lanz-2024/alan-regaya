@@ -24,6 +24,16 @@ export function Hero() {
             View Projects
           </Link>
         </div>
+
+        <a
+          href="#stats"
+          className="mt-12 inline-block animate-bounce text-[var(--color-text-muted)] hover:text-white transition-colors"
+          aria-label="Scroll to next section"
+        >
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </a>
       </div>
     </section>
   );
