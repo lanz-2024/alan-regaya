@@ -8,7 +8,7 @@ export function Hero() {
   const [pdfSrc, setPdfSrc] = useState<string | null>(null);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 overflow-hidden" aria-labelledby="hero-heading">
+    <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 overflow-hidden pt-16" aria-labelledby="hero-heading">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-[var(--color-background)] to-[var(--color-background)] pointer-events-none" aria-hidden="true" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
