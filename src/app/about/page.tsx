@@ -40,7 +40,7 @@ export default async function AboutPage() {
         <OriginStory />
         <section className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
-            <p className="text-xs font-mono text-[var(--color-accent)] uppercase tracking-widest mb-2">Today</p>
+            <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">Today</p>
             <h2 className="text-3xl font-bold mb-6">About Me</h2>
             <div className="space-y-4 text-[var(--color-text-muted)] leading-relaxed">
               <p>
@@ -51,7 +51,7 @@ export default async function AboutPage() {
               </p>
               <p>
                 Beyond client work, I maintain open-source projects with real traction:{' '}
-                <a href="https://github.com/blazecommerce/headless-woocommerce" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] underline">
+                <a href="https://github.com/blazecommerce/headless-woocommerce" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent-text)] underline">
                   headless-woocommerce
                 </a>{' '}
                 has 91 stars and is used in production across multiple countries.
