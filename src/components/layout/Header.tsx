@@ -14,6 +14,7 @@ export function Header() {
           <Link href="/" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">Home</Link>
           <Link href="/about" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">About</Link>
           <Link href="/projects" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">Projects</Link>
+          <Link href="/contact" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">Contact</Link>
         </nav>
         <div className="hidden md:flex items-center gap-3">
           <HeaderPdfButtons resumeHref={siteConfig.resumePdf} portfolioHref={siteConfig.portfolioPdf} />
