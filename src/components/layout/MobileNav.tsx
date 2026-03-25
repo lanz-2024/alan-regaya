@@ -17,7 +17,7 @@ const projectSections = [
   { href: '/projects#client', label: 'Client Sites' },
 ];
 
-export function MobileNav() {
+export function MobileNav({ className }: { className?: string }) {
   const [open, setOpen] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const [projectsOpen, setProjectsOpen] = useState(false);
@@ -98,7 +98,7 @@ export function MobileNav() {
   ) : null;
 
   return (
-    <div className="md:hidden">
+    <div className={`md:hidden${className ? ` ${className}` : ''}`}>
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? 'Close menu' : 'Open menu'}
