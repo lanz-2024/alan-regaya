@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'Projects',
   description: `Open-source libraries, client storefronts, and in-development work by ${siteConfig.name}. Headless WooCommerce, Next.js, WordPress, and more.`,
   alternates: { canonical: `${siteConfig.url}/projects` },
+  openGraph: {
+    title: `Projects | ${siteConfig.name}`,
+    description: `Open-source libraries, client storefronts, and in-development work by ${siteConfig.name}. Headless WooCommerce, Next.js, WordPress, and more.`,
+    url: `${siteConfig.url}/projects`,
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
+  },
+  twitter: {
+    title: `Projects | ${siteConfig.name}`,
+    description: `Open-source libraries, client storefronts, and in-development work by ${siteConfig.name}. Headless WooCommerce, Next.js, WordPress, and more.`,
+    images: [siteConfig.ogImage],
+  },
 };
 
 const jsonLd = {

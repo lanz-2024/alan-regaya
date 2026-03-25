@@ -44,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         jobTitle: siteConfig.title,
         url: siteConfig.url,
         email: siteConfig.email,
+        image: `${siteConfig.url}${siteConfig.ogImage}`,
         sameAs: [siteConfig.github, siteConfig.linkedin],
         knowsAbout: ['Next.js', 'React', 'TypeScript', 'PHP', 'WordPress', 'WooCommerce', 'Rust', 'Tauri', 'Typesense'],
       },

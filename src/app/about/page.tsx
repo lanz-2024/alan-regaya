@@ -11,6 +11,23 @@ export const metadata: Metadata = {
   title: 'About',
   description: `Learn about ${siteConfig.name}'s background, experience, and the journey from tinkering with Friendster profiles to building production e-commerce platforms.`,
   alternates: { canonical: `${siteConfig.url}/about` },
+  openGraph: {
+    title: `About | ${siteConfig.name}`,
+    description: `Learn about ${siteConfig.name}'s background, experience, and the journey from tinkering with Friendster profiles to building production e-commerce platforms.`,
+    url: `${siteConfig.url}/about`,
+    images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
+  },
+  twitter: {
+    title: `About | ${siteConfig.name}`,
+    description: `Learn about ${siteConfig.name}'s background, experience, and the journey from tinkering with Friendster profiles to building production e-commerce platforms.`,
+    images: [siteConfig.ogImage],
+  },
+};
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: { '@id': `${siteConfig.url}/#person` },
 };
 
 export default async function AboutPage() {
@@ -18,6 +35,7 @@ export default async function AboutPage() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="pt-16">
         <OriginStory />
         <section className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]">
