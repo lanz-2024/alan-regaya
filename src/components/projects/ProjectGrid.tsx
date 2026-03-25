@@ -34,8 +34,8 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
         ))}
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" role="tabpanel" aria-label={`${active} projects`}>
-        {filtered.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+        {filtered.map((project, index) => (
+          <ProjectCard key={project.id} project={project} priority={index === 0} />
         ))}
       </div>
     </div>

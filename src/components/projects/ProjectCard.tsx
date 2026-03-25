@@ -14,7 +14,7 @@ const typeColors: Record<string, string> = {
   'in-development': 'text-orange-400 border-orange-400/30 bg-orange-400/5',
 };
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project, priority = false }: { project: Project; priority?: boolean }) {
   return (
     <article className="glow-border rounded-lg overflow-hidden bg-[var(--color-surface)] flex flex-col">
       {project.screenshot && (
@@ -23,6 +23,7 @@ export function ProjectCard({ project }: { project: Project }) {
             src={project.screenshot}
             alt={`Screenshot of ${project.name}`}
             fill
+            priority={priority}
             className="object-cover object-top transition-transform duration-300 hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
