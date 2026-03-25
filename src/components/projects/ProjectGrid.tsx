@@ -1,17 +1,35 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Project, ProjectType } from '@/data/projects';
 import { ProjectCard } from './ProjectCard';
 
-const filters: { label: string; value: 'all' | ProjectType }[] = [
-  { label: 'All', value: 'all' },
-  { label: 'Open Source', value: 'open-source' },
-  { label: 'Client Sites', value: 'client' },
-  { label: 'In Development', value: 'in-development' },
+const filters: { label: string; value: 'all' | ProjectType; hash: string }[] = [
+  { label: 'All', value: 'all', hash: '' },
+  { label: 'Open Source', value: 'open-source', hash: 'open-source' },
+  { label: 'Client Sites', value: 'client', hash: 'client' },
+  { label: 'In Development', value: 'in-development', hash: 'in-development' },
 ];
+
+function hashToFilter(hash: string): 'all' | ProjectType {
+  const match = filters.find((f) => f.hash === hash.replace('#', ''));
+  return match ? match.value : 'all';
+}
 
 export function ProjectGrid({ projects }: { projects: Project[] }) {
   const [active, setActive] = useState<'all' | ProjectType>('all');
+
+  useEffect(() => {
+    setActive(hashToFilter(window.location.hash));
+    const onHashChange = () => setActive(hashToFilter(window.location.hash));
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
+  function selectFilter(value: 'all' | ProjectType, hash: string) {
+    setActive(value);
+    history.replaceState(null, '', hash ? `#${hash}` : window.location.pathname);
+  }
+
   const filtered = active === 'all' ? projects : projects.filter((p) => p.type === active);
 
   return (
@@ -22,7 +40,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
             key={f.value}
             role="tab"
             aria-selected={active === f.value}
-            onClick={() => setActive(f.value)}
+            onClick={() => selectFilter(f.value, f.hash)}
             className={`px-4 py-1.5 rounded-full text-sm border transition-colors ${
               active === f.value
                 ? 'bg-[var(--color-accent)] border-[var(--color-accent)] text-white'
