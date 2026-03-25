@@ -79,7 +79,7 @@ export function Header() {
             </div>
           </div>
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ml-auto">
           <Link
             href="/contact"
             className="hidden md:inline-flex px-4 py-2 bg-[var(--color-accent)] text-white text-sm rounded hover:bg-[var(--color-accent-hover)] transition-colors"
