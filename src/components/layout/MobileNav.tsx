@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -8,9 +8,18 @@ export function MobileNav() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const navTargetRef = useRef<string | null>(null);
 
   useEffect(() => { setMounted(true); }, []);
   useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    if (navTargetRef.current !== null) {
+      if (navTargetRef.current === pathname) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      navTargetRef.current = null;
+    }
+  }, [pathname]);
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -21,7 +30,7 @@ export function MobileNav() {
       <nav className="flex flex-col gap-4" aria-label="Mobile navigation">
         <Link
           href="/about"
-          onClick={() => { setOpen(false); if (pathname === '/about') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          onClick={() => { setOpen(false); navTargetRef.current = '/about'; if (pathname === '/about') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           className="text-2xl font-light text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
         >
           About
@@ -35,7 +44,7 @@ export function MobileNav() {
         </Link>
         <Link
           href="/projects"
-          onClick={() => { setOpen(false); if (pathname === '/projects') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          onClick={() => { setOpen(false); navTargetRef.current = '/projects'; if (pathname === '/projects') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           className="text-2xl font-light text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
         >
           Projects
