@@ -5,8 +5,8 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { siteConfig } from '@/data/site-config';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'optional', weight: ['300', '400', '600', '700'] });
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', display: 'optional', weight: ['400'], preload: false });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap', weight: ['400', '300', '600', '700'] });
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', display: 'swap', weight: ['400'], preload: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

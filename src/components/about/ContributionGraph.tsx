@@ -74,6 +74,7 @@ export function ContributionGraph({ calendar }: { calendar: ContributionWeek[] }
                   fontSize={10}
                   fill="#888888"
                   fontFamily="monospace"
+                  aria-hidden="true"
                 >
                   {label}
                 </text>
@@ -88,6 +89,7 @@ export function ContributionGraph({ calendar }: { calendar: ContributionWeek[] }
                   fontSize={9}
                   fill="#888888"
                   fontFamily="monospace"
+                  aria-hidden="true"
                 >
                   {label}
                 </text>
