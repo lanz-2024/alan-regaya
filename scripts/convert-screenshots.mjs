@@ -23,7 +23,7 @@ if (pngs.length === 0) {
 await Promise.all(pngs.map(async (png) => {
   const src = resolve(screenshotsDir, png);
   const dest = resolve(screenshotsDir, basename(png, '.png') + '.webp');
-  await sharp(src).webp({ quality: 82 }).toFile(dest);
+  await sharp(src).resize(960, undefined, { fit: 'inside', withoutEnlargement: true }).webp({ quality: 80 }).toFile(dest);
   console.log(`  ✓ ${png} → ${basename(dest)}`);
 }));
 
