@@ -25,6 +25,7 @@ export const projects: Project[] = [
     github: 'https://github.com/blaze-commerce/headless-woocommerce',
     stars: 91,
     forks: 37,
+    screenshot: '/screenshots/headless-woocommerce.webp',
   },
   {
     id: 'blazecommerce-wp-plugin',
@@ -34,6 +35,7 @@ export const projects: Project[] = [
     description: 'WordPress plugin that exposes WooCommerce data via REST/GraphQL for headless storefronts. Manages Typesense index sync, custom fields, and headless routing.',
     tech: ['PHP', 'WordPress', 'WooCommerce', 'Gutenberg', 'Typesense', 'WP-CLI'],
     github: 'https://github.com/blaze-commerce/blazecommerce-wp-plugin',
+    screenshot: '/screenshots/blazecommerce-wp-plugin.webp',
   },
   {
     id: 'blaze-blocksy',
@@ -44,6 +46,7 @@ export const projects: Project[] = [
     github: 'https://github.com/blaze-commerce/blaze-blocksy',
     stars: 1,
     forks: 1,
+    screenshot: '/screenshots/blaze-blocksy.webp',
   },
   {
     id: 'smart-time-tracker',
@@ -52,6 +55,7 @@ export const projects: Project[] = [
     featured: true,
     description: 'Cross-platform desktop app for automated time tracking with ClickUp integration. Detects active windows, categorizes work sessions, and syncs tracked time to ClickUp tasks without manual input.',
     tech: ['Rust', 'Tauri 2.0', 'React 19', 'TypeScript', 'ClickUp OAuth', 'SQLite'],
+    screenshot: '/screenshots/smart-time-tracker.webp',
   },
   {
     id: 'byron-bay-candles',
