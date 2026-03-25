@@ -2,7 +2,19 @@
 
 ## [Unreleased]
 
+### Added
+- Custom 404 page (`not-found.tsx`) with branded dark theme and "Go Home" button
+- TechStack: group technologies by category (Frontend/Backend/Data/Systems/DevOps) with colored labels
+- FeaturedProjects: project screenshot images with `aspect-video` / `object-cover` layout
+- ContactSection: visible "Email", "GitHub", "LinkedIn" text labels below icons
+- Scroll fade-in animations on Stats, FeaturedProjects, TechStack, and ContactSection sections
+- Hero: "Learn More" ghost button linking to `#stats`
+- Hero: "AR" initials avatar with accent gradient background
+
 ### Changed
+- AnimatedCounter: `useState(target)` initial value so SSR HTML shows real numbers (resets to 0 on mount to animate up)
+- Contact page: 2-column desktop layout (info sidebar + form column), stacked on mobile
+- MobileNav: always-rendered overlay with CSS `translate-x`/`opacity` transition; Tailwind hamburger morph with `duration-300`
 - Extract `NavLinks` into shared component for active-state awareness
 - Extract `ContactSection` shared component
 - Replace `alan@regaya:~$` text in header with AR gradient logo image (32px mobile, 36px sm+)
