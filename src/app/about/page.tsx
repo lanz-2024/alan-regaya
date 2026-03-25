@@ -38,7 +38,7 @@ export default async function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="pt-16">
         <OriginStory />
-        <section className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]">
+        <section id="about-me" className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">
             <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">Today</p>
             <h2 className="text-3xl font-bold mb-6">About Me</h2>
