@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { MobileNav } from './MobileNav';
+import { NavLinks } from './NavLinks';
 
 export function Header() {
   return (
@@ -17,15 +18,7 @@ export function Header() {
           />
         </Link>
         <nav className="hidden md:flex items-center gap-8 justify-self-center" aria-label="Main navigation">
-          <Link href="/about" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">
-            About
-          </Link>
-          <Link href="/about#experience" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">
-            Experience
-          </Link>
-          <Link href="/projects" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">
-            Projects
-          </Link>
+          <NavLinks />
         </nav>
         <div className="flex items-center gap-3 ml-auto">
           <Link

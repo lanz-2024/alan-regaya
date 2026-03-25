@@ -21,7 +21,7 @@ export function MobileNav() {
       <nav className="flex flex-col gap-4" aria-label="Mobile navigation">
         <Link
           href="/about"
-          onClick={() => setOpen(false)}
+          onClick={() => { setOpen(false); if (pathname === '/about') window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           className="text-2xl font-light text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors"
         >
           About
