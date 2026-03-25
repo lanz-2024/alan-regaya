@@ -117,6 +117,7 @@ export function ContributionGraph({ calendar }: { calendar: ContributionWeek[] }
             {[0, 1, 2, 3, 4].map((level) => (
               <span
                 key={level}
+                role="img"
                 style={{ backgroundColor: levelColors[level] }}
                 className="inline-block w-[11px] h-[11px] rounded-[2px]"
                 aria-label={`Level ${level}`}
