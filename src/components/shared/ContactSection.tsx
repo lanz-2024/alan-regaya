@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { siteConfig } from '@/data/site-config';
 
 export function ContactSection() {
@@ -10,12 +11,12 @@ export function ContactSection() {
           {siteConfig.availability}. I&apos;m particularly interested in headless e-commerce, performance-critical Next.js apps, and projects that push modern web capabilities.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href={`mailto:${siteConfig.email}`}
+          <Link
+            href="/contact"
             className="px-6 py-3 bg-[var(--color-accent)] text-white rounded hover:bg-[var(--color-accent-hover)] transition-colors font-medium"
           >
-            Send an email
-          </a>
+            Get in touch
+          </Link>
           <a
             href={siteConfig.github}
             target="_blank"
