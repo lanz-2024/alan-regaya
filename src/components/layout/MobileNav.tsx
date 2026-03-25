@@ -40,13 +40,6 @@ export function MobileNav() {
         >
           Projects
         </Link>
-        <Link
-          href="/contact"
-          onClick={() => setOpen(false)}
-          className="inline-flex px-6 py-3 bg-[var(--color-accent)] text-white text-lg rounded hover:bg-[var(--color-accent-hover)] transition-colors"
-        >
-          Get in Touch
-        </Link>
       </nav>
     </div>
   ) : null;
