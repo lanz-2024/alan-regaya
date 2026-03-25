@@ -104,7 +104,7 @@ export function ContributionGraph({ calendar }: { calendar: ContributionWeek[] }
                     height={CELL}
                     rx={2}
                     fill={levelColors[day.level] ?? levelColors[0]}
-                    aria-label={`${day.date}: ${day.count} contribution${day.count !== 1 ? 's' : ''}`}
+                    aria-hidden="true"
                   />
                 )),
               )}

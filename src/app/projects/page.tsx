@@ -35,9 +35,12 @@ const jsonLd = {
   })),
 };
 
+const firstScreenshot = projects.find((p) => p.screenshot)?.screenshot;
+
 export default function ProjectsPage() {
   return (
     <>
+      {firstScreenshot && <link rel="preload" as="image" href={firstScreenshot} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="pt-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-24">
