@@ -4,12 +4,13 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 export function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const { ref, isVisible } = useIntersectionObserver(0.3);
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   const hasRun = useRef(false);
 
   useEffect(() => {
     if (!isVisible || hasRun.current) return;
     hasRun.current = true;
+    setCount(0);
     const duration = 1200;
     const start = performance.now();
 
