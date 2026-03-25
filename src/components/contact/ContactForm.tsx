@@ -102,6 +102,10 @@ export function ContactForm() {
         {status === 'sending' ? 'Sending…' : status === 'success' ? 'Sent ✓' : 'Send Message'}
       </button>
 
+      <p className="mt-4 text-xs text-[var(--color-text-muted)]">
+        Your message is sent via Web3Forms and delivered directly to my inbox. No data is stored.
+      </p>
+
       {status === 'success' && (
         <p className="mt-4 text-sm text-green-400" role="status">
           Message sent — I&apos;ll get back to you within 1–2 business days.
