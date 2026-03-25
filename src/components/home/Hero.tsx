@@ -23,12 +23,6 @@ export function Hero() {
           >
             View Projects
           </Link>
-          <Link
-            href="/contact"
-            className="w-full sm:w-auto px-8 py-3.5 border border-[var(--color-border)] text-[var(--color-text-muted)] rounded hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors"
-          >
-            Get in Touch
-          </Link>
         </div>
       </div>
     </section>
