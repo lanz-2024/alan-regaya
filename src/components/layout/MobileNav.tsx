@@ -2,9 +2,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { PdfModal } from '@/components/shared/PdfModal';
 
 export function MobileNav({ resumeHref, portfolioHref }: { resumeHref: string; portfolioHref: string }) {
   const [open, setOpen] = useState(false);
+  const [modal, setModal] = useState<{ src: string; title: string } | null>(null);
   const pathname = usePathname();
 
   useEffect(() => { setOpen(false); }, [pathname]);
@@ -35,15 +37,22 @@ export function MobileNav({ resumeHref, portfolioHref }: { resumeHref: string; p
             ))}
           </nav>
           <div className="flex flex-col gap-3 pt-4 border-t border-[var(--color-border)]">
-            <a href={resumeHref} target="_blank" rel="noopener noreferrer" className="text-center py-3 border border-[var(--color-border)] rounded text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors">
+            <button
+              onClick={() => { setOpen(false); setModal({ src: resumeHref, title: 'Resume — Alan Regaya' }); }}
+              className="text-center py-3 border border-[var(--color-border)] rounded text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)] transition-colors"
+            >
               Resume
-            </a>
-            <a href={portfolioHref} target="_blank" rel="noopener noreferrer" className="text-center py-3 bg-[var(--color-accent)] rounded text-white hover:bg-[var(--color-accent-hover)] transition-colors">
+            </button>
+            <button
+              onClick={() => { setOpen(false); setModal({ src: portfolioHref, title: 'Portfolio — Alan Regaya' }); }}
+              className="text-center py-3 bg-[var(--color-accent)] rounded text-white hover:bg-[var(--color-accent-hover)] transition-colors"
+            >
               Portfolio
-            </a>
+            </button>
           </div>
         </div>
       )}
+      {modal && <PdfModal src={modal.src} title={modal.title} onClose={() => setModal(null)} />}
     </div>
   );
 }
