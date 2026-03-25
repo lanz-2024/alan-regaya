@@ -6,6 +6,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/convert-screenshots.mjs",
     "build": "next build",
+    "postbuild": "node scripts/optimize-css.mjs",
     "start": "next start",
     "lint": "eslint",
     "screenshots": "npx ts-node --esm scripts/capture-screenshots.ts"
