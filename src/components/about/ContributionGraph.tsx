@@ -13,7 +13,7 @@ export function ContributionGraph({ calendar }: { calendar: ContributionWeek[] }
 
   return (
     <section className="py-12 max-w-6xl mx-auto px-4 sm:px-6" aria-labelledby="contrib-heading">
-      <p className="text-xs font-mono text-[var(--color-accent)] uppercase tracking-widest mb-2">Activity</p>
+      <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">Activity</p>
       <h2 id="contrib-heading" className="text-xl font-bold mb-6">GitHub Contributions</h2>
       <div className="overflow-x-auto">
         <svg

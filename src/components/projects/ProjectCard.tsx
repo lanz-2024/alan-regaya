@@ -42,12 +42,12 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
         </div>
         <div className="flex items-center gap-3 text-sm pt-2 border-t border-[var(--color-border)]">
           {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] hover:underline flex items-center gap-1">
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent-text)] hover:underline flex items-center gap-1">
               GitHub {project.stars && <span className="text-[var(--color-text-muted)]">★ {project.stars}</span>}
             </a>
           )}
           {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-muted)] hover:text-[var(--color-text)] ml-auto">
+            <a href={project.liveUrl} target="_blank" rel={project.type === 'client' ? 'noopener noreferrer nofollow' : 'noopener noreferrer'} className="text-[var(--color-text-muted)] hover:text-[var(--color-text)] ml-auto">
               Live ↗
             </a>
           )}
