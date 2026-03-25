@@ -25,7 +25,7 @@ export function Header() {
             alt="AR logo"
             width={36}
             height={36}
-            className="h-8 w-8 sm:h-9 sm:w-9"
+            className="h-12 w-12 sm:h-14 sm:w-14"
             priority
           />
         </Link>
