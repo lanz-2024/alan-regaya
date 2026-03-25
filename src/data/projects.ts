@@ -102,7 +102,7 @@ export const projects: Project[] = [
     name: 'Squadron Nostalgia',
     type: 'client',
     description: 'Military collectibles and memorabilia store with a custom item authentication system, condition grading UI, and detailed provenance tracking per product.',
-    tech: ['WordPress', 'WooCommerce', 'PHP', 'JavaScript'],
+    tech: ['Next.js', 'TypeScript', 'WooCommerce', 'Typesense', 'Tailwind CSS'],
     liveUrl: 'https://squadronnostalgia.com',
     screenshot: '/screenshots/squadronnostalgia.png',
   },
