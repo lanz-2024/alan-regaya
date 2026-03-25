@@ -17,7 +17,7 @@ export function Stats({ stats }: { stats: { commits: number; prs: number; stars:
   return (
     <section className="py-16 border-y border-[var(--color-border)] bg-[var(--color-surface)]" aria-label="GitHub statistics">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <dl className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <dl className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {items.map((item) => (
             <div key={item.label} className="text-center">
               <dt className="text-3xl sm:text-4xl font-bold text-[var(--color-text)] font-mono">
