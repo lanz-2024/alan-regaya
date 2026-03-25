@@ -7,8 +7,8 @@ export function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-40 border-b border-[var(--color-border)] bg-[var(--color-background)]/90 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 grid grid-cols-[auto_1fr_auto] items-center">
-        <MobileNav className="order-first md:order-last" />
-        <Link href="/" aria-label="Home" className="order-2 md:order-first justify-self-center md:justify-self-start">
+        <MobileNav />
+        <Link href="/" aria-label="Home" className="justify-self-center md:justify-self-start">
           <Image
             src="/logo.png"
             alt="AR logo"
@@ -21,7 +21,7 @@ export function Header() {
         <nav className="hidden md:flex items-center gap-8 justify-self-center" aria-label="Main navigation">
           <NavLinks />
         </nav>
-        <div className="order-last flex items-center">
+        <div className="flex items-center">
           {/* Mobile (<640px): envelope icon */}
           <Link
             href="/contact"

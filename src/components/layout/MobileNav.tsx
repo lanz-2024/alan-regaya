@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export function MobileNav({ className }: { className?: string }) {
+export function MobileNav() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
@@ -52,7 +52,7 @@ export function MobileNav({ className }: { className?: string }) {
   ) : null;
 
   return (
-    <div className={`md:hidden${className ? ` ${className}` : ''}`}>
+    <div className="md:hidden">
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? 'Close menu' : 'Open menu'}
