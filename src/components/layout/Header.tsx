@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { MobileNav } from './MobileNav';
+import { HeaderPdfButtons } from './HeaderPdfButtons';
 import { siteConfig } from '@/data/site-config';
 
 export function Header() {
@@ -15,28 +16,10 @@ export function Header() {
           <Link href="/projects" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">Projects</Link>
         </nav>
         <div className="hidden md:flex items-center gap-3">
-          <ResumeButton href={siteConfig.resumePdf} label="Resume" />
-          <ResumeButton href={siteConfig.portfolioPdf} label="Portfolio" primary />
+          <HeaderPdfButtons resumeHref={siteConfig.resumePdf} portfolioHref={siteConfig.portfolioPdf} />
         </div>
         <MobileNav resumeHref={siteConfig.resumePdf} portfolioHref={siteConfig.portfolioPdf} />
       </div>
     </header>
-  );
-}
-
-function ResumeButton({ href, label, primary }: { href: string; label: string; primary?: boolean }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`text-sm px-4 py-1.5 rounded border transition-colors ${
-        primary
-          ? 'bg-[var(--color-accent)] border-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)]'
-          : 'border-[var(--color-border)] text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:border-[var(--color-accent)]'
-      }`}
-    >
-      {label}
-    </a>
   );
 }
