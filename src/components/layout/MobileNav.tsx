@@ -34,7 +34,7 @@ export function MobileNav() {
   const overlay = (
     <div
       className={`fixed inset-0 top-16 z-50 bg-[#0a0a0a] px-4 pt-8 flex flex-col gap-6 overflow-y-auto transition-all duration-300 ease-in-out ${
-        open ? 'translate-x-0 opacity-100 pointer-events-auto' : 'translate-x-full opacity-0 pointer-events-none'
+        open ? 'translate-x-0 opacity-100 pointer-events-auto' : '-translate-x-full opacity-0 pointer-events-none'
       }`}
     >
       <nav className="flex flex-col gap-4" aria-label="Mobile navigation">
