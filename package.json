@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "screenshots": "npx ts-node --esm scripts/capture-screenshots.ts"
   },
   "dependencies": {
     "next": "16.2.1",
