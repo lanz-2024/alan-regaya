@@ -14,3 +14,7 @@
 - Mobile/tablet header layout: hamburger left, logo center, CTA right (envelope icon <640px, "Get in Touch" text 640–767px)
 - Replace default Next.js favicon with AR logo
 - Scroll-down chevron added to Hero section
+- Projects nav link now scrolls to top when already on `/projects` (desktop and mobile)
+- Remove CSS `order` from header grid — rely on DOM order instead
+- Blaze Blocksy project description: remove incorrect "headless" label
+- ContactForm: remove client-side field validation (rely on native HTML5 validation)
