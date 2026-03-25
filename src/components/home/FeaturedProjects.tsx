@@ -27,12 +27,12 @@ export function FeaturedProjects() {
             </div>
             <div className="flex items-center gap-3 text-sm">
               {project.github && (
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] hover:underline">
+                <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent-text)] hover:underline">
                   GitHub →
                 </a>
               )}
               {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--color-text-muted)] hover:text-[var(--color-text)]">
+                <a href={project.liveUrl} target="_blank" rel={project.type === 'client' ? 'noopener noreferrer nofollow' : 'noopener noreferrer'} className="text-[var(--color-text-muted)] hover:text-[var(--color-text)]">
                   Live site ↗
                 </a>
               )}
@@ -41,7 +41,7 @@ export function FeaturedProjects() {
         ))}
       </div>
       <div className="text-center mt-10">
-        <Link href="/projects" className="text-sm text-[var(--color-accent)] hover:underline">
+        <Link href="/projects" className="text-sm text-[var(--color-accent-text)] hover:underline">
           View all 13 projects →
         </Link>
       </div>

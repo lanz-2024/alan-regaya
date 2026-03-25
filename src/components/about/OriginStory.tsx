@@ -1,7 +1,7 @@
 export function OriginStory() {
   return (
     <section className="py-24 max-w-3xl mx-auto px-4 sm:px-6" aria-labelledby="origin-heading">
-      <p className="text-xs font-mono text-[var(--color-accent)] uppercase tracking-widest mb-2">How It Started</p>
+      <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">How It Started</p>
       <h2 id="origin-heading" className="text-3xl sm:text-4xl font-bold mb-10">Before the career, there was the curiosity.</h2>
 
       <div className="space-y-8 text-[var(--color-text-muted)] leading-relaxed">
