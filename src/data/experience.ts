@@ -16,7 +16,7 @@ export const experience: ExperienceEntry[] = [
     location: 'Remote',
     description: 'Lead engineer for headless CMS migrations and WooCommerce storefronts serving clients across AU, UK, and US. Architect of the open-source headless WooCommerce library and the internal Claude Code workflow system.',
     highlights: [
-      'Led 30+ migrations from Craft CMS and WordPress to headless TypeScript-native architectures with zero-downtime deployment strategies',
+      'Led 30+ migrations from WordPress to headless TypeScript-native architectures with zero-downtime deployment strategies',
       'Built production-ready headless WooCommerce → Next.js library — 90+ GitHub stars, 37 forks, 30+ live storefronts, 66 semantic releases',
       'Integrated Algolia search across multiple client sites with automated re-indexing and InstantSearch UI with faceted filtering',
       'Implemented GTM data layer architecture with Marketo integration for lead capture across all client projects',
