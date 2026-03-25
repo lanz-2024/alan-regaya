@@ -49,10 +49,10 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-semibold text-[var(--color-text)] mb-2">Contact</h2>
           <p>
-            Questions? Email me at{' '}
-            <a href={`mailto:${siteConfig.email}`} className="text-[var(--color-accent)] hover:underline">
-              {siteConfig.email}
-            </a>.
+            Questions?{' '}
+            <Link href="/contact" className="text-[var(--color-accent)] hover:underline">
+              Get in touch via the contact page.
+            </Link>
           </p>
         </section>
 
