@@ -22,7 +22,6 @@ export function Header() {
           <span className="text-[var(--color-accent-text)]">alan</span>@regaya:~$
         </Link>
         <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
-          <Link href="/" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">Home</Link>
           <div className="relative group">
             <Link
               href="/about"

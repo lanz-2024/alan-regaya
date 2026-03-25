@@ -34,9 +34,6 @@ export function MobileNav() {
   const overlay = open ? (
     <div className="fixed inset-0 top-16 z-50 bg-[#0a0a0a] px-4 pt-8 flex flex-col gap-6 overflow-y-auto">
       <nav className="flex flex-col gap-4" aria-label="Mobile navigation">
-        <Link href="/" className="text-2xl font-light text-[var(--color-text)] hover:text-[var(--color-accent-text)] transition-colors">
-          Home
-        </Link>
         <div>
           <button
             onClick={() => setAboutOpen(!aboutOpen)}
