@@ -19,7 +19,7 @@ export function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/projects"
-            className="w-full sm:w-auto px-8 py-3.5 bg-[var(--color-accent)] text-white rounded hover:bg-[var(--color-accent-hover)] transition-colors font-medium"
+            className="px-8 py-3.5 bg-[var(--color-accent)] text-white rounded hover:bg-[var(--color-accent-hover)] transition-colors font-medium"
           >
             View Projects
           </Link>
