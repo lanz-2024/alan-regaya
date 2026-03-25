@@ -5,6 +5,11 @@
  *   1. out/ — for local/static hosting
  *   2. .next/server/app/ — for Vercel's Next.js integration which
  *      reads these HTML files directly for SSG pages
+ *
+ * After critters runs, we also inline @font-face rules directly into the
+ * critical <style> tag. Critters can't detect font-family usage via CSS
+ * variables (next/font uses var(--font-inter)), so we do it manually.
+ * URLs are rewritten from relative (../media/) to absolute (/_next/static/media/).
  */
 import { readdir, readFile, writeFile, access } from 'fs/promises';
 import { join, relative } from 'path';
@@ -33,6 +38,54 @@ async function findHtmlFiles(dir) {
   return files;
 }
 
+/**
+ * Extract @font-face rules from a CSS string and rewrite relative URLs.
+ * CSS chunks use url(../media/foo.woff2) relative to _next/static/chunks/.
+ * In HTML context, these must be absolute: url(/_next/static/media/foo.woff2).
+ */
+function extractFontFaceRules(cssContent) {
+  const rules = [];
+  const regex = /@font-face\{[^}]+\}/g;
+  let match;
+  while ((match = regex.exec(cssContent)) !== null) {
+    const rule = match[0].replace(/url\(\.\.\/media\//g, 'url(/_next/static/media/');
+    rules.push(rule);
+  }
+  return rules.join('');
+}
+
+/**
+ * Inject @font-face rules into the HTML's inlined <style> tag.
+ * Places them at the start so they're available before other critical CSS.
+ */
+function injectFontFace(html, fontFaceCSS) {
+  if (!fontFaceCSS) return html;
+  // Prepend to the first <style> tag (critters creates one for critical CSS)
+  return html.replace(/(<style[^>]*>)/, `$1${fontFaceCSS}`);
+}
+
+// Cache CSS content per cssBaseDir to avoid re-reading for each HTML file
+const cssCache = new Map();
+
+async function getFontFaceCSS(html, cssBaseDir) {
+  if (cssCache.has(cssBaseDir)) return cssCache.get(cssBaseDir);
+
+  // Find the main CSS chunk href, e.g. /_next/static/chunks/FILENAME.css
+  const match = html.match(/href="(\/_next\/static\/chunks\/[^"]+\.css)"/);
+  if (!match) { cssCache.set(cssBaseDir, ''); return ''; }
+
+  const cssHref = match[1]; // /_next/static/chunks/FILENAME.css
+  const cssRelPath = cssHref.replace(/^\/_next\//, ''); // static/chunks/FILENAME.css
+  const cssFilePath = join(cssBaseDir, cssRelPath);
+
+  if (!(await exists(cssFilePath))) { cssCache.set(cssBaseDir, ''); return ''; }
+
+  const cssContent = await readFile(cssFilePath, 'utf8');
+  const fontFaceCSS = extractFontFaceRules(cssContent);
+  cssCache.set(cssBaseDir, fontFaceCSS);
+  return fontFaceCSS;
+}
+
 async function processDir(htmlDir, cssBaseDir, label) {
   if (!(await exists(htmlDir))) {
     console.log(`  skip ${label} (directory not found)`);
@@ -53,7 +106,12 @@ async function processDir(htmlDir, cssBaseDir, label) {
   let count = 0;
   for (const file of htmlFiles) {
     const html = await readFile(file, 'utf8');
-    const optimized = await critters.process(html);
+    let optimized = await critters.process(html);
+
+    // Inline @font-face rules with correct absolute URLs
+    const fontFaceCSS = await getFontFaceCSS(optimized, cssBaseDir);
+    optimized = injectFontFace(optimized, fontFaceCSS);
+
     await writeFile(file, optimized, 'utf8');
     count++;
     console.log(`  ✓ [${label}] ${relative(htmlDir, file)}`);
