@@ -12,9 +12,9 @@ export function Header() {
           <Image
             src="/logo.png"
             alt="AR logo"
-            width={36}
-            height={36}
-            className="h-12 w-12 sm:h-14 sm:w-14"
+            width={730}
+            height={730}
+            className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16"
             priority
           />
         </Link>
