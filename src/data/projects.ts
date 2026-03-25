@@ -121,7 +121,7 @@ export const projects: Project[] = [
     name: 'Choice Ammunition',
     type: 'client',
     description: 'High-volume ammunition retailer with strict age verification, state-based shipping restrictions, and real-time inventory sync across multiple warehouses.',
-    tech: ['Next.js', 'TypeScript', 'WooCommerce', 'Typesense', 'PHP'],
+    tech: ['WordPress', 'WooCommerce', 'PHP', 'Blocksy'],
     liveUrl: 'https://choiceammunition.com',
     screenshot: '/screenshots/choiceammunition.png',
   },
