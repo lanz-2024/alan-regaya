@@ -4,7 +4,7 @@ import { SectionHeading } from '@/components/shared/SectionHeading';
 
 export function Timeline() {
   return (
-    <section className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]" aria-labelledby="timeline-heading">
+    <section id="experience" className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]" aria-labelledby="timeline-heading">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <SectionHeading label="Experience" title="Work History" />
         <div id="timeline-heading" className="sr-only">Work History</div>

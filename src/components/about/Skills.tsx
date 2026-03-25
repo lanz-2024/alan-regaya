@@ -3,7 +3,7 @@ import { SectionHeading } from '@/components/shared/SectionHeading';
 
 export function Skills() {
   return (
-    <section className="py-24 max-w-6xl mx-auto px-4 sm:px-6" aria-labelledby="skills-heading">
+    <section id="skills" className="py-24 max-w-6xl mx-auto px-4 sm:px-6" aria-labelledby="skills-heading">
       <SectionHeading label="Capabilities" title="Skills" />
       <div id="skills-heading" className="sr-only">Skills</div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
