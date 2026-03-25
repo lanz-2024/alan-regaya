@@ -5,13 +5,39 @@ type Status = 'idle' | 'sending' | 'success' | 'error';
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const formRef = useRef<HTMLFormElement>(null);
+
+  function validate(formData: FormData): Record<string, string> {
+    const errs: Record<string, string> = {};
+    const name = (formData.get('name') as string ?? '').trim();
+    const email = (formData.get('email') as string ?? '').trim();
+    const message = (formData.get('message') as string ?? '').trim();
+
+    if (!name) errs.name = 'Name is required.';
+    if (!email) {
+      errs.email = 'Email is required.';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      errs.email = 'Please enter a valid email address.';
+    }
+    if (!message) errs.message = 'Message is required.';
+
+    return errs;
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus('sending');
 
     const formData = new FormData(e.currentTarget);
+    const validationErrors = validate(formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setErrors({});
+    setStatus('sending');
+
     formData.set('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? '');
     formData.set('subject', 'New contact from alanregaya.dev');
     formData.set('from_name', 'Portfolio Contact Form');
@@ -37,7 +63,7 @@ export function ContactForm() {
   const labelClass = 'block text-sm text-[var(--color-text-muted)] mb-1.5';
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} noValidate>
+    <form ref={formRef} onSubmit={handleSubmit}>
       {/* Honeypot — bots fill this, humans don't */}
       <input type="checkbox" name="botcheck" className="hidden" aria-hidden="true" tabIndex={-1} />
 
@@ -51,8 +77,12 @@ export function ContactForm() {
             required
             autoComplete="name"
             placeholder="Your name"
+            aria-describedby={errors.name ? 'contact-name-error' : undefined}
             className={inputClass}
           />
+          {errors.name && (
+            <p id="contact-name-error" className="mt-1 text-xs text-red-400" role="alert">{errors.name}</p>
+          )}
         </div>
         <div>
           <label htmlFor="contact-email" className={labelClass}>Email</label>
@@ -63,8 +93,12 @@ export function ContactForm() {
             required
             autoComplete="email"
             placeholder="your@email.com"
+            aria-describedby={errors.email ? 'contact-email-error' : undefined}
             className={inputClass}
           />
+          {errors.email && (
+            <p id="contact-email-error" className="mt-1 text-xs text-red-400" role="alert">{errors.email}</p>
+          )}
         </div>
       </div>
 
@@ -90,8 +124,12 @@ export function ContactForm() {
           required
           rows={6}
           placeholder="Tell me about the project or opportunity…"
+          aria-describedby={errors.message ? 'contact-message-error' : undefined}
           className={`${inputClass} resize-none`}
         />
+        {errors.message && (
+          <p id="contact-message-error" className="mt-1 text-xs text-red-400" role="alert">{errors.message}</p>
+        )}
       </div>
 
       <button
