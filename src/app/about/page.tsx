@@ -33,7 +33,7 @@ export default async function AboutPage() {
               </p>
               <p>
                 Beyond client work, I maintain open-source projects with real traction:{' '}
-                <a href="https://github.com/blazecommerce/headless-woocommerce" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] hover:underline">
+                <a href="https://github.com/blazecommerce/headless-woocommerce" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent)] underline">
                   headless-woocommerce
                 </a>{' '}
                 has 91 stars and is used in production across multiple countries.

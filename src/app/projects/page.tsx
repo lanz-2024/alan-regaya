@@ -20,7 +20,7 @@ const jsonLd = {
     position: i + 1,
     name: p.name,
     description: p.description,
-    url: p.liveUrl ?? p.github,
+    url: p.liveUrl ?? p.github ?? `${siteConfig.url}/projects#${p.id}`,
   })),
 };
 
