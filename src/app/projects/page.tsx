@@ -31,7 +31,7 @@ const jsonLd = {
     position: i + 1,
     name: p.name,
     description: p.description,
-    url: p.liveUrl ?? p.github ?? `${siteConfig.url}/projects#${p.id}`,
+    url: p.type === 'client' ? `${siteConfig.url}/projects#${p.id}` : (p.github ?? `${siteConfig.url}/projects#${p.id}`),
   })),
 };
 

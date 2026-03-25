@@ -16,7 +16,7 @@ export function Timeline() {
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
                   <div>
                     <h3 className="font-semibold text-[var(--color-text)]">{entry.role}</h3>
-                    <p className="text-sm text-[var(--color-accent)]">{entry.company} · {entry.location}</p>
+                    <p className="text-sm text-[var(--color-accent-text)]">{entry.company} · {entry.location}</p>
                   </div>
                   <time className="text-xs font-mono text-[var(--color-text-muted)] shrink-0">{entry.period}</time>
                 </div>
@@ -24,7 +24,7 @@ export function Timeline() {
                 <ul className="space-y-1 mb-3">
                   {entry.highlights.map((h, j) => (
                     <li key={j} className="text-sm text-[var(--color-text-muted)] flex gap-2">
-                      <span className="text-[var(--color-accent)] shrink-0">›</span>
+                      <span className="text-[var(--color-accent-text)] shrink-0">›</span>
                       {h}
                     </li>
                   ))}
