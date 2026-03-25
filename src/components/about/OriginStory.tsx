@@ -26,6 +26,7 @@ export function OriginStory() {
           </p>
           <p className="mt-3">
             The build was the easier part. The majority of the work went into the research: documenting the methodology, the development process, the testing, and the findings in a bound thesis.
+            It was also where I first learned to think in flowcharts — mapping out every conditional branch of the form logic as proper flowchart diagrams, with decision nodes, process boxes, and defined flow formats, before writing a single line of code. A habit that stuck.
             It was my first experience of the full arc of a real project — from problem identification through solution design, implementation, and formal documentation.
             It also happened to be my first serious WordPress project.
           </p>
