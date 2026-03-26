@@ -34,6 +34,9 @@ export function NavLinks() {
       <Link href="/projects" className={linkClass} onClick={handleNavClick('/projects')}>
         Projects
       </Link>
+      <Link href="/blog" className={linkClass} onClick={handleNavClick('/blog')}>
+        Blog
+      </Link>
     </>
   );
 }

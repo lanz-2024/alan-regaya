@@ -129,11 +129,4 @@ export const projects: Project[] = [
     liveUrl: 'https://choiceammunition.com',
     screenshot: '/screenshots/choiceammunition.webp',
   },
-  {
-    id: 'solutions-screen-printers',
-    name: 'Solutions for Screen Printers',
-    type: 'in-development',
-    description: 'B2B wholesale platform for screen printing supplies with trade account applications, tiered pricing, and a quote builder for bulk custom orders.',
-    tech: ['WordPress', 'WooCommerce', 'PHP', 'Blocksy'],
-  },
 ];

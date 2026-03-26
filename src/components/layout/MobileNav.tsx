@@ -8,6 +8,7 @@ const navLinks = [
   { href: '/about', label: 'About', scroll: true },
   { href: '/about#experience', label: 'Experience', scroll: false },
   { href: '/projects', label: 'Projects', scroll: true },
+  { href: '/blog', label: 'Blog', scroll: true },
 ];
 
 export function MobileNav() {
@@ -16,7 +17,9 @@ export function MobileNav() {
   const pathname = usePathname();
   const navTargetRef = useRef<string | null>(null);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true); }, []);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setOpen(false); }, [pathname]);
   useEffect(() => {
     if (navTargetRef.current !== null) {

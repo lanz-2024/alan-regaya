@@ -47,6 +47,8 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   alternates: { canonical: siteConfig.url },
+  manifest: '/site.webmanifest',
+  icons: { apple: '/apple-touch-icon.png' },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

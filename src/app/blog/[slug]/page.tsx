@@ -1,0 +1,71 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { blogPosts } from '@/data/blog-posts';
+import { siteConfig } from '@/data/site-config';
+
+export function generateStaticParams() {
+  return blogPosts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = blogPosts.find((p) => p.slug === slug);
+  if (!post) return {};
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      url: `${siteConfig.url}/blog/${post.slug}`,
+      type: 'article',
+      publishedTime: post.date,
+    },
+  };
+}
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = blogPosts.find((p) => p.slug === slug);
+  if (!post) notFound();
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    author: { '@type': 'Person', name: siteConfig.name, url: siteConfig.url },
+    url: `${siteConfig.url}/blog/${post.slug}`,
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-24">
+        <Link href="/blog" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors mb-8 inline-block">
+          ← Back to Blog
+        </Link>
+        <article>
+          <header className="mb-12">
+            <div className="flex flex-wrap gap-2 mb-4">
+              {post.tags.map((tag) => (
+                <span key={tag} className="text-xs font-mono px-2 py-1 rounded bg-[var(--color-surface-2)] text-[var(--color-accent-text)]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-bold text-[var(--color-text)] mb-4 leading-tight">{post.title}</h1>
+            <div className="flex items-center gap-4 text-sm text-[var(--color-text-muted)]">
+              <time dateTime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+              <span>·</span>
+              <span>{post.readTime}</span>
+            </div>
+          </header>
+          <div className="prose" dangerouslySetInnerHTML={{ __html: post.content }} />
+        </article>
+      </div>
+    </>
+  );
+}
