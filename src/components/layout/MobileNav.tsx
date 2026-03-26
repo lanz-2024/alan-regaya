@@ -17,7 +17,9 @@ export function MobileNav() {
   const pathname = usePathname();
   const navTargetRef = useRef<string | null>(null);
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setMounted(true); }, []);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { setOpen(false); }, [pathname]);
   useEffect(() => {
     if (navTargetRef.current !== null) {

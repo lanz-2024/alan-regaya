@@ -16,10 +16,11 @@ function hashToFilter(hash: string): 'all' | ProjectType {
 }
 
 export function ProjectGrid({ projects }: { projects: Project[] }) {
-  const [active, setActive] = useState<'all' | ProjectType>('all');
+  const [active, setActive] = useState<'all' | ProjectType>(() =>
+    typeof window !== 'undefined' ? hashToFilter(window.location.hash) : 'all'
+  );
 
   useEffect(() => {
-    setActive(hashToFilter(window.location.hash));
     const onHashChange = () => setActive(hashToFilter(window.location.hash));
     window.addEventListener('hashchange', onHashChange);
     return () => window.removeEventListener('hashchange', onHashChange);
