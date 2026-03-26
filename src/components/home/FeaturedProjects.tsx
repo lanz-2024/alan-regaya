@@ -59,7 +59,7 @@ export function FeaturedProjects() {
       </div>
       <div className="text-center mt-10">
         <Link href="/projects" className="text-sm text-[var(--color-accent-text)] hover:underline">
-          View all 13 projects →
+          View all {projects.length} projects →
         </Link>
       </div>
     </section>

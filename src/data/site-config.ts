@@ -6,7 +6,7 @@ export const siteConfig = {
   url: 'https://alanregaya.dev',
   email: 'nalayager@gmail.com',
   github: 'https://github.com/lanz-2024',
-  linkedin: 'https://www.linkedin.com/in/alan-r-8363b8144/',
+  linkedin: 'https://linkedin.com/in/alanregaya',
   availability: 'Open to senior/lead opportunities',
   location: 'Philippines · Remote',
   yearsExperience: 8,

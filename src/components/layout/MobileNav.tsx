@@ -8,6 +8,7 @@ const navLinks = [
   { href: '/about', label: 'About', scroll: true },
   { href: '/about#experience', label: 'Experience', scroll: false },
   { href: '/projects', label: 'Projects', scroll: true },
+  { href: '/blog', label: 'Blog', scroll: true },
 ];
 
 export function MobileNav() {

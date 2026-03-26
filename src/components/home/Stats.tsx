@@ -12,8 +12,8 @@ export function Stats({ stats }: { stats: { commits: number; prs: number; stars:
   const { ref, isVisible } = useIntersectionObserver(0.2);
 
   const items: StatItem[] = [
-    { value: stats.commits, suffix: '+', label: 'Commits' },
-    { value: stats.prs, suffix: '+', label: 'Pull Requests' },
+    { value: stats.commits, suffix: '+', label: 'Career Commits' },
+    { value: stats.prs, suffix: '+', label: 'Career PRs' },
     { value: stats.stars, suffix: '', label: 'GitHub Stars' },
     { value: 30, suffix: '+', label: 'Production Sites' },
   ];

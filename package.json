@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/convert-screenshots.mjs",
+    "prebuild": "node scripts/convert-screenshots.mjs && node scripts/generate-og-image.mjs",
     "build": "next build",
     "postbuild": "node scripts/optimize-css.mjs",
     "start": "next start",
@@ -12,9 +12,7 @@
     "screenshots": "npx ts-node --esm scripts/capture-screenshots.ts"
   },
   "dependencies": {
-    "@playwright/test": "^1.58.2",
     "next": "16.2.1",
-    "playwright": "^1.58.2",
     "react": "19.2.4",
     "react-dom": "19.2.4"
   },
@@ -25,6 +23,7 @@
     "last 2 Edge versions"
   ],
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
     "critters": "^0.0.23",
     "@types/node": "^20",
@@ -32,6 +31,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
+    "playwright": "^1.58.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
