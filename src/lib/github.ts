@@ -1,8 +1,8 @@
 import { GitHubStats } from './types';
 
 const FALLBACK_STATS: GitHubStats = {
-  totalCommits: 4500,
-  totalPRs: 990,
+  totalCommits: 9438,
+  totalPRs: 1454,
   totalStars: 91,
   contributionCalendar: [],
 };
@@ -72,8 +72,8 @@ export async function getGitHubStats(): Promise<GitHubStats> {
     );
 
     return {
-      totalCommits: contributions.totalCommitContributions + 4500,
-      totalPRs: contributions.totalPullRequestContributions + 990,
+      totalCommits: contributions.totalCommitContributions,
+      totalPRs: contributions.totalPullRequestContributions,
       totalStars,
       contributionCalendar: calendar,
     };
