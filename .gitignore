@@ -42,3 +42,7 @@ next-env.d.ts
 
 # generated at build time — not committed
 /public/screenshots/*.webp
+.credentials
+.ssh-credentials
+secrets/
+.clickup-session-context.json

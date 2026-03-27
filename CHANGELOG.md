@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+### Fixed
+- `experience.ts`: Replace Algolia with Typesense (actual search tech used across client sites)
+- `experience.ts`: Remove fabricated "66 semantic releases" stat — unverifiable, not from any known source
+- `experience.ts`: Update 30+ → 40+ migrations/storefronts/production sites (ClickUp Delivery space: 40+ distinct client projects)
+- `experience.ts`: Update 48+ → 70+ custom Claude Code skills (verified: 76 skill directories)
+- `experience.ts`: Update Smart Time Tracker 24 → 54 releases (verified against blaze-commerce/blaze-smart-time-tracker GitHub tags)
+- `projects.ts`: Fix Shine Trim description — was "automotive detailing", actual industry is craft embellishments (rhinestones, beads, sequins)
+- `projects.ts`: Remove "headless storefront" from Porselli Dancewear — site was rebuilt as traditional WordPress/Blocksy
+- `github.ts`: Remove inflated +4500/+990 commit/PR offsets; update fallback stats to verified totals (9,438 commits / 1,454 PRs via GraphQL all-years query)
+
 ### Added
 - Custom 404 page (`not-found.tsx`) with branded dark theme and "Go Home" button
 - TechStack: group technologies by category (Frontend/Backend/Data/Systems/DevOps) with colored labels
