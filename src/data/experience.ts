@@ -11,7 +11,7 @@ export interface ExperienceEntry {
 export const experience: ExperienceEntry[] = [
   {
     company: 'Blaze Commerce',
-    role: 'Senior Full-Stack Developer',
+    role: 'Full-Stack Developer',
     period: 'Feb 2023 — Present',
     location: 'Remote',
     description: 'Lead engineer for headless CMS migrations and WooCommerce storefronts serving clients across AU, UK, and US. Architect of the open-source headless WooCommerce library and the internal Claude Code workflow system.',
@@ -43,7 +43,7 @@ export const experience: ExperienceEntry[] = [
   {
     company: 'Asia Pacific Express Corporation',
     role: 'MIS Administrator',
-    period: '2018 — 2021',
+    period: 'Apr 2018 — Mar 2021',
     location: 'Philippines',
     description: 'Managed corporate IT infrastructure including websites, email servers, domain management, and cloud hosting for a logistics company.',
     highlights: [
@@ -56,7 +56,7 @@ export const experience: ExperienceEntry[] = [
   {
     company: "People's Television Network, Inc.",
     role: 'Systems Support / Junior Programmer',
-    period: '2017 — 2018',
+    period: 'Dec 2016 — Apr 2018',
     location: 'Philippines',
     description: 'Maintained news portal and corporate websites for the national broadcaster while administering Windows Server infrastructure for 500+ users.',
     highlights: [

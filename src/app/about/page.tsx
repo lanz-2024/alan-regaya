@@ -44,7 +44,7 @@ export default async function AboutPage() {
             <h2 className="text-3xl font-bold mb-6">About Me</h2>
             <div className="space-y-4 text-[var(--color-text-muted)] leading-relaxed">
               <p>
-                I&apos;m a Senior Full-Stack Developer with {siteConfig.yearsExperience}+ years of experience, currently at Blaze Commerce where I architect and build headless WooCommerce storefronts and the open-source tooling that powers them.
+                I&apos;m a Full-Stack Developer with {siteConfig.yearsExperience}+ years of experience, currently at Blaze Commerce where I architect and build headless WooCommerce storefronts and the open-source tooling that powers them.
               </p>
               <p>
                 My work sits at the intersection of modern frontend (Next.js, React, TypeScript) and deep WordPress/WooCommerce expertise — a combination that&apos;s rare and in demand as more stores migrate to headless architectures.
@@ -57,7 +57,7 @@ export default async function AboutPage() {
                 has 91 stars and is used in production across multiple countries.
               </p>
               <p>
-                I&apos;m currently exploring Rust and Tauri for cross-platform desktop tooling, and I&apos;m interested in opportunities where I can bring senior-level ownership to complex, high-traffic e-commerce systems.
+                I&apos;m currently exploring Rust and Tauri for cross-platform desktop tooling, and I&apos;m interested in opportunities where I can bring deep technical ownership to complex, high-traffic e-commerce systems.
               </p>
             </div>
             <div className="mt-8 grid grid-cols-2 gap-4 text-sm">
