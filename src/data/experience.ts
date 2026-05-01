@@ -43,7 +43,7 @@ export const experience: ExperienceEntry[] = [
   {
     company: 'Asia Pacific Express Corporation',
     role: 'MIS Administrator',
-    period: 'Mar 2018 — Mar 2021',
+    period: 'Apr 2018 — Mar 2021',
     location: 'Philippines',
     description: 'Managed corporate IT infrastructure including websites, email servers, domain management, and cloud hosting for a logistics company.',
     highlights: [
@@ -56,7 +56,7 @@ export const experience: ExperienceEntry[] = [
   {
     company: "People's Television Network, Inc.",
     role: 'Systems Support / Junior Programmer',
-    period: 'Dec 2017 — Mar 2018',
+    period: 'Dec 2016 — Apr 2018',
     location: 'Philippines',
     description: 'Maintained news portal and corporate websites for the national broadcaster while administering Windows Server infrastructure for 500+ users.',
     highlights: [
