@@ -4,17 +4,17 @@ import { siteConfig } from '@/data/site-config';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: `Get in touch with ${siteConfig.name} — open to senior and lead full-stack roles, headless e-commerce projects, and open-source collaboration.`,
+  description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce projects, and open-source collaboration.`,
   alternates: { canonical: `${siteConfig.url}/contact` },
   openGraph: {
     title: `Contact | ${siteConfig.name}`,
-    description: `Get in touch with ${siteConfig.name} — open to senior and lead full-stack roles, headless e-commerce projects, and open-source collaboration.`,
+    description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce projects, and open-source collaboration.`,
     url: `${siteConfig.url}/contact`,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     title: `Contact | ${siteConfig.name}`,
-    description: `Get in touch with ${siteConfig.name} — open to senior and lead full-stack roles, headless e-commerce projects, and open-source collaboration.`,
+    description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce projects, and open-source collaboration.`,
     images: [siteConfig.ogImage],
   },
 };

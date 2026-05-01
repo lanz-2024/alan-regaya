@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: [
     'Alan Regaya',
-    'Senior Full-Stack Developer',
+    'Full-Stack Developer',
     'Headless WooCommerce Developer',
     'Next.js Developer',
     'WordPress Developer',
