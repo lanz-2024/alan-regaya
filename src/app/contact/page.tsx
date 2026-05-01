@@ -4,17 +4,17 @@ import { siteConfig } from '@/data/site-config';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce projects, and open-source collaboration.`,
+  description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce, WordPress/WooCommerce development and optimization, and open-source collaboration.`,
   alternates: { canonical: `${siteConfig.url}/contact` },
   openGraph: {
     title: `Contact | ${siteConfig.name}`,
-    description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce projects, and open-source collaboration.`,
+    description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce, WordPress/WooCommerce development and optimization, and open-source collaboration.`,
     url: `${siteConfig.url}/contact`,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     title: `Contact | ${siteConfig.name}`,
-    description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce projects, and open-source collaboration.`,
+    description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce, WordPress/WooCommerce development and optimization, and open-source collaboration.`,
     images: [siteConfig.ogImage],
   },
 };
@@ -36,7 +36,7 @@ export default function ContactPage() {
           <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">Get in Touch</p>
           <h1 className="text-4xl font-bold mb-4">Let&apos;s work together</h1>
           <p className="text-[var(--color-text-muted)] mb-12 text-lg leading-relaxed">
-            {siteConfig.availability}. I&apos;m particularly interested in headless e-commerce, performance-critical Next.js apps, and projects that push modern web capabilities.
+            {siteConfig.availability}. I&apos;m particularly interested in headless e-commerce, WordPress and WooCommerce development and optimization, performance-critical Next.js apps, and projects that push modern web capabilities.
           </p>
 
           <div className="md:grid md:grid-cols-[1fr_2fr] md:gap-12">
