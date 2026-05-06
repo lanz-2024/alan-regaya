@@ -24,15 +24,21 @@ export function ClaudeHighlight() {
           AI-Assisted Development with Claude CLI
         </h2>
         <div className="glow-border rounded-lg overflow-hidden bg-[var(--color-background)]">
-          <div className="relative aspect-video overflow-hidden bg-[var(--color-surface-2)]">
+          {/* Terminal screenshot with hover pan-reveal effect */}
+          <div className="group relative aspect-video overflow-hidden bg-[var(--color-surface-2)] cursor-zoom-in">
             <Image
               src="/setup/claude-cli.png"
-              alt="Claude CLI terminal session showing AI-assisted development workflow"
+              alt="Claude CLI terminal session — Opus 4.7 plan mode, status bar, usage stats"
               fill
               priority
-              className="object-cover object-top"
+              className="object-cover object-top [transition:object-position_3s_ease-in-out] group-hover:object-bottom"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1152px"
             />
+            {/* Bottom gradient hint — fades on hover to reveal status bar */}
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-500 group-hover:opacity-0 pointer-events-none" />
+            <span className="absolute bottom-3 right-4 text-xs font-mono text-white/50 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none select-none">
+              hover to reveal ↓
+            </span>
           </div>
           <div className="p-6 sm:p-8">
             <p className="text-[var(--color-text-muted)] leading-relaxed mb-6 max-w-3xl">
