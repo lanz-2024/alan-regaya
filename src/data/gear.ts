@@ -91,12 +91,12 @@ export const gear: GearItem[] = [
   },
   {
     id: 'macbook-m4-max-16',
-    name: 'MacBook Pro 16" M4 Max',
+    name: 'MacBook Pro 14" M5 Pro',
     category: 'Future',
     subcategory: 'Compute',
     image: '/gear/macbook-m4-max-16.jpg',
-    alt: 'MacBook Pro 16" with M4 Max chip',
-    specs: ['Apple M4 Max', '48GB Unified Memory', '1TB SSD', 'Upgrade from 14" M4 Pro'],
+    alt: 'MacBook Pro 14" with M5 Pro chip',
+    specs: ['Apple M5 Pro', '48GB Unified Memory', '2TB SSD', '18-core CPU', '20-core GPU'],
   },
   {
     id: 'dygma-defy',
