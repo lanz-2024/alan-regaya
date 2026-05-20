@@ -38,8 +38,9 @@ export function ContactForm() {
     setErrors({});
     setStatus('sending');
 
+    const topic = (formData.get('topic') as string ?? '').trim() || 'General enquiry';
     formData.set('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? '');
-    formData.set('subject', 'New contact from alanregaya.dev');
+    formData.set('subject', topic);
     formData.set('from_name', 'Portfolio Contact Form');
 
     try {
