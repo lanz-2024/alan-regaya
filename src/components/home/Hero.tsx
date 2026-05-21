@@ -25,15 +25,15 @@ export function Hero() {
           </Link>
           <Link
             href="/about"
-            className="w-full sm:w-auto px-6 md:px-8 py-3.5 bg-transparent text-white border border-white/30 rounded hover:bg-white/10 hover:border-white/50 transition-colors font-medium text-center"
+            className="w-full sm:w-auto px-6 md:px-8 py-3.5 bg-transparent text-white border border-white/40 rounded hover:bg-white/10 hover:border-white/60 transition-colors font-medium text-center"
           >
-            View About
+            About Me
           </Link>
           <Link
             href="/setup"
-            className="w-full sm:w-auto px-6 md:px-8 py-3.5 bg-white text-gray-900 rounded hover:bg-gray-200 transition-colors font-medium text-center"
+            className="w-full sm:w-auto px-6 md:px-8 py-3.5 bg-white/5 text-white border border-white/10 rounded hover:bg-white/10 hover:border-white/20 transition-colors font-medium text-center"
           >
-            View Setup
+            My Setup
           </Link>
         </div>
 
