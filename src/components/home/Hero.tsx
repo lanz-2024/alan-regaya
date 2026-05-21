@@ -16,12 +16,24 @@ export function Hero() {
         <p className="text-xl sm:text-2xl text-[var(--color-text-muted)] mb-3">{siteConfig.title}</p>
         <p className="text-[var(--color-text-muted)] max-w-xl mx-auto mb-10 leading-relaxed">{siteConfig.tagline}</p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
           <Link
             href="/projects"
-            className="px-8 py-3.5 bg-[var(--color-accent)] text-white rounded hover:bg-[var(--color-accent-hover)] transition-colors font-medium"
+            className="w-full sm:w-auto px-6 md:px-8 py-3.5 bg-[var(--color-accent)] text-white rounded hover:bg-[var(--color-accent-hover)] transition-colors font-medium text-center"
           >
             View Projects
+          </Link>
+          <Link
+            href="/about"
+            className="w-full sm:w-auto px-6 md:px-8 py-3.5 bg-transparent text-white border border-white/40 rounded hover:bg-white/10 hover:border-white/60 transition-colors font-medium text-center"
+          >
+            About Me
+          </Link>
+          <Link
+            href="/setup"
+            className="w-full sm:w-auto px-6 md:px-8 py-3.5 bg-white/5 text-white border border-white/10 rounded hover:bg-white/10 hover:border-white/20 transition-colors font-medium text-center"
+          >
+            My Setup
           </Link>
         </div>
 
