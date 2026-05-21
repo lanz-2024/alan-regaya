@@ -32,8 +32,7 @@ export function TechStack() {
   return (
     <section className="py-24" aria-labelledby="techstack-heading">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SectionHeading label="Tools & Tech" title="What I Build With" />
-        <div id="techstack-heading" className="sr-only">Tech Stack</div>
+        <SectionHeading headingId="techstack-heading" label="Tools & Tech" title="What I Build With" />
         <div ref={ref} className={`fade-in${isVisible ? ' visible' : ''} grid sm:grid-cols-2 gap-6`}>
           {categoryOrder.map((cat) => {
             const items = grouped[cat];

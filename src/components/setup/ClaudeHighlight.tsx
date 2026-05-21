@@ -27,7 +27,7 @@ export function ClaudeHighlight() {
           {/* Terminal screenshot with hover pan-reveal effect */}
           <div className="group relative aspect-video overflow-hidden bg-[var(--color-surface-2)] cursor-zoom-in">
             <Image
-              src="/setup/claude-cli.png"
+              src="/setup/claude-cli.webp"
               alt="Claude CLI terminal session — Opus 4.7 plan mode, status bar, usage stats"
               fill
               priority

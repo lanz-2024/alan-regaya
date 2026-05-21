@@ -10,10 +10,10 @@ export function Header() {
         <MobileNav />
         <Link href="/" aria-label="Home" className="justify-self-center md:justify-self-start">
           <Image
-            src="/logo.png"
+            src="/logo.webp"
             alt="AR logo"
-            width={730}
-            height={730}
+            width={128}
+            height={128}
             className="h-12 w-12 sm:h-14 sm:w-14 md:h-16 md:w-16"
             priority
           />

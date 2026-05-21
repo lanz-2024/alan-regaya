@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main className="max-w-2xl mx-auto px-4 sm:px-6 py-20">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-20">
       <h1 className="text-3xl font-bold text-[var(--color-text)] mb-8">Privacy Policy</h1>
 
       <div className="space-y-6 text-[var(--color-text-muted)] leading-relaxed">
@@ -23,7 +23,7 @@ export default function PrivacyPage() {
               href="https://web3forms.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--color-accent)] hover:underline"
+              className="text-[var(--color-accent-text)] underline underline-offset-2"
             >
               Web3Forms
             </a>{' '}
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
           <h2 className="text-lg font-semibold text-[var(--color-text)] mb-2">Contact</h2>
           <p>
             Questions?{' '}
-            <Link href="/contact" className="text-[var(--color-accent)] hover:underline">
+            <Link href="/contact" className="text-[var(--color-accent-text)] underline underline-offset-2">
               Get in touch via the contact page.
             </Link>
           </p>
@@ -61,6 +61,6 @@ export default function PrivacyPage() {
           Last updated: March 2026
         </p>
       </div>
-    </main>
+    </div>
   );
 }
