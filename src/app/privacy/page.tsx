@@ -23,7 +23,7 @@ export default function PrivacyPage() {
               href="https://web3forms.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--color-accent-text)] hover:underline"
+              className="text-[var(--color-accent-text)] underline underline-offset-2"
             >
               Web3Forms
             </a>{' '}
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
           <h2 className="text-lg font-semibold text-[var(--color-text)] mb-2">Contact</h2>
           <p>
             Questions?{' '}
-            <Link href="/contact" className="text-[var(--color-accent-text)] hover:underline">
+            <Link href="/contact" className="text-[var(--color-accent-text)] underline underline-offset-2">
               Get in touch via the contact page.
             </Link>
           </p>
