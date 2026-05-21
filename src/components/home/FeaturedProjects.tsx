@@ -11,8 +11,7 @@ export function FeaturedProjects() {
 
   return (
     <section className="py-24 max-w-6xl mx-auto px-4 sm:px-6" aria-labelledby="featured-heading">
-      <SectionHeading label="Selected Work" title="Featured Projects" subtitle="A selection of client work and open-source tools I'm proud of." />
-      <div id="featured-heading" className="sr-only">Featured Projects</div>
+      <SectionHeading headingId="featured-heading" label="Selected Work" title="Featured Projects" subtitle="A selection of client work and open-source tools I'm proud of." />
       <div ref={ref} className={`fade-in${isVisible ? ' visible' : ''} grid md:grid-cols-3 gap-6`}>
         {featured.map((project, i) => (
           <ProjectCard key={project.id} project={project} priority={i === 0} />

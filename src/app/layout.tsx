@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
@@ -49,6 +49,11 @@ export const metadata: Metadata = {
   alternates: { canonical: siteConfig.url },
   manifest: '/site.webmanifest',
   icons: { apple: '/apple-touch-icon.png' },
+};
+
+export const viewport: Viewport = {
+  themeColor: '#0a0a0a',
+  colorScheme: 'dark',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

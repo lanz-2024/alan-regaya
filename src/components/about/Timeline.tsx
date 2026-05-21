@@ -6,8 +6,7 @@ export function Timeline() {
   return (
     <section id="experience" className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]" aria-labelledby="timeline-heading">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <SectionHeading label="Experience" title="Work History" />
-        <div id="timeline-heading" className="sr-only">Work History</div>
+        <SectionHeading headingId="timeline-heading" label="Experience" title="Work History" />
         <ol className="relative border-l border-[var(--color-border)] space-y-10 pl-6">
           {experience.map((entry, i) => (
             <li key={i} className="relative">

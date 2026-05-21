@@ -66,7 +66,7 @@ export function ContactForm() {
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       {/* Honeypot — bots fill this, humans don't */}
-      <input type="checkbox" name="botcheck" className="hidden" aria-hidden="true" tabIndex={-1} />
+      <input type="checkbox" name="botcheck" className="hidden" aria-hidden="true" tabIndex={-1} aria-label="Do not fill" />
 
       <div className="grid sm:grid-cols-2 gap-5 mb-5">
         <div>

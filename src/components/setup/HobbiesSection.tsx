@@ -4,8 +4,7 @@ import { SectionHeading } from '@/components/shared/SectionHeading';
 export function HobbiesSection() {
   return (
     <section className="py-24 max-w-6xl mx-auto px-4 sm:px-6" aria-labelledby="hobbies-heading">
-      <SectionHeading label="Outside the terminal" title="Hobbies & Interests" />
-      <div id="hobbies-heading" className="sr-only">Hobbies & Interests</div>
+      <SectionHeading headingId="hobbies-heading" label="Outside the terminal" title="Hobbies & Interests" />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {hobbies.map((hobby) => (
           <div key={hobby.title} className="glow-border rounded-lg p-6 bg-[var(--color-surface)]">
