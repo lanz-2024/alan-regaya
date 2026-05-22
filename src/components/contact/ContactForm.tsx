@@ -38,20 +38,22 @@ export function ContactForm() {
     setErrors({});
     setStatus('sending');
 
-    const topic = (formData.get('topic') as string ?? '').trim() || 'General enquiry';
-    const email = (formData.get('email') as string ?? '').trim();
-    formData.set('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? '');
-    formData.set('subject', topic);
-    formData.set('from_name', 'Portfolio Contact Form');
-    formData.set('replyto', email);
+    const payload = {
+      name: (formData.get('name') as string ?? '').trim(),
+      email: (formData.get('email') as string ?? '').trim(),
+      topic: (formData.get('topic') as string ?? '').trim() || 'General enquiry',
+      message: (formData.get('message') as string ?? '').trim(),
+      botcheck: formData.get('botcheck') ? true : false,
+    };
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
-      if (data.success) {
+      if (res.ok && data.success) {
         setStatus('success');
         formRef.current?.reset();
       } else {
@@ -144,7 +146,7 @@ export function ContactForm() {
       </button>
 
       <p className="mt-4 text-xs text-[var(--color-text-muted)]">
-        Your message is sent via Web3Forms and delivered directly to my inbox. No data is stored.
+        Your message is delivered directly to my inbox. You&apos;ll receive an automated confirmation. No data is stored.
       </p>
 
       {status === 'success' && (
