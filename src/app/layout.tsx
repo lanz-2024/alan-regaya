@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { CommandPalette } from '@/components/layout/CommandPalette';
 import { siteConfig } from '@/data/site-config';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'optional', weight: ['400', '600', '700'], adjustFontFallback: true });
@@ -93,6 +94,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
+        <CommandPalette />
       </body>
     </html>
   );
