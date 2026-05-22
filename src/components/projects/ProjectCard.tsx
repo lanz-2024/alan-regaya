@@ -37,6 +37,12 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
             {typeLabels[project.type]}
           </span>
         </div>
+        {project.role && (
+          <p className="text-xs font-mono text-[var(--color-text-muted)] mb-2">{project.role}</p>
+        )}
+        {project.outcome && (
+          <p className="text-sm text-[var(--color-accent-text)] mb-3 font-medium">{project.outcome}</p>
+        )}
         <p className="text-sm text-[var(--color-text-muted)] mb-4 flex-1 leading-relaxed">{project.description}</p>
         <div className="flex flex-wrap gap-1.5 mb-4">
           {project.tech.slice(0, 5).map((t) => <Badge key={t} label={t} />)}
