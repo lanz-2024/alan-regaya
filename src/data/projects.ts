@@ -12,6 +12,10 @@ export interface Project {
   stars?: number;
   forks?: number;
   featured?: boolean;
+  /** My specific role on this project — e.g. "Lead engineer", "Solo developer". */
+  role?: string;
+  /** Measurable outcome — e.g. "91 stars · 40+ live storefronts", "54 releases". */
+  outcome?: string;
 }
 
 export const projects: Project[] = [
@@ -25,6 +29,8 @@ export const projects: Project[] = [
     stars: 91,
     forks: 37,
     screenshot: '/screenshots/headless-woocommerce.webp',
+    role: 'Lead engineer',
+    outcome: '91 stars · 37 forks · 40+ live storefronts',
   },
   {
     id: 'blazecommerce-wp-plugin',
@@ -34,6 +40,8 @@ export const projects: Project[] = [
     tech: ['PHP', 'WordPress', 'WooCommerce', 'Gutenberg', 'Typesense', 'WP-CLI'],
     github: 'https://github.com/blaze-commerce/blazecommerce-wp-plugin',
     screenshot: '/screenshots/blazecommerce-wp-plugin.webp',
+    role: 'Lead engineer',
+    outcome: 'Production across 40+ headless stores',
   },
   {
     id: 'blaze-blocksy',
@@ -45,6 +53,8 @@ export const projects: Project[] = [
     stars: 1,
     forks: 1,
     screenshot: '/screenshots/blaze-blocksy.webp',
+    role: 'Lead engineer',
+    outcome: 'Theme base for 40+ client builds',
   },
   {
     id: 'smart-time-tracker',
@@ -53,6 +63,8 @@ export const projects: Project[] = [
     description: 'Cross-platform desktop app for automated time tracking with ClickUp integration. Detects active windows, categorizes work sessions, and syncs tracked time to ClickUp tasks without manual input.',
     tech: ['Rust', 'Tauri 2.0', 'React 19', 'TypeScript', 'ClickUp OAuth', 'SQLite'],
     screenshot: '/screenshots/smart-time-tracker.webp',
+    role: 'Solo developer',
+    outcome: '54 releases shipped',
   },
   {
     id: 'byron-bay-candles',
