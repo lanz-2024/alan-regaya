@@ -95,16 +95,16 @@ export async function POST(request: Request) {
       from: FROM,
       to: TO,
       replyTo: e,
-      subject: `New enquiry: ${t} — ${n}`,
+      subject: `New enquiry: ${t} — ${nameTitle}`,
       html: `<div style="font-family:system-ui,sans-serif;line-height:1.6">
   <p style="margin:0 0 20px;text-align:center"><a href="https://alanregaya.dev" style="text-decoration:none"><img src="https://alanregaya.dev/logo.png" alt="Alan Regaya" width="48" height="48" style="display:inline-block;max-width:100%;border:0"></a></p>
-  <h2 style="margin:0 0 12px">New portfolio enquiry</h2>
-  <p><strong>From:</strong> ${nameSafe} &lt;${emailSafe}&gt;<br>
+  <h2 style="margin:0 0 12px;text-align:center">New enquiry</h2>
+  <p style="text-align:center"><strong>From:</strong> ${nameSafe} &lt;${emailSafe}&gt;<br>
   <strong>Topic:</strong> ${topicSafe}</p>
   <hr style="border:none;border-top:1px solid #ddd;margin:16px 0">
   <p>${messageSafe}</p>
 </div>`,
-      text: `New portfolio enquiry\n\nFrom: ${n} <${e}>\nTopic: ${t}\n\n${m}`,
+      text: `New enquiry\n\nFrom: ${nameTitle} <${e}>\nTopic: ${t}\n\n${m}`,
     });
 
     if (notify.error) {
