@@ -85,9 +85,10 @@ export async function POST(request: Request) {
     .split(/\s+/)
     .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
     .join(' ');
+  const topicSentence = t ? t[0].toUpperCase() + t.slice(1) : t;
   const nameSafe = escapeHtml(nameTitle);
   const emailSafe = escapeHtml(e);
-  const topicSafe = escapeHtml(t);
+  const topicSafe = escapeHtml(topicSentence);
   const messageSafe = escapeHtml(m).replace(/\n/g, '<br>');
 
   try {
@@ -95,7 +96,7 @@ export async function POST(request: Request) {
       from: FROM,
       to: TO,
       replyTo: e,
-      subject: `New enquiry: ${t} — ${nameTitle}`,
+      subject: `New enquiry: ${topicSentence} — ${nameTitle}`,
       html: `<div style="font-family:system-ui,sans-serif;line-height:1.6">
   <p style="margin:0 0 20px;text-align:center"><a href="https://alanregaya.dev" style="text-decoration:none"><img src="https://alanregaya.dev/logo.png" alt="Alan Regaya" width="48" height="48" style="display:inline-block;max-width:100%;border:0"></a></p>
   <h2 style="margin:0 0 12px;text-align:center">New enquiry</h2>
@@ -104,7 +105,7 @@ export async function POST(request: Request) {
   <hr style="border:none;border-top:1px solid #ddd;margin:16px 0">
   <p>${messageSafe}</p>
 </div>`,
-      text: `New enquiry\n\nFrom: ${nameTitle} <${e}>\nTopic: ${t}\n\n${m}`,
+      text: `New enquiry\n\nFrom: ${nameTitle} <${e}>\nTopic: ${topicSentence}\n\n${m}`,
     });
 
     if (notify.error) {
@@ -133,7 +134,7 @@ export async function POST(request: Request) {
   <hr style="border:none;border-top:1px solid #eee;margin:20px 0">
   <p style="font-size:12px;color:#888">This is an automated confirmation. Replies to this email go to ${TO}.</p>
 </div>`,
-      text: `Hi ${nameTitle},\n\nThanks for your message about "${t}". I've received it and will reply within 1–2 business days.\n\nFor reference, here's what you sent:\n\n${m}\n\nWarm Regards,\nAlan Regaya`,
+      text: `Hi ${nameTitle},\n\nThanks for your message about "${topicSentence}". I've received it and will reply within 1–2 business days.\n\nFor reference, here's what you sent:\n\n${m}\n\nWarm Regards,\nAlan Regaya`,
     });
 
     return Response.json({ success: true });
