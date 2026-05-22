@@ -17,7 +17,7 @@ export const hobbies: Hobby[] = [
   },
   {
     title: 'Gaming',
-    description: 'Nintendo Switch OLED — gaming sessions when the build queue is clear.',
+    description: 'Nintendo Switch OLED — Pokémon Mystery Dungeon DX, FireRed, UNITE, and the Naruto Ultimate Ninja Storm series when the build queue is clear.',
     icon: '🎮',
   },
   {
