@@ -1,6 +1,8 @@
 import { blogPosts } from '@/data/blog-posts';
 import { siteConfig } from '@/data/site-config';
 
+export const dynamic = 'force-static';
+
 const escapeXml = (unsafe: string) =>
   unsafe.replace(/[<>&'"]/g, (c) => {
     switch (c) {
