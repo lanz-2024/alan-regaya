@@ -123,12 +123,12 @@ export async function POST(request: Request) {
       replyTo: TO,
       subject: `Thanks for reaching out — I'll get back to you soon`,
       html: `<div style="font-family:system-ui,sans-serif;line-height:1.6;max-width:560px">
+  <p style="margin:0 0 20px"><img src="https://alanregaya.dev/logo.png" alt="Alan Regaya" width="48" height="48" style="display:block;max-width:100%"></p>
   <p>Hi ${nameSafe},</p>
   <p>Thanks for your message about <strong>${topicSafe}</strong>. I've received it and will reply within 1–2 business days.</p>
   <p>For reference, here's what you sent:</p>
   <blockquote style="border-left:3px solid #ddd;margin:12px 0;padding:4px 12px;color:#555">${messageSafe}</blockquote>
-  <p style="margin:20px 0 8px"><img src="https://alanregaya.dev/logo.png" alt="Alan Regaya" width="48" height="48" style="display:block"></p>
-  <p style="margin:0">Warm Regards,<br>Alan Regaya</p>
+  <p style="margin:20px 0 0">Warm Regards,<br>Alan Regaya</p>
   <hr style="border:none;border-top:1px solid #eee;margin:20px 0">
   <p style="font-size:12px;color:#888">This is an automated confirmation. Replies to this email go to ${TO}.</p>
 </div>`,
