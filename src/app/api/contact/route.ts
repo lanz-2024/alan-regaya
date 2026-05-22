@@ -90,7 +90,7 @@ export async function POST(request: Request) {
       from: FROM,
       to: TO,
       replyTo: e,
-      subject: `[Portfolio] ${t} — ${n}`,
+      subject: `New enquiry: ${t} — ${n}`,
       html: `<div style="font-family:system-ui,sans-serif;line-height:1.6">
   <h2 style="margin:0 0 12px">New portfolio enquiry</h2>
   <p><strong>From:</strong> ${nameSafe} &lt;${emailSafe}&gt;<br>
