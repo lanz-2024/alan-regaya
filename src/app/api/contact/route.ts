@@ -80,7 +80,12 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Field too long.' }, { status: 400 });
   }
 
-  const nameSafe = escapeHtml(n);
+  const nameTitle = n
+    .toLowerCase()
+    .split(/\s+/)
+    .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
+    .join(' ');
+  const nameSafe = escapeHtml(nameTitle);
   const emailSafe = escapeHtml(e);
   const topicSafe = escapeHtml(t);
   const messageSafe = escapeHtml(m).replace(/\n/g, '<br>');
@@ -90,7 +95,7 @@ export async function POST(request: Request) {
       from: FROM,
       to: TO,
       replyTo: e,
-      subject: `[Portfolio] ${t} — ${n}`,
+      subject: `New enquiry: ${t} — ${n}`,
       html: `<div style="font-family:system-ui,sans-serif;line-height:1.6">
   <h2 style="margin:0 0 12px">New portfolio enquiry</h2>
   <p><strong>From:</strong> ${nameSafe} &lt;${emailSafe}&gt;<br>
@@ -118,15 +123,16 @@ export async function POST(request: Request) {
       replyTo: TO,
       subject: `Thanks for reaching out — I'll get back to you soon`,
       html: `<div style="font-family:system-ui,sans-serif;line-height:1.6;max-width:560px">
+  <p style="margin:0 0 20px;text-align:center"><a href="https://alanregaya.dev" style="text-decoration:none"><img src="https://alanregaya.dev/logo.png" alt="Alan Regaya" width="48" height="48" style="display:inline-block;max-width:100%;border:0"></a></p>
   <p>Hi ${nameSafe},</p>
   <p>Thanks for your message about <strong>${topicSafe}</strong>. I've received it and will reply within 1–2 business days.</p>
   <p>For reference, here's what you sent:</p>
   <blockquote style="border-left:3px solid #ddd;margin:12px 0;padding:4px 12px;color:#555">${messageSafe}</blockquote>
-  <p>— Alan</p>
+  <p style="margin:20px 0 0">Warm Regards,<br>Alan Regaya</p>
   <hr style="border:none;border-top:1px solid #eee;margin:20px 0">
   <p style="font-size:12px;color:#888">This is an automated confirmation. Replies to this email go to ${TO}.</p>
 </div>`,
-      text: `Hi ${n},\n\nThanks for your message about "${t}". I've received it and will reply within 1–2 business days.\n\nFor reference, here's what you sent:\n\n${m}\n\n— Alan`,
+      text: `Hi ${nameTitle},\n\nThanks for your message about "${t}". I've received it and will reply within 1–2 business days.\n\nFor reference, here's what you sent:\n\n${m}\n\nWarm Regards,\nAlan Regaya`,
     });
 
     return Response.json({ success: true });
