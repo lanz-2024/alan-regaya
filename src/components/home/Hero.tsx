@@ -33,7 +33,7 @@ export function Hero() {
             href="/projects"
             className="text-white underline decoration-[var(--color-accent)] decoration-2 underline-offset-4 hover:text-[var(--color-accent-text)] transition-colors"
           >
-            headless WooCommerce storefronts and Next.js e-commerce apps
+            headless WooCommerce storefronts, Next.js e-commerce apps, and WordPress platforms
           </Link>
           . Currently powering 7-figure online stores for clients across AU, UK, and US &mdash; based in the Philippines, working remotely.
         </p>

@@ -7,7 +7,7 @@ export const siteConfig = {
   email: 'nalayager@gmail.com',
   github: 'https://github.com/lanz-2024',
   linkedin: 'https://linkedin.com/in/alanregaya',
-  availability: 'Open to full-stack and lead roles',
+  availability: 'Open to full-stack roles',
   location: 'Philippines · Remote',
   yearsExperience: 6,
   ogImage: '/og-image.png',
