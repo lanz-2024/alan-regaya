@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Badge } from '@/components/shared/Badge';
 import { Project } from '@/data/projects';
 
@@ -61,6 +62,14 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
           {project.tech.slice(0, 5).map((t) => <Badge key={t} label={t} />)}
         </div>
         <div className="flex items-center gap-3 text-sm pt-2 border-t border-[var(--color-border)]">
+          {project.caseStudy && (
+            <Link
+              href={`/projects/${project.id}`}
+              className="text-[var(--color-accent-text)] hover:underline"
+            >
+              Case study →
+            </Link>
+          )}
           {project.github && (
             <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent-text)] hover:underline flex items-center gap-1">
               GitHub {project.stars && <span className="text-[var(--color-text-muted)]">★ {project.stars}</span>}

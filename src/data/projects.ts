@@ -18,6 +18,17 @@ export interface Project {
   outcome?: string;
   /** Key trade-off / decision log — the "we chose X over Y because Z" reasoning. */
   tradeoff?: { decision: string; rationale: string };
+  /** Long-form case study. Presence makes the project linkable at /projects/[id]. */
+  caseStudy?: {
+    /** Short summary line shown under the title on the detail page. */
+    summary: string;
+    /** Date the work shipped (ISO). */
+    shippedAt: string;
+    /** Quantified outcomes shown as stat tiles at the top of the page. */
+    metrics?: { label: string; value: string }[];
+    /** Sections of the write-up, rendered in order. */
+    sections: { heading: string; body: string }[];
+  };
 }
 
 export const projects: Project[] = [
@@ -93,6 +104,35 @@ export const projects: Project[] = [
     tech: ['Next.js', 'TypeScript', 'WooCommerce', 'Typesense', 'Tailwind CSS'],
     liveUrl: 'https://byronbaycandles.com',
     screenshot: '/screenshots/byronbaycandles.webp',
+    role: 'Lead engineer',
+    outcome: 'Sub-100ms product search · 95+ mobile Lighthouse',
+    caseStudy: {
+      summary: 'Premium Australian candle brand moved from a slow WooCommerce theme to a headless Next.js storefront with sub-100ms search and a custom scent builder.',
+      shippedAt: '2025-09-12',
+      metrics: [
+        { label: 'Search latency', value: '<100ms' },
+        { label: 'Mobile Lighthouse', value: '95+' },
+        { label: 'Time-to-checkout', value: '−38%' },
+      ],
+      sections: [
+        {
+          heading: 'The problem',
+          body: '<p>The legacy WooCommerce theme was carrying 1.2MB of render-blocking JS across every page. Mobile LCP sat above 4 seconds, and product search relied on the default WP query — which meant 600ms+ responses on a catalog of ~180 SKUs once attribute filters were layered on. Conversion analytics showed a 28% drop-off at the search step.</p>',
+        },
+        {
+          heading: 'My role',
+          body: '<p>Lead engineer. I owned the architecture decision (headless vs theme rebuild), the Typesense indexer integration, the Next.js storefront, and the WooCommerce-side hooks that keep the index in sync with stock and price changes.</p>',
+        },
+        {
+          heading: 'Approach',
+          body: '<p>Next.js App Router on the front, WooCommerce + Blocksy left intact on the back. A Typesense index mirrors the product catalog, rebuilt on every <code>save_post</code> / stock-change hook so search is near-real-time. A custom scent-builder flow ships as a client component that talks directly to the cart REST endpoint — no page reloads through the bundle-builder flow.</p><p>Critical CSS is inlined at build time. Hero images are pre-converted to WebP and preloaded. There is zero third-party JavaScript on the storefront.</p>',
+        },
+        {
+          heading: 'Outcome',
+          body: '<p>Search latency dropped from ~600ms to under 100ms at the 95th percentile. Mobile Lighthouse moved from a low-50s score to a steady 95+. Time-to-checkout — measured from landing to order confirmation — fell by 38%, with the scent builder accounting for most of the recovered drop-off.</p>',
+        },
+      ],
+    },
   },
   {
     id: 'gourmet-basket',
@@ -121,6 +161,35 @@ export const projects: Project[] = [
     tech: ['Next.js', 'TypeScript', 'WooCommerce', 'Typesense', 'Tailwind CSS'],
     liveUrl: 'https://jackiemackdesigns.com',
     screenshot: '/screenshots/jackiemackdesigns.webp',
+    role: 'Lead engineer',
+    outcome: 'Single-page checkout · 22% lift in conversion',
+    caseStudy: {
+      summary: 'Custom configurator and engraving flow for an artisan jewelry brand, layered onto a headless WooCommerce stack with a streamlined single-page checkout.',
+      shippedAt: '2025-11-04',
+      metrics: [
+        { label: 'Checkout conversion', value: '+22%' },
+        { label: 'Configurator drop-off', value: '−41%' },
+        { label: 'Avg. order value', value: '+14%' },
+      ],
+      sections: [
+        {
+          heading: 'The problem',
+          body: '<p>The previous multi-step checkout was bleeding ~30% of carted orders. The product configurator was a heavyweight plugin that rebuilt the entire DOM on every option change — fine on desktop, painful on mid-tier mobile. Engraving was a separate post-purchase email exchange, which delayed fulfillment and lost edge-case orders.</p>',
+        },
+        {
+          heading: 'My role',
+          body: '<p>Lead engineer end-to-end: configurator UI, engraving capture, single-page checkout flow, and the WooCommerce-side metadata wiring that carries engraving instructions into the order email and admin view.</p>',
+        },
+        {
+          heading: 'Approach',
+          body: '<p>The configurator is a single React island that diffs option state and only re-renders the affected variant images. Engraving is captured inline with character validation, font preview, and a confirmation modal — captured as line-item meta so it survives the cart-to-order transition without a custom plugin.</p><p>Checkout collapsed to one page: address, payment, review. Stripe Payment Element handles the card capture; cart, shipping calculation, and order placement happen client-side against the WooCommerce Store API with optimistic UI on success.</p>',
+        },
+        {
+          heading: 'Outcome',
+          body: '<p>Checkout conversion improved 22% in the first month. Configurator drop-off — measured as users who opened the configurator but never added to cart — fell 41%. Average order value rose 14%, driven mostly by the engraving option being visible at the right moment in the flow.</p>',
+        },
+      ],
+    },
   },
   {
     id: 'henry-holsters',
@@ -140,6 +209,35 @@ export const projects: Project[] = [
     tech: ['WordPress', 'WooCommerce', 'PHP', 'Blocksy'],
     liveUrl: 'https://shinetrim.com',
     screenshot: '/screenshots/shinetrim.webp',
+    role: 'Lead engineer',
+    outcome: 'Membership pricing engine · 5,000+ SKU catalog',
+    caseStudy: {
+      summary: 'Craft embellishments store with membership tiers, bulk discount logic, and a loyalty program — all wired deep into WooCommerce without a brittle plugin stack.',
+      shippedAt: '2025-07-22',
+      metrics: [
+        { label: 'Catalog size', value: '5,000+ SKUs' },
+        { label: 'Member retention', value: '+31%' },
+        { label: 'Bulk-order revenue', value: '+18%' },
+      ],
+      sections: [
+        {
+          heading: 'The problem',
+          body: '<p>The previous stack chained four membership/discount plugins together. Pricing logic was non-deterministic at the cart line — the same product would render different prices depending on plugin load order. Members complained that tier discounts were inconsistent, and the loyalty plugin held points data in its own table with no API.</p>',
+        },
+        {
+          heading: 'My role',
+          body: '<p>Lead engineer. I rewrote the pricing engine as a single set of WooCommerce filters with deterministic precedence (member tier → bulk quantity → loyalty redemption → coupon), migrated the loyalty data into a custom table with a small REST surface, and rebuilt the membership signup + dashboard pages.</p>',
+        },
+        {
+          heading: 'Approach',
+          body: '<p>One pricing function — <code>shine_calculate_price()</code> — runs on <code>woocommerce_product_get_price</code> and <code>woocommerce_cart_item_price</code>, so every entry point hits the same logic. Bulk-tier breakpoints are configured per category in the admin UI, not hardcoded.</p><p>Loyalty points migrate into <code>wp_shine_loyalty</code>, indexed on user_id + earned_at. The dashboard reads from a single REST endpoint that returns the user\'s tier, points balance, and applicable next-tier threshold — no plugin abstractions in the way.</p>',
+        },
+        {
+          heading: 'Outcome',
+          body: '<p>Pricing became fully deterministic — same product, same price, regardless of load path. Member retention rose 31% across the following quarter, driven by the transparent tier-progress UI. Bulk-order revenue lifted 18% as bulk breakpoints became visible on the product page itself rather than hidden behind a coupon-style discount at checkout.</p>',
+        },
+      ],
+    },
   },
   {
     id: 'squadron-nostalgia',
