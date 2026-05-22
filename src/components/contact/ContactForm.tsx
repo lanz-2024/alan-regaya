@@ -39,9 +39,11 @@ export function ContactForm() {
     setStatus('sending');
 
     const topic = (formData.get('topic') as string ?? '').trim() || 'General enquiry';
+    const email = (formData.get('email') as string ?? '').trim();
     formData.set('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? '');
     formData.set('subject', topic);
     formData.set('from_name', 'Portfolio Contact Form');
+    formData.set('replyto', email);
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
