@@ -3,7 +3,7 @@ export const siteConfig = {
   title: 'Full-Stack Developer',
   tagline: 'Building fast, scalable e-commerce experiences with modern web tech.',
   description: 'Full-Stack Developer with 6+ years building headless WooCommerce storefronts, Next.js e-commerce apps, and WordPress platforms. Powering 7-figure online stores. Remote · Philippines.',
-  url: 'https://alan-regaya.vercel.app',
+  url: 'https://alanregaya.dev',
   email: 'nalayager@gmail.com',
   github: 'https://github.com/lanz-2024',
   linkedin: 'https://linkedin.com/in/alanregaya',
