@@ -12,6 +12,12 @@ export const metadata: Metadata = {
     description: 'Technical writing on Next.js, WordPress, WooCommerce performance, migrations, and AI-augmented development workflows.',
     url: `${siteConfig.url}/blog`,
   },
+  alternates: {
+    canonical: `${siteConfig.url}/blog`,
+    types: {
+      'application/rss+xml': [{ url: `${siteConfig.url}/feed.xml`, title: `${siteConfig.name} — Blog RSS` }],
+    },
+  },
 };
 
 export default function BlogPage() {
