@@ -67,7 +67,7 @@ export async function POST(request: Request) {
 
   const n = typeof name === 'string' ? name.trim() : '';
   const e = typeof email === 'string' ? email.trim() : '';
-  const t = (typeof topic === 'string' && topic.trim()) || 'General enquiry';
+  const t = (typeof topic === 'string' && topic.trim()) || 'General Enquiry';
   const m = typeof message === 'string' ? message.trim() : '';
 
   if (!n || !e || !m) {
@@ -130,11 +130,11 @@ export async function POST(request: Request) {
   <p>Thanks for your message about <strong>${topicSafe}</strong>. I've received it and will reply within 1–2 business days.</p>
   <p>For reference, here's what you sent:</p>
   <blockquote style="border-left:3px solid #ddd;margin:12px 0;padding:4px 12px;color:#555">${messageSafe}</blockquote>
-  <p style="margin:20px 0 0">Warm Regards,<br>Alan Regaya</p>
+  <p style="margin:20px 0 0">Warm Regards,<br>Alan Regaya<br><span style="color:#888;font-size:13px">Full Stack Developer</span></p>
   <div style="border-top:1px solid #eee;margin:20px 0"></div>
   <p style="font-size:12px;color:#888;margin:0">This is an automated confirmation. Replies to this email go to ${TO}.</p>
 </div>`,
-      text: `Hi ${nameTitle},\n\nThanks for your message about "${topicSentence}". I've received it and will reply within 1–2 business days.\n\nFor reference, here's what you sent:\n\n${m}\n\nWarm Regards,\nAlan Regaya`,
+      text: `Hi ${nameTitle},\n\nThanks for your message about "${topicSentence}". I've received it and will reply within 1–2 business days.\n\nFor reference, here's what you sent:\n\n${m}\n\nWarm Regards,\nAlan Regaya\nFull Stack Developer`,
     });
 
     return Response.json({ success: true });

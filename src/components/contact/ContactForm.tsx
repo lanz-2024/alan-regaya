@@ -117,7 +117,7 @@ export function ContactForm() {
     const payload = {
       name: (formData.get('name') as string ?? '').trim(),
       email: (formData.get('email') as string ?? '').trim(),
-      topic: (formData.get('topic') as string ?? '').trim() || 'General enquiry',
+      topic: (formData.get('topic') as string ?? '').trim() || 'General Enquiry',
       message: (formData.get('message') as string ?? '').trim(),
       botcheck: formData.get('botcheck') ? true : false,
       turnstileToken,
@@ -203,10 +203,10 @@ export function ContactForm() {
           name="topic"
           className={inputClass}
         >
-          <option value="Job opportunity">Job opportunity</option>
-          <option value="Freelance project">Freelance project</option>
-          <option value="Open source collaboration">Open source collaboration</option>
-          <option value="General enquiry">General enquiry</option>
+          <option value="Job Opportunity">Job Opportunity</option>
+          <option value="Freelance Project">Freelance Project</option>
+          <option value="Open Source Collaboration">Open Source Collaboration</option>
+          <option value="General Enquiry">General Enquiry</option>
         </select>
       </div>
 
