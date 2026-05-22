@@ -8,7 +8,7 @@ const stack: { label: string; href: string }[] = [
 ];
 
 const scores: { metric: string; value: string }[] = [
-  { metric: 'Performance', value: '100' },
+  { metric: 'Performance', value: '94' },
   { metric: 'Accessibility', value: '100' },
   { metric: 'Best Practices', value: '100' },
   { metric: 'SEO', value: '100' },
@@ -73,7 +73,7 @@ export function Colophon() {
           <p className="text-xs text-[var(--color-text-muted)] mt-4">
             Re-runnable via{' '}
             <a
-              href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Falan-regaya.vercel.app"
+              href="https://pagespeed.web.dev/analysis/https-alan-regaya-vercel-app/8lir3jiqrb?form_factor=mobile"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--color-accent-text)] hover:underline"
