@@ -35,7 +35,7 @@ export function Header() {
           {/* Tablet (640–767px) + Desktop (768px+): "Get in Touch" text */}
           <Link
             href="/contact"
-            className="hidden sm:inline-flex px-4 py-2 bg-[var(--color-accent)] text-white text-sm rounded hover:bg-[var(--color-accent-hover)] transition-colors"
+            className="hidden sm:inline-flex px-4 py-2 bg-transparent text-[var(--color-text)] border border-white/30 text-sm rounded hover:bg-white/10 hover:border-white/50 transition-colors"
           >
             Get in Touch
           </Link>

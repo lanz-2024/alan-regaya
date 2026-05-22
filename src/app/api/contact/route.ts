@@ -1,10 +1,11 @@
 import { Resend } from 'resend';
 import { siteConfig } from '@/data/site-config';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+export const dynamic = 'force-dynamic';
 
 const FROM = process.env.CONTACT_FROM_EMAIL ?? `Alan Regaya <contact@alanregaya.dev>`;
 const TO = process.env.CONTACT_TO_EMAIL ?? siteConfig.email;
+const exposeErrors = process.env.VERCEL_ENV !== 'production';
 
 function escapeHtml(s: string): string {
   return s
@@ -16,9 +17,11 @@ function escapeHtml(s: string): string {
 }
 
 export async function POST(request: Request) {
-  if (!process.env.RESEND_API_KEY) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
     return Response.json({ error: 'Email service not configured.' }, { status: 500 });
   }
+  const resend = new Resend(apiKey);
 
   let body: unknown;
   try {
@@ -27,10 +30,39 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Invalid JSON.' }, { status: 400 });
   }
 
-  const { name, email, topic, message, botcheck } = (body ?? {}) as Record<string, unknown>;
+  const { name, email, topic, message, botcheck, turnstileToken } = (body ?? {}) as Record<string, unknown>;
 
   if (botcheck) {
     return Response.json({ success: true });
+  }
+
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+  if (turnstileSecret) {
+    const token = typeof turnstileToken === 'string' ? turnstileToken : '';
+    if (!token) {
+      return Response.json({ error: 'Verification required.' }, { status: 400 });
+    }
+    try {
+      const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ secret: turnstileSecret, response: token }),
+      });
+      const verify = (await verifyRes.json()) as { success?: boolean; 'error-codes'?: string[] };
+      if (!verify.success) {
+        console.error('[contact] turnstile verify failed:', verify['error-codes']);
+        return Response.json(
+          {
+            error: 'Verification failed.',
+            ...(exposeErrors && { detail: verify['error-codes'] }),
+          },
+          { status: 400 },
+        );
+      }
+    } catch (err) {
+      console.error('[contact] turnstile verify error:', err);
+      return Response.json({ error: 'Verification error.' }, { status: 502 });
+    }
   }
 
   const n = typeof name === 'string' ? name.trim() : '';
@@ -70,7 +102,14 @@ export async function POST(request: Request) {
     });
 
     if (notify.error) {
-      return Response.json({ error: 'Failed to send notification.' }, { status: 502 });
+      console.error('[contact] notify send failed:', notify.error);
+      return Response.json(
+        {
+          error: 'Failed to send notification.',
+          ...(exposeErrors && { detail: notify.error.name, message: notify.error.message }),
+        },
+        { status: 502 },
+      );
     }
 
     await resend.emails.send({
@@ -91,7 +130,14 @@ export async function POST(request: Request) {
     });
 
     return Response.json({ success: true });
-  } catch {
-    return Response.json({ error: 'Failed to send.' }, { status: 502 });
+  } catch (err) {
+    console.error('[contact] unexpected send error:', err);
+    return Response.json(
+      {
+        error: 'Failed to send.',
+        ...(exposeErrors && err instanceof Error && { detail: err.name, message: err.message }),
+      },
+      { status: 502 },
+    );
   }
 }

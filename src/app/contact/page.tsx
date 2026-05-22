@@ -4,17 +4,17 @@ import { siteConfig } from '@/data/site-config';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce, WordPress/WooCommerce development and optimization, and open-source collaboration.`,
+  description: `Get in touch with ${siteConfig.name} — available for full-stack roles, headless WooCommerce builds, WordPress and Next.js development, and performance optimization. Based in the Philippines, working remotely with AU, UK, and US clients.`,
   alternates: { canonical: `${siteConfig.url}/contact` },
   openGraph: {
     title: `Contact | ${siteConfig.name}`,
-    description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce, WordPress/WooCommerce development and optimization, and open-source collaboration.`,
+    description: `Get in touch with ${siteConfig.name} — available for full-stack roles, headless WooCommerce builds, WordPress and Next.js development, and performance optimization. Based in the Philippines, working remotely with AU, UK, and US clients.`,
     url: `${siteConfig.url}/contact`,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     title: `Contact | ${siteConfig.name}`,
-    description: `Get in touch with ${siteConfig.name} — open to full-stack and lead roles, headless e-commerce, WordPress/WooCommerce development and optimization, and open-source collaboration.`,
+    description: `Get in touch with ${siteConfig.name} — available for full-stack roles, headless WooCommerce builds, WordPress and Next.js development, and performance optimization. Based in the Philippines, working remotely with AU, UK, and US clients.`,
     images: [siteConfig.ogImage],
   },
 };
@@ -35,16 +35,35 @@ export default function ContactPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-24">
           <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">Get in Touch</p>
           <h1 className="text-4xl font-bold mb-4">Let&apos;s work together</h1>
-          <p className="text-[var(--color-text-muted)] mb-12 text-lg leading-relaxed">
-            {siteConfig.availability}. I&apos;m particularly interested in headless e-commerce, WordPress and WooCommerce development and optimization, performance-critical Next.js apps, and projects that push modern web capabilities.
+          <p className="text-[var(--color-text-muted)] mb-8 text-lg leading-relaxed">
+            {siteConfig.availability}. Currently powering 7-figure online stores for clients across AU, UK, and US &mdash; based in the Philippines, working remotely.
           </p>
+
+          <ul className="flex flex-wrap gap-2 mb-12" aria-label="Services">
+            {[
+              'Headless WooCommerce',
+              'Next.js e-commerce',
+              'WordPress development',
+              'Performance optimization',
+              'Core Web Vitals',
+              'Open-source collaboration',
+            ].map((service) => (
+              <li
+                key={service}
+                className="text-xs font-mono px-3 py-1 rounded border border-[var(--color-border)] text-[var(--color-text-muted)]"
+              >
+                {service}
+              </li>
+            ))}
+          </ul>
 
           <div className="md:grid md:grid-cols-[1fr_2fr] md:gap-12">
             {/* Sidebar — info cards */}
             <div className="space-y-4 mb-12 md:mb-0 text-sm">
               <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-4">
                 <p className="text-[var(--color-text-muted)] mb-1">Response time</p>
-                <p className="font-medium">1–2 business days</p>
+                <p className="font-medium">1&ndash;2 business days</p>
+                <p className="text-xs text-[var(--color-text-muted)] mt-1">PHT &middot; UTC+8</p>
               </div>
               <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-4">
                 <p className="text-[var(--color-text-muted)] mb-1">Location</p>
@@ -52,7 +71,7 @@ export default function ContactPage() {
               </div>
               <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-4">
                 <p className="text-[var(--color-text-muted)] mb-1">Availability</p>
-                <p className="font-medium">Open to opportunities</p>
+                <p className="font-medium">{siteConfig.availability}</p>
               </div>
               <div className="pt-4 border-t border-[var(--color-border)] flex gap-4">
                 <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub profile" className="text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">
