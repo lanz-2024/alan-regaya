@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { siteConfig } from '@/data/site-config';
 import { blogPosts } from '@/data/blog-posts';
+import { projects } from '@/data/projects';
 
 export const dynamic = 'force-static';
 
@@ -21,5 +22,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
+    ...projects
+      .filter((p) => p.caseStudy)
+      .map((p) => ({
+        url: `${siteConfig.url}/projects/${p.id}`,
+        lastModified: new Date(p.caseStudy!.shippedAt),
+        changeFrequency: 'monthly' as const,
+        priority: 0.75,
+      })),
   ];
 }
