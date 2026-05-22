@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ClaudeHighlight } from '@/components/setup/ClaudeHighlight';
 import { GearGrid } from '@/components/setup/GearGrid';
 import { HobbiesSection } from '@/components/setup/HobbiesSection';
+import { Colophon } from '@/components/setup/Colophon';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { siteConfig } from '@/data/site-config';
 
@@ -28,6 +29,7 @@ export default function SetupPage() {
       <ClaudeHighlight />
       <GearGrid />
       <HobbiesSection />
+      <Colophon />
       <ContactSection />
     </div>
   );
