@@ -1,12 +1,84 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        el: HTMLElement,
+        opts: {
+          sitekey: string;
+          theme?: 'light' | 'dark' | 'auto';
+          callback?: (token: string) => void;
+          'error-callback'?: () => void;
+          'expired-callback'?: () => void;
+        },
+      ) => string;
+      reset: (widgetId?: string) => void;
+      remove: (widgetId?: string) => void;
+    };
+  }
+}
+
+const TURNSTILE_SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+
+function loadTurnstileScript(): Promise<void> {
+  if (typeof window === 'undefined') return Promise.resolve();
+  if (window.turnstile) return Promise.resolve();
+  const existing = document.querySelector<HTMLScriptElement>(`script[src="${TURNSTILE_SCRIPT_SRC}"]`);
+  if (existing) {
+    return new Promise((resolve) => existing.addEventListener('load', () => resolve(), { once: true }));
+  }
+  return new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = TURNSTILE_SCRIPT_SRC;
+    s.async = true;
+    s.defer = true;
+    s.onload = () => resolve();
+    s.onerror = () => reject(new Error('Failed to load Turnstile'));
+    document.head.appendChild(s);
+  });
+}
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [turnstileToken, setTurnstileToken] = useState<string>('');
   const formRef = useRef<HTMLFormElement>(null);
+  const widgetContainerRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
+
+  useEffect(() => {
+    if (!siteKey || !widgetContainerRef.current) return;
+    let cancelled = false;
+
+    loadTurnstileScript()
+      .then(() => {
+        if (cancelled || !window.turnstile || !widgetContainerRef.current) return;
+        widgetIdRef.current = window.turnstile.render(widgetContainerRef.current, {
+          sitekey: siteKey,
+          theme: 'dark',
+          callback: (token) => setTurnstileToken(token),
+          'expired-callback': () => setTurnstileToken(''),
+          'error-callback': () => setTurnstileToken(''),
+        });
+      })
+      .catch(() => {
+        /* swallow — form will surface "verification required" on submit */
+      });
+
+    return () => {
+      cancelled = true;
+      if (widgetIdRef.current && window.turnstile) {
+        window.turnstile.remove(widgetIdRef.current);
+        widgetIdRef.current = null;
+      }
+    };
+  }, [siteKey]);
 
   function validate(formData: FormData): Record<string, string> {
     const errs: Record<string, string> = {};
@@ -21,6 +93,7 @@ export function ContactForm() {
       errs.email = 'Please enter a valid email address.';
     }
     if (!message) errs.message = 'Message is required.';
+    if (siteKey && !turnstileToken) errs.captcha = 'Please complete the verification.';
 
     return errs;
   }
@@ -42,6 +115,9 @@ export function ContactForm() {
     formData.set('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? '');
     formData.set('subject', topic);
     formData.set('from_name', 'Portfolio Contact Form');
+    if (turnstileToken) {
+      formData.set('cf-turnstile-response', turnstileToken);
+    }
 
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
@@ -52,11 +128,23 @@ export function ContactForm() {
       if (data.success) {
         setStatus('success');
         formRef.current?.reset();
+        if (widgetIdRef.current && window.turnstile) {
+          window.turnstile.reset(widgetIdRef.current);
+        }
+        setTurnstileToken('');
       } else {
         setStatus('error');
+        if (widgetIdRef.current && window.turnstile) {
+          window.turnstile.reset(widgetIdRef.current);
+        }
+        setTurnstileToken('');
       }
     } catch {
       setStatus('error');
+      if (widgetIdRef.current && window.turnstile) {
+        window.turnstile.reset(widgetIdRef.current);
+      }
+      setTurnstileToken('');
     }
   }
 
@@ -132,6 +220,15 @@ export function ContactForm() {
           <p id="contact-message-error" className="mt-1 text-xs text-red-400" role="alert">{errors.message}</p>
         )}
       </div>
+
+      {siteKey && (
+        <div className="mb-6">
+          <div ref={widgetContainerRef} aria-label="Cloudflare Turnstile verification" />
+          {errors.captcha && (
+            <p className="mt-2 text-xs text-red-400" role="alert">{errors.captcha}</p>
+          )}
+        </div>
+      )}
 
       <button
         type="submit"
