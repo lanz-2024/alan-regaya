@@ -1,7 +1,10 @@
 'use client';
 import { useState, useRef } from 'react';
+import { siteConfig } from '@/data/site-config';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
+
+const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? siteConfig.email;
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
@@ -157,7 +160,7 @@ export function ContactForm() {
       {status === 'error' && (
         <p className="mt-4 text-sm text-red-400" role="alert">
           Something went wrong. Please try again or email me directly at{' '}
-          <a href="mailto:nalayager@gmail.com" className="underline">nalayager@gmail.com</a>.
+          <a href={`mailto:${contactEmail}`} className="underline">{contactEmail}</a>.
         </p>
       )}
     </form>
