@@ -97,6 +97,7 @@ export async function POST(request: Request) {
       replyTo: e,
       subject: `New enquiry: ${t} — ${n}`,
       html: `<div style="font-family:system-ui,sans-serif;line-height:1.6">
+  <p style="margin:0 0 20px;text-align:center"><a href="https://alanregaya.dev" style="text-decoration:none"><img src="https://alanregaya.dev/logo.png" alt="Alan Regaya" width="48" height="48" style="display:inline-block;max-width:100%;border:0"></a></p>
   <h2 style="margin:0 0 12px">New portfolio enquiry</h2>
   <p><strong>From:</strong> ${nameSafe} &lt;${emailSafe}&gt;<br>
   <strong>Topic:</strong> ${topicSafe}</p>
