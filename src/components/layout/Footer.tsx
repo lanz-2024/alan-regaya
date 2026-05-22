@@ -7,9 +7,14 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 text-sm text-[var(--color-text-muted)]">
         <div className="flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
           <p className="text-center">© {new Date().getFullYear()} {siteConfig.name}. Built with Next.js &amp; Tailwind.</p>
-          <Link href="/privacy" className="hover:text-[var(--color-text)] transition-colors">
-            Privacy Policy
-          </Link>
+          <div className="flex items-center gap-4">
+            <a href="/feed.xml" className="hover:text-[var(--color-text)] transition-colors" aria-label="RSS feed">
+              RSS
+            </a>
+            <Link href="/privacy" className="hover:text-[var(--color-text)] transition-colors">
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
