@@ -43,6 +43,9 @@ export function NavLinks() {
       <Link href="/faq" className={linkClass} onClick={handleNavClick('/faq')}>
         FAQ
       </Link>
+      <Link href="/proof" className={linkClass} onClick={handleNavClick('/proof')}>
+        Proof
+      </Link>
     </>
   );
 }

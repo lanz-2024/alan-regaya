@@ -11,6 +11,7 @@ const navLinks = [
   { href: '/setup', label: 'Setup', scroll: true },
   { href: '/blog', label: 'Blog', scroll: true },
   { href: '/faq', label: 'FAQ', scroll: true },
+  { href: '/proof', label: 'Proof', scroll: true },
 ];
 
 export function MobileNav() {
