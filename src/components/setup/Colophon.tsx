@@ -1,18 +1,28 @@
 import { SectionHeading } from '@/components/shared/SectionHeading';
+import { proofRuns } from '@/data/proof';
+import { siteConfig } from '@/data/site-config';
 
 const stack: { label: string; href: string }[] = [
-  { label: 'Next.js 14', href: 'https://nextjs.org/' },
+  { label: 'Next.js 16', href: 'https://nextjs.org/' },
   { label: 'TypeScript', href: 'https://www.typescriptlang.org/' },
   { label: 'Tailwind CSS', href: 'https://tailwindcss.com/' },
   { label: 'Vercel', href: 'https://vercel.com/' },
 ];
 
-const scores: { metric: string; value: string }[] = [
-  { metric: 'Performance', value: '94' },
-  { metric: 'Accessibility', value: '100' },
-  { metric: 'Best Practices', value: '100' },
-  { metric: 'SEO', value: '100' },
+const home = proofRuns.find((r) => r.page === 'Home') ?? proofRuns[0];
+const scores: { metric: string; value: number }[] = [
+  { metric: 'Performance', value: home.mobile.performance },
+  { metric: 'Accessibility', value: home.mobile.accessibility },
+  { metric: 'Best Practices', value: home.mobile.bestPractices },
+  { metric: 'SEO', value: home.mobile.seo },
 ];
+const psiHref = `https://pagespeed.web.dev/analysis?url=${encodeURIComponent(siteConfig.url)}`;
+const ringClass = (v: number) =>
+  v >= 90
+    ? 'border-green-500/60 text-green-400'
+    : v >= 50
+    ? 'border-yellow-500/60 text-yellow-400'
+    : 'border-red-500/60 text-red-400';
 
 export function Colophon() {
   return (
@@ -61,7 +71,7 @@ export function Colophon() {
             {scores.map((s) => (
               <li key={s.metric}>
                 <div
-                  className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-green-500/60 text-green-400 font-bold text-base"
+                  className={`inline-flex items-center justify-center w-12 h-12 rounded-full border-2 font-bold text-base ${ringClass(s.value)}`}
                   aria-label={`${s.metric} ${s.value} out of 100`}
                 >
                   {s.value}
@@ -71,9 +81,13 @@ export function Colophon() {
             ))}
           </ul>
           <p className="text-xs text-[var(--color-text-muted)] mt-4">
-            Re-runnable via{' '}
+            Last measured {home.measuredAt} · full breakdown on{' '}
+            <a href="/proof" className="text-[var(--color-accent-text)] hover:underline">
+              /proof
+            </a>
+            {' '}or re-run via{' '}
             <a
-              href="https://pagespeed.web.dev/analysis/https-alan-regaya-vercel-app/8lir3jiqrb?form_factor=mobile"
+              href={psiHref}
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--color-accent-text)] hover:underline"
