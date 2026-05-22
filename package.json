@@ -9,7 +9,8 @@
     "postbuild": "node scripts/optimize-css.mjs",
     "start": "next start",
     "lint": "eslint",
-    "screenshots": "npx ts-node --esm scripts/capture-screenshots.ts"
+    "screenshots": "npx ts-node --esm scripts/capture-screenshots.ts",
+    "measure:psi": "node scripts/measure-psi.mjs"
   },
   "dependencies": {
     "next": "16.2.1",
