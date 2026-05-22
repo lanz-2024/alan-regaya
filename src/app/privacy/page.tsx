@@ -18,17 +18,18 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-semibold text-[var(--color-text)] mb-2">Contact Form</h2>
           <p>
-            When you submit the contact form, your name, email address, and message are sent via{' '}
+            When you submit the contact form, your name, email address, and message are delivered to my inbox via{' '}
             <a
-              href="https://web3forms.com"
+              href="https://resend.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--color-accent-text)] underline underline-offset-2"
             >
-              Web3Forms
+              Resend
             </a>{' '}
-            and delivered directly to my inbox. No data is stored by Web3Forms after delivery.
-            I use your details solely to respond to your enquiry.
+            (transactional email provider). You will also receive an automated confirmation email at the
+            address you provided. No data is stored after delivery. I use your details solely to respond
+            to your enquiry.
           </p>
         </section>
 
