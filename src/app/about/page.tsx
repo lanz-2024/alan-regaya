@@ -3,6 +3,7 @@ import { getGitHubStats } from '@/lib/github';
 import { OriginStory } from '@/components/about/OriginStory';
 import { Timeline } from '@/components/about/Timeline';
 import { Skills } from '@/components/about/Skills';
+import { Principles } from '@/components/about/Principles';
 import { ContributionGraph } from '@/components/about/ContributionGraph';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { siteConfig } from '@/data/site-config';
@@ -74,6 +75,7 @@ export default async function AboutPage() {
             </div>
           </div>
         </section>
+        <Principles />
         <Timeline />
         <Skills />
         <ContributionGraph calendar={stats.contributionCalendar} />
