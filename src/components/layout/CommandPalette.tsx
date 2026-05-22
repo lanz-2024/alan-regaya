@@ -62,6 +62,7 @@ export function CommandPalette() {
       { id: 'p-projects', label: 'Projects', hint: '/projects', group: 'Pages', keywords: 'portfolio case studies', perform: () => go('/projects') },
       { id: 'p-setup', label: 'Setup', hint: '/setup', group: 'Pages', keywords: 'gear tools', perform: () => go('/setup') },
       { id: 'p-blog', label: 'Blog', hint: '/blog', group: 'Pages', keywords: 'writing posts articles', perform: () => go('/blog') },
+      { id: 'p-faq', label: 'FAQ', hint: '/faq', group: 'Pages', keywords: 'questions answers interview', perform: () => go('/faq') },
       { id: 'p-contact', label: 'Contact', hint: '/contact', group: 'Pages', keywords: 'email hire reach', perform: () => go('/contact') },
       { id: 'p-privacy', label: 'Privacy', hint: '/privacy', group: 'Pages', perform: () => go('/privacy') },
     ];
