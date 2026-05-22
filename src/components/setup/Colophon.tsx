@@ -73,7 +73,7 @@ export function Colophon() {
           <p className="text-xs text-[var(--color-text-muted)] mt-4">
             Re-runnable via{' '}
             <a
-              href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Falanregaya.dev"
+              href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Falan-regaya.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[var(--color-accent-text)] hover:underline"
