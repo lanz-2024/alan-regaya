@@ -8,32 +8,46 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-[var(--color-background)] to-[var(--color-background)] pointer-events-none" aria-hidden="true" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
-      <div className="relative max-w-4xl mx-auto text-center">
-        <p className="font-mono text-[var(--color-accent-text)] text-sm mb-6">Hello, I&apos;m</p>
+      <div className="relative max-w-3xl mx-auto text-center">
+        <div
+          className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-green-500/10 border border-green-500/30 text-green-400 text-xs font-mono"
+          role="status"
+          aria-label={`Availability: ${siteConfig.availability}`}
+        >
+          <span className="relative flex h-2 w-2" aria-hidden="true">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+          </span>
+          {siteConfig.availability}
+        </div>
+
+        <p className="font-mono text-[var(--color-accent-text)] text-sm mb-4">Hello, I&apos;m</p>
         <h1 id="hero-heading" className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-4">
           {siteConfig.name}
         </h1>
-        <p className="text-xl sm:text-2xl text-[var(--color-text-muted)] mb-3">{siteConfig.title}</p>
-        <p className="text-[var(--color-text-muted)] max-w-xl mx-auto mb-10 leading-relaxed">{siteConfig.tagline}</p>
+        <p className="text-xl sm:text-2xl text-[var(--color-text-muted)] mb-6">{siteConfig.title}</p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
+        <p className="text-base sm:text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto mb-10 leading-relaxed">
+          I build fast, scalable{' '}
           <Link
             href="/projects"
-            className="w-full sm:w-auto px-6 md:px-8 py-3.5 bg-[var(--color-accent)] text-white rounded hover:bg-[var(--color-accent-hover)] transition-colors font-medium text-center"
+            className="text-white underline decoration-[var(--color-accent)] decoration-2 underline-offset-4 hover:text-[var(--color-accent-text)] transition-colors"
           >
-            View Projects
+            headless WooCommerce storefronts, Next.js e-commerce apps, and WordPress platforms
           </Link>
+          . Currently powering 7-figure online stores for clients across AU, UK, and US &mdash; based in the Philippines, working remotely.
+        </p>
+
+        <div className="flex items-center justify-center">
           <Link
-            href="/about"
-            className="w-full sm:w-auto px-6 md:px-8 py-3.5 bg-transparent text-white border border-white/40 rounded hover:bg-white/10 hover:border-white/60 transition-colors font-medium text-center"
+            href="/contact"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--color-accent)] text-white rounded hover:bg-[var(--color-accent-hover)] transition-colors font-medium"
           >
-            About Me
-          </Link>
-          <Link
-            href="/setup"
-            className="w-full sm:w-auto px-6 md:px-8 py-3.5 bg-white/5 text-white border border-white/10 rounded hover:bg-white/10 hover:border-white/20 transition-colors font-medium text-center"
-          >
-            My Setup
+            Get in touch
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
           </Link>
         </div>
 
