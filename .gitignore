@@ -55,3 +55,40 @@ next-env.d.ts
 .ssh-credentials
 secrets/
 .clickup-session-context.json
+
+# local-only session/handoff/tooling artifacts
+HANDOFF.md
+.playwright-mcp/
+.claude/
+.cursor/
+.idea/
+.vscode/
+*.local
+
+# OS / editor
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# screenshots / scratch
+vercel-build-settings.png
+*.screenshot.png
+/screenshots/
+/tmp/
+/.tmp/
+
+# credential & key file patterns
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+id_rsa
+id_ed25519
+*.ppk
+.npmrc
+.netrc
+auth.json
