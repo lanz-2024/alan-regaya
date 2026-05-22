@@ -43,7 +43,20 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
         {project.outcome && (
           <p className="text-sm text-[var(--color-accent-text)] mb-3 font-medium">{project.outcome}</p>
         )}
-        <p className="text-sm text-[var(--color-text-muted)] mb-4 flex-1 leading-relaxed">{project.description}</p>
+        <p className="text-sm text-[var(--color-text-muted)] mb-4 leading-relaxed">{project.description}</p>
+        {project.tradeoff && (
+          <details className="group mb-4 rounded border border-[var(--color-border)]">
+            <summary className="cursor-pointer list-none px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-[var(--color-accent-text)] hover:text-[var(--color-text)] transition-colors flex items-center justify-between">
+              <span>Trade-off</span>
+              <span aria-hidden className="text-[var(--color-text-muted)] transition-transform duration-200 group-open:rotate-45">+</span>
+            </summary>
+            <div className="px-3 pb-3 text-sm text-[var(--color-text-muted)] leading-relaxed">
+              <p className="text-[var(--color-text)] font-medium mb-1">{project.tradeoff.decision}</p>
+              <p>{project.tradeoff.rationale}</p>
+            </div>
+          </details>
+        )}
+        <div className="flex-1" />
         <div className="flex flex-wrap gap-1.5 mb-4">
           {project.tech.slice(0, 5).map((t) => <Badge key={t} label={t} />)}
         </div>

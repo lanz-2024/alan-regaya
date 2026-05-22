@@ -16,6 +16,8 @@ export interface Project {
   role?: string;
   /** Measurable outcome — e.g. "91 stars · 40+ live storefronts", "54 releases". */
   outcome?: string;
+  /** Key trade-off / decision log — the "we chose X over Y because Z" reasoning. */
+  tradeoff?: { decision: string; rationale: string };
 }
 
 export const projects: Project[] = [
@@ -31,6 +33,10 @@ export const projects: Project[] = [
     screenshot: '/screenshots/headless-woocommerce.webp',
     role: 'Lead engineer',
     outcome: '91 stars · 37 forks · 40+ live storefronts',
+    tradeoff: {
+      decision: 'Typesense over Algolia for product search',
+      rationale: 'Algolia has the better DX out of the box, but Typesense is self-hostable, has predictable cost at our SKU counts, and gives us full schema control for WooCommerce-specific facets. The DX gap closed with our own indexer wrapper.',
+    },
   },
   {
     id: 'blazecommerce-wp-plugin',
@@ -42,6 +48,10 @@ export const projects: Project[] = [
     screenshot: '/screenshots/blazecommerce-wp-plugin.webp',
     role: 'Lead engineer',
     outcome: 'Production across 40+ headless stores',
+    tradeoff: {
+      decision: 'Index sync hooks over scheduled cron',
+      rationale: 'Cron-based reindex was simpler but lagged behind product edits by minutes. Hooking directly into WooCommerce save_post / order events keeps the index near-real-time, with a fallback full-rebuild for drift recovery.',
+    },
   },
   {
     id: 'blaze-blocksy',
@@ -55,6 +65,10 @@ export const projects: Project[] = [
     screenshot: '/screenshots/blaze-blocksy.webp',
     role: 'Lead engineer',
     outcome: 'Theme base for 40+ client builds',
+    tradeoff: {
+      decision: 'Child theme over a fully custom theme',
+      rationale: 'A bespoke theme would have given total control, but a Blocksy child inherits years of accessibility and WooCommerce compatibility for free. We trade some structural flexibility for a much faster onboarding path on client builds.',
+    },
   },
   {
     id: 'smart-time-tracker',
@@ -65,6 +79,10 @@ export const projects: Project[] = [
     screenshot: '/screenshots/smart-time-tracker.webp',
     role: 'Solo developer',
     outcome: '54 releases shipped',
+    tradeoff: {
+      decision: 'Tauri 2.0 + Rust over Electron',
+      rationale: 'Electron would have meant a faster MVP using the React skills I already had. Tauri ships ~10x smaller binaries, uses less memory, and the Rust core forces stricter handling of the OS-level window/process APIs the tracker depends on. Worth the steeper learning curve.',
+    },
   },
   {
     id: 'byron-bay-candles',

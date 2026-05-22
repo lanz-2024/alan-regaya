@@ -17,7 +17,7 @@ export const hobbies: Hobby[] = [
   },
   {
     title: 'Gaming',
-    description: 'Nintendo Switch OLED — gaming sessions when the build queue is clear.',
+    description: 'Nintendo Switch OLED — Pokémon Mystery Dungeon DX, FireRed, UNITE, and the Naruto Ultimate Ninja Storm series when the build queue is clear.',
     icon: '🎮',
   },
   {
@@ -32,7 +32,7 @@ export const hobbies: Hobby[] = [
   },
   {
     title: 'Choir Service',
-    description: 'Serving as a singer in the Catholic Church choir.',
+    description: 'Serving as a Tenor 2 in the Catholic Church choir.',
     icon: '🎵',
   },
 ];

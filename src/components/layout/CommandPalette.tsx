@@ -63,6 +63,8 @@ export function CommandPalette() {
       { id: 'p-setup', label: 'Setup', hint: '/setup', group: 'Pages', keywords: 'gear tools', perform: () => go('/setup') },
       { id: 'p-blog', label: 'Blog', hint: '/blog', group: 'Pages', keywords: 'writing posts articles', perform: () => go('/blog') },
       { id: 'p-faq', label: 'FAQ', hint: '/faq', group: 'Pages', keywords: 'questions answers interview', perform: () => go('/faq') },
+      { id: 'p-lessons', label: 'Lessons', hint: '/lessons', group: 'Pages', keywords: 'mistakes post-mortem learnings failures', perform: () => go('/lessons') },
+      { id: 'p-now', label: 'Now', hint: '/now', group: 'Pages', keywords: 'current building learning reading', perform: () => go('/now') },
       { id: 'p-contact', label: 'Contact', hint: '/contact', group: 'Pages', keywords: 'email hire reach', perform: () => go('/contact') },
       { id: 'p-privacy', label: 'Privacy', hint: '/privacy', group: 'Pages', perform: () => go('/privacy') },
     ];
