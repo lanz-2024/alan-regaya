@@ -32,7 +32,7 @@ export const hobbies: Hobby[] = [
   },
   {
     title: 'Choir Service',
-    description: 'Serving as a singer in the Catholic Church choir.',
+    description: 'Serving as a Tenor 2 in the Catholic Church choir.',
     icon: '🎵',
   },
 ];
