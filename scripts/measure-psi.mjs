@@ -1,19 +1,26 @@
 #!/usr/bin/env node
 // Build-time PageSpeed Insights refresher.
 //
-//   npm run measure:psi
+//   npm run measure:psi           # respects all safety conditions
+//   PSI_FORCE=1 npm run measure:psi   # bypass staleness + env checks
 //
 // Hits the public PSI API once per page+strategy and rewrites
 // src/data/proof.ts. Designed to run on a developer machine or in CI
-// — there is zero runtime cost on the deployed site, so refreshing
-// scores never hinders the scores themselves.
+// — zero runtime cost on the deployed site, so refreshing never
+// hinders the live scores.
 //
-// Anonymous PSI has aggressive per-IP throttling. Get a free key at
-// https://console.cloud.google.com/apis/credentials and set
-// PSI_API_KEY before running for reliable results:
+// Safety conditions (skip-with-warning, never crash the build):
+//   1. No PSI_API_KEY            → skip (anonymous PSI is throttled)
+//   2. VERCEL_ENV !== 'production' (preview/dev) → skip
+//   3. Existing data younger than PSI_MAX_AGE_DAYS (default 7) → skip
+//   4. Any fetch error           → skip, keep existing proof.ts
 //
-//   PSI_API_KEY=xxx npm run measure:psi
-import { writeFile } from 'node:fs/promises';
+// Override with PSI_FORCE=1.
+//
+// Get a free key at https://console.cloud.google.com/apis/credentials
+// (restrict to "PageSpeed Insights API").
+
+import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
@@ -27,9 +34,46 @@ const PAGES = [
   { page: 'Blog',     url: 'https://alanregaya.dev/blog' },
 ];
 
+const FORCE = process.env.PSI_FORCE === '1';
+const MAX_AGE_DAYS = Number(process.env.PSI_MAX_AGE_DAYS ?? 7);
+
+const skip = (reason) => {
+  console.log(`[measure-psi] skip: ${reason} (set PSI_FORCE=1 to override)`);
+  process.exit(0);
+};
+
+// --- Safety gate 1: API key ---------------------------------------------
+if (!process.env.PSI_API_KEY && !FORCE) {
+  skip('PSI_API_KEY not set — anonymous PSI is rate-limited');
+}
+
+// --- Safety gate 2: production-only -------------------------------------
+// VERCEL_ENV is "production" | "preview" | "development".
+// Locally (no VERCEL_ENV), allow the run so devs can refresh manually.
+if (process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production' && !FORCE) {
+  skip(`VERCEL_ENV=${process.env.VERCEL_ENV} — only refresh on production`);
+}
+
+// --- Safety gate 3: data freshness --------------------------------------
+let existing = '';
+try {
+  existing = await readFile(OUT, 'utf8');
+} catch {
+  // first run; existing stays empty
+}
+if (!FORCE && existing) {
+  const m = existing.match(/"measuredAt":\s*"(\d{4}-\d{2}-\d{2})"/);
+  if (m) {
+    const ageMs = Date.now() - new Date(m[1]).getTime();
+    const ageDays = ageMs / 86400000;
+    if (ageDays < MAX_AGE_DAYS) {
+      skip(`data is ${ageDays.toFixed(1)} days old (< ${MAX_AGE_DAYS}d threshold)`);
+    }
+  }
+}
+
 const round = (n) => Math.round(Number(n) * 100);
 const fmtMs = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)}s` : `${Math.round(n)}ms`);
-
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function fetchPsi(url, strategy, attempt = 1) {
@@ -75,36 +119,37 @@ function extractVitals(mobileData) {
   };
 }
 
-const today = new Date().toISOString().slice(0, 10);
+// --- Safety gate 4: never crash the build -------------------------------
+try {
+  const today = new Date().toISOString().slice(0, 10);
+  const runs = [];
+  for (const { page, url } of PAGES) {
+    console.log(`Measuring ${page} (${url})...`);
+    const mobile = await fetchPsi(url, 'mobile');
+    await sleep(2000);
+    const desktop = await fetchPsi(url, 'desktop');
+    await sleep(2000);
+    runs.push({
+      page,
+      url,
+      measuredAt: today,
+      mobile: extractScores(mobile),
+      desktop: extractScores(desktop),
+      vitals: extractVitals(mobile),
+    });
+  }
 
-const runs = [];
-for (const { page, url } of PAGES) {
-  console.log(`Measuring ${page} (${url})...`);
-  const mobile = await fetchPsi(url, 'mobile');
-  await sleep(2000);
-  const desktop = await fetchPsi(url, 'desktop');
-  await sleep(2000);
-  runs.push({
-    page,
-    url,
-    measuredAt: today,
-    mobile: extractScores(mobile),
-    desktop: extractScores(desktop),
-    vitals: extractVitals(mobile),
-  });
-}
+  const stack = [
+    { label: 'Framework', value: 'Next.js 16 (App Router, static export)' },
+    { label: 'Rendering', value: 'Pre-rendered static HTML' },
+    { label: 'Styling', value: 'Tailwind CSS v4 + critters CSS inlining' },
+    { label: 'Images', value: 'AVIF/WebP, responsive sizes, lazy-loaded' },
+    { label: 'Fonts', value: 'next/font (subset, swap), preload disabled for mono' },
+    { label: 'Hosting', value: 'Vercel edge CDN' },
+    { label: 'Security', value: 'CSP, HSTS, Turnstile on contact form' },
+  ];
 
-const stack = [
-  { label: 'Framework', value: 'Next.js 16 (App Router, static export)' },
-  { label: 'Rendering', value: 'Pre-rendered static HTML' },
-  { label: 'Styling', value: 'Tailwind CSS v4 + critters CSS inlining' },
-  { label: 'Images', value: 'AVIF/WebP, responsive sizes, lazy-loaded' },
-  { label: 'Fonts', value: 'next/font (subset, swap), preload disabled for mono' },
-  { label: 'Hosting', value: 'Vercel edge CDN' },
-  { label: 'Security', value: 'CSP, HSTS, Turnstile on contact form' },
-];
-
-const out = `export type LighthouseScores = {
+  const out = `export type LighthouseScores = {
   performance: number;
   accessibility: number;
   bestPractices: number;
@@ -132,8 +177,12 @@ export const proofRuns: ProofRun[] = ${JSON.stringify(runs, null, 2)};
 export const proofStack = ${JSON.stringify(stack, null, 2)};
 `;
 
-await writeFile(OUT, out, 'utf8');
-console.log(`Wrote ${OUT}`);
-for (const r of runs) {
-  console.log(`  ${r.page.padEnd(10)} mobile ${JSON.stringify(r.mobile)} | desktop ${JSON.stringify(r.desktop)} | vitals ${JSON.stringify(r.vitals)}`);
+  await writeFile(OUT, out, 'utf8');
+  console.log(`[measure-psi] wrote ${OUT}`);
+  for (const r of runs) {
+    console.log(`  ${r.page.padEnd(10)} mobile ${JSON.stringify(r.mobile)} | desktop ${JSON.stringify(r.desktop)}`);
+  }
+} catch (err) {
+  console.warn(`[measure-psi] WARN: ${err.message} — keeping existing proof.ts`);
+  process.exit(0);
 }
