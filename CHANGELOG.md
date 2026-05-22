@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Fixed
+- `api/contact/route.ts`: Capitalize "New Enquiry" in notify email subject/heading/text and replace colon with pipe divider in subject (`New Enquiry | {topic} — {name}`)
 - `experience.ts`: Replace Algolia with Typesense (actual search tech used across client sites)
 - `experience.ts`: Remove fabricated "66 semantic releases" stat — unverifiable, not from any known source
 - `experience.ts`: Update 30+ → 40+ migrations/storefronts/production sites (ClickUp Delivery space: 40+ distinct client projects)
