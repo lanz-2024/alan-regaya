@@ -123,7 +123,7 @@ export async function POST(request: Request) {
       replyTo: TO,
       subject: `Thanks for reaching out — I'll get back to you soon`,
       html: `<div style="font-family:system-ui,sans-serif;line-height:1.6;max-width:560px">
-  <p style="margin:0 0 20px"><img src="https://alanregaya.dev/logo.png" alt="Alan Regaya" width="48" height="48" style="display:block;max-width:100%"></p>
+  <p style="margin:0 0 20px;text-align:center"><a href="https://alanregaya.dev" style="text-decoration:none"><img src="https://alanregaya.dev/logo.png" alt="Alan Regaya" width="48" height="48" style="display:inline-block;max-width:100%;border:0"></a></p>
   <p>Hi ${nameSafe},</p>
   <p>Thanks for your message about <strong>${topicSafe}</strong>. I've received it and will reply within 1–2 business days.</p>
   <p>For reference, here's what you sent:</p>
