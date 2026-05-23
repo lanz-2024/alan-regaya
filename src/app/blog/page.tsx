@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { blogPosts } from '@/data/blog-posts';
 import { siteConfig } from '@/data/site-config';
 import { BlogCard } from '@/components/blog/BlogCard';
+import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -20,6 +21,8 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumbLd = buildBreadcrumbList([{ name: 'Blog', path: '/blog' }]);
+
 export default function BlogPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -32,6 +35,7 @@ export default function BlogPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-24">
         <header className="mb-12">
           <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-3">Writing</p>

@@ -6,6 +6,7 @@ import { projects } from '@/data/projects';
 import { siteConfig } from '@/data/site-config';
 import { Badge } from '@/components/shared/Badge';
 import { ContactSection } from '@/components/shared/ContactSection';
+import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 
 export function generateStaticParams() {
   return projects.filter((p) => p.caseStudy).map((p) => ({ slug: p.id }));
@@ -56,9 +57,15 @@ export default async function ProjectCaseStudyPage({ params }: { params: Promise
     url,
   };
 
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: 'Projects', path: '/projects' },
+    { name: project.name, path: `/projects/${project.id}` },
+  ]);
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="pt-16">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 py-24">
           <Link
