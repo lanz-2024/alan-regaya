@@ -10,6 +10,161 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: 'typesense-indexing-patterns-woocommerce',
+    title: 'Typesense Indexing Patterns for Headless WooCommerce',
+    description: 'Real-world patterns for indexing 10k+ WooCommerce products into Typesense — schema design, incremental sync hooks, faceted search, and the gotchas of running a search engine alongside WordPress.',
+    date: '2026-05-18',
+    readTime: '11 min read',
+    tags: ['Typesense', 'WooCommerce', 'Search', 'Headless'],
+    content: `<h2>Why Typesense Over Algolia or Elasticsearch</h2>
+<p>For most headless WooCommerce projects, the search engine choice comes down to three options. Algolia is the easy answer — and the expensive one, with per-search pricing that scales painfully past 50k operations/month. Elasticsearch is powerful but operationally heavy: a JVM, a cluster, and a learning curve that's hard to justify for product search. Typesense lands in the middle — open-source, single-binary, sub-50ms queries on millions of documents, and a pricing model (self-hosted or Typesense Cloud) that doesn't penalize success.</p>
+<p>On a recent project syncing 12k WooCommerce products, the entire Typesense Cloud bill came to $19/month. The equivalent Algolia bill would have been north of $400.</p>
+<h2>Schema Design: Flatten, Don't Nest</h2>
+<p>Typesense supports nested fields, but querying and faceting against flat fields is dramatically faster. The pattern I use: flatten WooCommerce's taxonomy and meta structure into a denormalized document per product.</p>
+<pre><code>{
+  id: '1234',
+  name: 'Soy Wax Candle — Vanilla',
+  price: 29.95,
+  on_sale: false,
+  in_stock: true,
+  categories: ['Candles', 'Soy Wax', 'Vanilla'],
+  category_ids: [12, 45, 78],
+  attributes_scent: ['Vanilla', 'Sweet'],
+  attributes_size: ['200ml'],
+  permalink: '/product/soy-wax-candle-vanilla/',
+  image: 'https://cdn.example.com/...',
+  updated_at: 1747094400
+}</code></pre>
+<p>Faceting on <code>categories</code> and <code>attributes_*</code> as string arrays gives instant filter counts. The <code>updated_at</code> Unix timestamp drives incremental sync.</p>
+<h2>Incremental Sync via WP Hooks</h2>
+<p>A full reindex of 12k products takes ~90 seconds. Doing that on every product save is unacceptable. Instead, hook into WooCommerce's save events and push only the changed document:</p>
+<pre><code>add_action('woocommerce_update_product', function($product_id) {
+  $product = wc_get_product($product_id);
+  $doc = build_typesense_doc($product);
+  wp_remote_post(TYPESENSE_URL . '/collections/products/documents?action=upsert', [
+    'headers' => ['X-TYPESENSE-API-KEY' => TYPESENSE_KEY],
+    'body' => wp_json_encode($doc),
+    'timeout' => 5,
+  ]);
+}, 20, 1);</code></pre>
+<p>Deletes hook into <code>before_delete_post</code> with a guard that the post type is <code>product</code>. Stock changes hook into <code>woocommerce_product_set_stock</code> separately — they fire on every order and you want the lightest possible payload there.</p>
+<h2>The Full-Reindex Safety Net</h2>
+<p>Hooks miss things. A bulk SQL update, a WP-CLI import, a database restore — none of these fire the save action. The pattern: a nightly WP-Cron job that walks the product catalog and upserts any document where the WordPress <code>post_modified</code> is newer than Typesense's <code>updated_at</code>.</p>
+<p>This catches drift without rebuilding the index from scratch. On the 12k-product site, the nightly reconciliation processes ~50 documents on average and finishes in under 4 seconds.</p>
+<h2>Search-as-You-Type with InstantSearch</h2>
+<p>Typesense ships a drop-in adapter for Algolia's <code>react-instantsearch</code>. The Next.js side becomes trivial:</p>
+<pre><code>import { TypesenseInstantSearchAdapter } from 'typesense-instantsearch-adapter';
+
+const adapter = new TypesenseInstantSearchAdapter({
+  server: { apiKey: process.env.NEXT_PUBLIC_TS_SEARCH_KEY, nodes: [...] },
+  additionalSearchParameters: {
+    query_by: 'name,categories,attributes_scent',
+    query_by_weights: '4,2,1',
+  },
+});</code></pre>
+<p>The search-only API key is scoped to read-only on the products collection — safe to ship to the browser. The admin key, which can write and create collections, lives only on the server.</p>
+<h2>The Gotchas</h2>
+<p><strong>Collection aliases for zero-downtime reindexes.</strong> When the schema changes, you can't mutate fields on a live collection. Build a new collection (<code>products_v2</code>), reindex into it, then swap the alias atomically. The frontend always queries <code>products</code>, which points to whichever version is current.</p>
+<p><strong>Variable products need a strategy.</strong> Indexing each variation as its own document explodes the index size and confuses search results. The cleaner approach: index the parent product with a <code>variation_prices</code> range and a <code>variation_attributes</code> array. Variation-level filtering happens client-side on the result.</p>
+<p><strong>Multi-currency means multi-field.</strong> If the storefront ships in USD, AUD, and EUR, store <code>price_usd</code>, <code>price_aud</code>, <code>price_eur</code> as separate fields. Sorting and filtering by price requires a single numeric field; you can't sort by a per-locale lookup.</p>
+<h2>When Not to Use Typesense</h2>
+<p>If the catalog is under 500 products and the WooCommerce default search (with FibSearch or similar) hits acceptable latency, the operational overhead isn't worth it. Typesense earns its place when search becomes a primary UX surface — instant results, faceted refinement, typo tolerance — not just a fallback when navigation fails.</p>`,
+  },
+  {
+    slug: 'tauri-vs-electron-lessons',
+    title: 'Tauri vs Electron: What I Learned Shipping a Desktop App in Both',
+    description: 'After porting a developer tool from Electron to Tauri, here is the honest breakdown — bundle size, native webview quirks, IPC patterns, Rust learning curve, and when each framework is actually the right call.',
+    date: '2026-05-10',
+    readTime: '10 min read',
+    tags: ['Tauri', 'Electron', 'Desktop', 'Rust'],
+    content: `<h2>The Setup</h2>
+<p>I shipped the first version of a developer-tooling desktop app in Electron — React frontend, Node.js backend, the standard stack. Bundle size was 138MB. Cold start was around 1.4 seconds. Memory at rest was ~210MB. For an app that mostly proxies SSH commands and renders a tree view, that felt absurd.</p>
+<p>Six months later I ported it to Tauri. Same React frontend, Rust backend, same feature set. Bundle dropped to 14MB. Cold start became 380ms. Memory at rest hovers at 65MB. Here's the honest accounting of what that cost.</p>
+<h2>Where Tauri Wins, Clearly</h2>
+<p><strong>Bundle size.</strong> Tauri uses the OS's native webview — WebView2 on Windows, WKWebView on macOS, WebKitGTK on Linux. No bundled Chromium. The frontend assets compress to a few MB; the Rust binary is small. The 10x reduction is real and immediately noticeable when users download the installer.</p>
+<p><strong>Memory.</strong> Native webviews share processes with the OS in ways Chromium can't. The "Electron app eats 500MB at idle" jokes don't apply.</p>
+<p><strong>Security model.</strong> Tauri's permission system requires you to allowlist exactly which APIs the frontend can call. Electron's default-allow nodeIntegration is a footgun that's caused real CVEs. Tauri's allowlist forces you to think about attack surface from day one.</p>
+<p><strong>Update flow.</strong> Tauri's built-in updater signs releases with a public/private key pair and verifies before applying. Setting this up in Electron requires either electron-updater (which works) or rolling your own (which most teams do, badly).</p>
+<h2>Where Electron Still Wins</h2>
+<p><strong>Webview consistency.</strong> This is the big one. Chromium is Chromium everywhere. WebKitGTK on Linux is months behind WKWebView on macOS. Modern CSS features — container queries, <code>:has()</code>, view transitions — land at different times on each platform. I shipped one release with a perfectly working layout on macOS that broke on Linux because the GTK webview was too old.</p>
+<p><strong>Node.js ecosystem access.</strong> Want to call <code>simple-git</code> or <code>better-sqlite3</code> from the backend? In Electron, you just import it. In Tauri, you write Rust — or you shell out to Node via <code>tauri::api::process::Command</code>, which negates the bundle-size argument.</p>
+<p><strong>Debugging.</strong> Electron's renderer is just Chrome DevTools. Tauri's renderer on Linux is WebKitGTK's inspector, which is functional but feels like 2017.</p>
+<p><strong>Team velocity.</strong> If your team is JavaScript-first, the Rust ramp-up is real. Simple things — async file I/O, error handling across the IPC boundary, lifetime annotations — take weeks to internalize. For a small utility, you'll ship Electron faster.</p>
+<h2>IPC: The Pattern That Actually Scales</h2>
+<p>Both frameworks let you call backend functions from the frontend. In Tauri:</p>
+<pre><code>// src-tauri/src/main.rs
+#[tauri::command]
+async fn run_ssh(host: String, cmd: String) -> Result&lt;String, String&gt; {
+    ssh_exec(&host, &cmd).await.map_err(|e| e.to_string())
+}
+
+// frontend
+import { invoke } from '@tauri-apps/api/core';
+const output = await invoke&lt;string&gt;('run_ssh', { host, cmd });</code></pre>
+<p>The serialization is automatic, but the error type matters. Returning <code>Result&lt;T, String&gt;</code> means the frontend gets stringified errors. For structured errors (with error codes, retryable flags, etc.), define a serializable error enum:</p>
+<pre><code>#[derive(Debug, thiserror::Error, serde::Serialize)]
+enum AppError {
+    #[error("ssh failed: {0}")]
+    Ssh(String),
+    #[error("timeout")]
+    Timeout,
+}</code></pre>
+<p>This pattern took me three iterations to get right. The first version threw away too much information; the second over-engineered with a 12-variant enum; the final shape is ~5 variants that map to specific UI behaviors.</p>
+<h2>The Rust Learning Curve, Honestly</h2>
+<p>If you've never written Rust, plan on 2-3 weeks before you're productive. The borrow checker fights you on patterns that are trivial in JavaScript — passing a callback into a closure, sharing state across async tasks, mutating a Vec from multiple places. Once it clicks, you stop fighting and start designing around ownership.</p>
+<p>The unexpected benefit: the bugs that compile-time checks catch are exactly the bugs that cause hard-to-reproduce crashes in production Electron apps. Race conditions, use-after-free, null pointer access. The compiler refuses to let you ship them.</p>
+<h2>Which to Choose</h2>
+<p>If you're shipping to non-technical users who'll judge the app by its download size and battery impact, Tauri. If your team is JavaScript-only and you need to ship in weeks not months, Electron. If you need bleeding-edge web platform features and Linux is a primary target, Electron.</p>
+<p>For my use case — a developer tool that needs to feel native and not eat the user's RAM — Tauri was the right call. The Rust investment paid for itself in the first major release.</p>`,
+  },
+  {
+    slug: 'headless-woocommerce-architecture-decisions',
+    title: 'Headless WooCommerce: The Architecture Decisions That Actually Matter',
+    description: 'A frank look at the decisions that shape a headless WooCommerce project — REST vs GraphQL, cart-on-WP vs cart-on-frontend, ISR vs SSR, and the operational realities most tutorials skip.',
+    date: '2026-05-02',
+    readTime: '12 min read',
+    tags: ['WooCommerce', 'Headless', 'Next.js', 'Architecture'],
+    content: `<h2>The Question Behind the Question</h2>
+<p>"Should we go headless?" is rarely the right question. The right one is: what does the existing WooCommerce stack cost us that a headless rebuild would fix? If the answer is "the storefront is slow", that's solvable inside WordPress with caching and a CDN — no rebuild needed. If the answer is "we want to ship the same catalog to a mobile app, a kiosk, and a marketing site", headless starts to earn its keep.</p>
+<p>Assuming the rebuild makes sense, here are the architecture decisions that determine whether the project ships in three months or twelve.</p>
+<h2>Decision 1: REST vs GraphQL</h2>
+<p>WooCommerce ships with a mature REST API. WPGraphQL + WooGraphQL adds a GraphQL layer on top. Both work; the choice depends on your team and your read patterns.</p>
+<p><strong>Pick REST when:</strong> the storefront does mostly category and product page fetches, your team has no GraphQL experience, or you want to avoid the N+1 query performance trap that bites unoptimized GraphQL resolvers under load.</p>
+<p><strong>Pick GraphQL when:</strong> the frontend needs to compose data from products, categories, posts, and ACF fields in a single request, or when you're already running GraphQL elsewhere in the stack.</p>
+<p>On a recent project, I migrated from GraphQL to REST mid-build. The reason: WPGraphQL's variable-product queries were generating 80+ SQL queries per request, and the fix required patching WooGraphQL's resolvers. Falling back to two REST calls plus client-side composition was faster to ship and easier to cache at the CDN edge.</p>
+<h2>Decision 2: Cart on WordPress or Cart on Frontend</h2>
+<p>This is the decision that quietly defines the entire project.</p>
+<p><strong>Cart on WordPress (CoCart, Store API):</strong> sessions, shipping, taxes, coupons, payment all stay in WooCommerce. The frontend is a view layer. Pros: zero risk of cart divergence from order; all extensions (subscriptions, bookings, bundles) work; payment methods stay PCI-scoped to WordPress. Cons: every cart interaction is a network round-trip to WordPress, and WordPress becomes a hard runtime dependency for the frontend.</p>
+<p><strong>Cart on frontend (custom Stripe/Square integration):</strong> the cart lives in the frontend (Zustand, localStorage), and the order is created on WordPress only at checkout completion. Pros: instant cart interactions, frontend can work briefly during WordPress downtime. Cons: you reimplement every WooCommerce cart feature — shipping, taxes, coupons, stock validation — which is months of work and a permanent maintenance tax.</p>
+<p>For 90% of projects, cart-on-WordPress via Store API is the right answer. The latency cost is real but manageable with optimistic UI updates. Reimplementing WooCommerce's cart logic is a trap.</p>
+<h2>Decision 3: ISR, SSR, or Static</h2>
+<p>Next.js gives you the full spectrum. The pattern I've settled on for medium catalogs (under 50k SKUs):</p>
+<ul>
+<li><strong>Static + revalidate:</strong> product pages, category pages, marketing pages. <code>generateStaticParams</code> for top-100 products, ISR with a 5-minute revalidate window for the long tail.</li>
+<li><strong>Server-rendered:</strong> search results, account pages, anything authenticated.</li>
+<li><strong>Client-side:</strong> cart, mini-cart, recently viewed.</li>
+</ul>
+<p>The static-with-revalidate pattern is what makes headless feel fast. A product page that's been generated once serves from the CDN in &lt;100ms regardless of WordPress load. The 5-minute window means stock counts may be slightly stale, but a webhook from WooCommerce on stock change triggers an on-demand revalidate within seconds for popular SKUs.</p>
+<h2>Decision 4: Hosting Split</h2>
+<p>The frontend wants edge caching, instant deploys, and global distribution — Vercel, Netlify, Cloudflare Pages. WordPress wants a beefy origin with predictable database performance — Kinsta, WP Engine, or a tuned VPS. Putting them on the same host optimizes for neither.</p>
+<p>The split I use: WordPress on Kinsta (admin + REST/GraphQL endpoint), Next.js on Vercel (frontend), Cloudflare in front of both. WordPress hostname is treated as an internal API; the public domain points at Vercel.</p>
+<h2>Decision 5: How Authentication Actually Works</h2>
+<p>WooCommerce assumes WordPress sessions — a PHP session cookie, set by WordPress, read by WooCommerce. Headless breaks this assumption.</p>
+<p>The pattern that works: JWT auth via the <code>jwt-authentication-for-wp-rest-api</code> plugin (or a custom equivalent), with the JWT stored in an HttpOnly cookie set by the Next.js server. The frontend forwards this cookie on every API call; WordPress validates and returns the user-scoped data.</p>
+<p>For checkout specifically, CoCart's cart-key-based guest session is essential. New visitors get a cart key on first add-to-cart, and that key persists in localStorage until login, at which point the guest cart merges into the user cart.</p>
+<h2>Decision 6: What the Migration Looks Like</h2>
+<p>You don't rebuild a live store overnight. The pattern I've used twice now:</p>
+<ol>
+<li><strong>Subdomain launch:</strong> ship the headless frontend to <code>new.example.com</code>. Both stores share the same WooCommerce backend, so orders flow into the same admin.</li>
+<li><strong>Soft migrate top SKUs:</strong> redirect the top 50 product URLs to the new frontend. Monitor conversion, fix what breaks.</li>
+<li><strong>Full cutover:</strong> swap DNS, set up 301 redirects for any URL structure changes, keep WordPress at <code>shop.example.com</code> for admin.</li>
+</ol>
+<p>The "shared backend during migration" approach lets you ship in stages without holding two databases in sync. The admin team keeps working in WordPress; the storefront just changes which frontend renders the catalog.</p>
+<h2>The Operational Reality</h2>
+<p>Headless WooCommerce adds runtime dependencies. A broken WPGraphQL plugin update can take down your frontend. A misconfigured CDN can serve stale stock. A WordPress migration with a different domain breaks every <code>permalink</code> field in the frontend cache.</p>
+<p>The fix is monitoring and graceful degradation: health checks on the WordPress endpoint, fallback static catalog snapshots for true outages, and a frontend that can show "checkout temporarily unavailable" without 500-ing the whole page. None of this is glamorous, and all of it is what keeps the architecture viable in production.</p>`,
+  },
+  {
     slug: 'core-web-vitals-at-scale',
     title: 'Core Web Vitals at Scale: Lessons from 30+ Production Sites',
     description: 'What actually moves the needle on LCP, CLS, and INP when optimizing WooCommerce storefronts in production — from critical CSS inlining to image pipelines and font loading strategies.',
