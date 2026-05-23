@@ -5,6 +5,7 @@ import { HobbiesSection } from '@/components/setup/HobbiesSection';
 import { Colophon } from '@/components/setup/Colophon';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { siteConfig } from '@/data/site-config';
+import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'Setup',
@@ -23,9 +24,12 @@ export const metadata: Metadata = {
   },
 };
 
+const breadcrumbLd = buildBreadcrumbList([{ name: 'Setup', path: '/setup' }]);
+
 export default function SetupPage() {
   return (
     <div className="pt-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <ClaudeHighlight />
       <GearGrid />
       <HobbiesSection />

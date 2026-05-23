@@ -7,6 +7,7 @@ import { Principles } from '@/components/about/Principles';
 import { ContributionGraph } from '@/components/about/ContributionGraph';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { siteConfig } from '@/data/site-config';
+import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -31,12 +32,15 @@ const jsonLd = {
   mainEntity: { '@id': `${siteConfig.url}/#person` },
 };
 
+const breadcrumbLd = buildBreadcrumbList([{ name: 'About', path: '/about' }]);
+
 export default async function AboutPage() {
   const stats = await getGitHubStats();
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="pt-16">
         <OriginStory />
         <section id="about-me" className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]">

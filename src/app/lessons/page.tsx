@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { siteConfig } from '@/data/site-config';
 import { lessons } from '@/data/lessons';
+import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+
+const breadcrumbLd = buildBreadcrumbList([{ name: 'Lessons', path: '/lessons' }]);
 
 export const metadata: Metadata = {
   title: 'Lessons',
@@ -23,6 +26,7 @@ export const metadata: Metadata = {
 export default function LessonsPage() {
   return (
     <div className="pt-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <section className="py-20 border-b border-[var(--color-border)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">

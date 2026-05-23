@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/faq`, lastModified: new Date('2026-05-23'), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteConfig.url}/lessons`, lastModified: new Date('2026-05-23'), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteConfig.url}/now`, lastModified: new Date('2026-05-23'), changeFrequency: 'weekly', priority: 0.6 },
+    { url: `${siteConfig.url}/proof`, lastModified: new Date('2026-05-23'), changeFrequency: 'monthly', priority: 0.6 },
     ...blogPosts.map((post) => ({
       url: `${siteConfig.url}/blog/${post.slug}`,
       lastModified: new Date(post.date),

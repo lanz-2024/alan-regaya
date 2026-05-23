@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { blogPosts } from '@/data/blog-posts';
 import { siteConfig } from '@/data/site-config';
+import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -49,9 +50,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     url: `${siteConfig.url}/blog/${post.slug}`,
   };
 
+  const breadcrumbLd = buildBreadcrumbList([
+    { name: 'Blog', path: '/blog' },
+    { name: post.title, path: `/blog/${post.slug}` },
+  ]);
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-24">
         <Link href="/blog" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors mb-8 inline-block">
           ← Back to Blog

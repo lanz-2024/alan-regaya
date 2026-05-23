@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { ProofGrid } from '@/components/proof/ProofGrid';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { siteConfig } from '@/data/site-config';
+import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+
+const breadcrumbLd = buildBreadcrumbList([{ name: 'Proof', path: '/proof' }]);
 
 export const metadata: Metadata = {
   title: 'Proof',
@@ -23,6 +26,7 @@ export const metadata: Metadata = {
 export default function ProofPage() {
   return (
     <div className="pt-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <ProofGrid />
       <ContactSection />
     </div>
