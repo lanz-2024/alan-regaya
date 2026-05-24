@@ -81,4 +81,36 @@ try {
   }
 } catch {}
 
+// Second pass: ensure every .webp in scanned dirs has an .avif sibling.
+// Some assets ship as committed .webp with no PNG/JPG source — without this
+// pass they'd reference a missing .avif and <picture> would render broken
+// (browsers don't fall through <source type="image/avif"> on 404).
+async function ensureAvifForWebp(dirAbs, avifQuality, maxWidth) {
+  let files;
+  try { files = await readdir(dirAbs); } catch { return 0; }
+  let made = 0;
+  for (const f of files) {
+    if (!/\.webp$/i.test(f)) continue;
+    const stem = basename(f, extname(f));
+    const webpSrc = resolve(dirAbs, f);
+    const avifDest = resolve(dirAbs, stem + '.avif');
+    if (await isFresh(webpSrc, avifDest)) continue;
+    await sharp(webpSrc)
+      .resize(maxWidth, undefined, { fit: 'inside', withoutEnlargement: true })
+      .avif({ quality: avifQuality, effort: 4 })
+      .toFile(avifDest);
+    const [before, after] = await Promise.all([stat(webpSrc), stat(avifDest)]);
+    console.log(`  ✓ ${basename(dirAbs)}/${f} (${before.size} B) → ${stem}.avif (${after.size} B) [from webp]`);
+    made++;
+  }
+  return made;
+}
+
+for (const t of TARGETS) {
+  totalAvif += await ensureAvifForWebp(resolve(PUBLIC, t.dir), t.avifQuality, t.maxWidth);
+}
+// Also cover /public root for stray .webp like logo.webp (already covered by
+// logo.png path above, but harmless to double-check).
+totalAvif += await ensureAvifForWebp(PUBLIC, 80, 128);
+
 console.log(`Converted ${totalWebp} WebP + ${totalAvif} AVIF image(s).`);
