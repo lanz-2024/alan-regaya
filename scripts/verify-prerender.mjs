@@ -1,11 +1,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+// Parse the unique receipt URLs straight from src/data/proof.ts so we don't depend on importing
+// TS at runtime. Each entry has a single `url: 'https://...'` line.
 const proofSource = fs.readFileSync(path.resolve('src/data/proof.ts'), 'utf8');
-const expectedCards = (proofSource.match(/^\s*page:\s*'/gm) ?? []).length;
+const expectedUrls = [...proofSource.matchAll(/^\s*url:\s*'([^']+)'/gm)].map((m) => m[1]);
 
-if (expectedCards === 0) {
-  console.error('[verify-prerender] could not parse proofRuns entries from src/data/proof.ts');
+if (expectedUrls.length === 0) {
+  console.error('[verify-prerender] could not parse any proofRuns URLs from src/data/proof.ts');
   process.exit(1);
 }
 
@@ -20,15 +22,13 @@ if (!htmlPath) {
 }
 
 const html = fs.readFileSync(htmlPath, 'utf8');
-// "Verify on PSI" appears once per receipt card and is never present in inlined critical CSS,
-// so it's a stable per-card marker (unlike Tailwind class strings which the critters postbuild
-// step inlines into <style>, doubling any class-based count).
-const renderedCards = (html.match(/Verify on PSI/g) ?? []).length;
+const missing = expectedUrls.filter((url) => !html.includes(url));
 
-if (renderedCards !== expectedCards) {
+if (missing.length > 0) {
   console.error(
-    `[verify-prerender] STALE: ${htmlPath} has ${renderedCards} receipt cards but src/data/proof.ts has ${expectedCards}.\n` +
-      'Likely cause: Next.js incremental build cache reused a pre-existing /proof prerender ' +
+    `[verify-prerender] STALE: ${htmlPath} is missing ${missing.length} of ${expectedUrls.length} receipt URL(s):\n` +
+      missing.map((u) => `  - ${u}`).join('\n') +
+      '\nLikely cause: Next.js incremental build cache reused a pre-existing /proof prerender ' +
       '(data-only edits to files imported via path aliases are not always tracked as route inputs).\n' +
       'Fix: edit src/components/proof/ProofGrid.tsx (a component-file change WILL invalidate /proof), ' +
       'or trigger a Vercel redeploy without build cache.'
@@ -36,4 +36,4 @@ if (renderedCards !== expectedCards) {
   process.exit(1);
 }
 
-console.log(`[verify-prerender] /proof OK: ${renderedCards} cards match source (${htmlPath})`);
+console.log(`[verify-prerender] /proof OK: all ${expectedUrls.length} receipt URLs present in ${htmlPath}`);
