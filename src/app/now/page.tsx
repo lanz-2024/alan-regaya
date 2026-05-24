@@ -3,8 +3,14 @@ import Link from 'next/link';
 import { siteConfig } from '@/data/site-config';
 import { nowUpdated, nowBuilding, nowLearning, nowReading, nowOff, NowEntry } from '@/data/now';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { buildWebPage } from '@/lib/seo/webpage';
 
 const breadcrumbLd = buildBreadcrumbList([{ name: 'Now', path: '/now' }]);
+const webPageLd = buildWebPage({
+  path: '/now',
+  name: `Now | ${siteConfig.name}`,
+  description: `What ${siteConfig.name} is currently building, learning, and reading.`,
+});
 
 export const metadata: Metadata = {
   title: 'Now',
@@ -53,6 +59,7 @@ export default function NowPage() {
   const formatted = new Date(nowUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   return (
     <div className="pt-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <section className="py-20 border-b border-[var(--color-border)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">

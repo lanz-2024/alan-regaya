@@ -12,10 +12,13 @@
     "screenshots": "npx ts-node --esm scripts/capture-screenshots.ts",
     "measure:psi": "node scripts/measure-psi.mjs",
     "gate:lighthouse": "node scripts/gate-lighthouse.mjs",
+    "gate:schema": "node scripts/gate-schema.mjs --strict",
+    "audit:schema": "node scripts/gate-schema.mjs --report",
+    "fix:schema": "node scripts/gate-schema.mjs --fix",
     "postinstall": "simple-git-hooks"
   },
   "simple-git-hooks": {
-    "pre-push": "node scripts/gate-lighthouse.mjs"
+    "pre-push": "node scripts/gate-schema.mjs && node scripts/gate-lighthouse.mjs"
   },
   "dependencies": {
     "next": "16.2.1",

@@ -3,8 +3,15 @@ import Link from 'next/link';
 import { siteConfig } from '@/data/site-config';
 import { lessons } from '@/data/lessons';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { buildWebPage } from '@/lib/seo/webpage';
 
 const breadcrumbLd = buildBreadcrumbList([{ name: 'Lessons', path: '/lessons' }]);
+const webPageLd = buildWebPage({
+  path: '/lessons',
+  name: `Lessons | ${siteConfig.name}`,
+  description: `Short post-mortems from production incidents and design mistakes ${siteConfig.name} has shipped.`,
+  type: 'CollectionPage',
+});
 
 export const metadata: Metadata = {
   title: 'Lessons',
@@ -26,6 +33,7 @@ export const metadata: Metadata = {
 export default function LessonsPage() {
   return (
     <div className="pt-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <section className="py-20 border-b border-[var(--color-border)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">

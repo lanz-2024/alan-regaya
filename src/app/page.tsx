@@ -4,12 +4,21 @@ import { Stats } from '@/components/home/Stats';
 import { FeaturedProjects } from '@/components/home/FeaturedProjects';
 import { TechStack } from '@/components/home/TechStack';
 import { ContactSection } from '@/components/shared/ContactSection';
+import { siteConfig } from '@/data/site-config';
+import { buildWebPage } from '@/lib/seo/webpage';
+
+const webPageLd = buildWebPage({
+  path: '/',
+  name: `${siteConfig.name} — ${siteConfig.title}`,
+  description: siteConfig.description,
+});
 
 export default async function HomePage() {
   const stats = await getGitHubStats();
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }} />
       <Hero />
       <Stats stats={{ commits: stats.totalCommits, prs: stats.totalPRs, stars: stats.totalStars }} />
       <FeaturedProjects />
