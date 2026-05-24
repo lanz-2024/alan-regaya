@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { blogPosts } from '@/data/blog-posts';
 import { siteConfig } from '@/data/site-config';
+import { ContactSection } from '@/components/shared/ContactSection';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 
 export function generateStaticParams() {
@@ -82,6 +83,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="prose" dangerouslySetInnerHTML={{ __html: post.content }} />
         </article>
       </div>
+      <ContactSection />
     </>
   );
 }

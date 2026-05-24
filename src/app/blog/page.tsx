@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { blogPosts } from '@/data/blog-posts';
 import { siteConfig } from '@/data/site-config';
 import { BlogCard } from '@/components/blog/BlogCard';
+import { ContactSection } from '@/components/shared/ContactSection';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 
 export const metadata: Metadata = {
@@ -55,6 +56,7 @@ export default function BlogPage() {
           </Link>
         </div>
       </div>
+      <ContactSection />
     </>
   );
 }
