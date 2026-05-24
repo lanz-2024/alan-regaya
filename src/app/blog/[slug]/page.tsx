@@ -9,6 +9,7 @@ import { tagToSlug } from '@/lib/blog-tags';
 import { buildToc, injectHeadingIds, getRelatedPosts } from '@/lib/blog-post-utils';
 import { TableOfContents } from '@/components/blog/TableOfContents';
 import { RelatedPosts } from '@/components/blog/RelatedPosts';
+import { ReadingProgressBar } from '@/components/blog/ReadingProgressBar';
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -66,6 +67,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
+      <ReadingProgressBar />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-24">
