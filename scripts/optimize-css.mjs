@@ -135,4 +135,11 @@ total += await processDir(
   '.next',
 );
 
+// 3. Vercel build-adapter output — what Vercel actually serves at runtime
+total += await processDir(
+  join(cwd, '.vercel', 'output', 'static'),
+  join(cwd, '.vercel', 'output', 'static'),
+  '.vercel',
+);
+
 console.log(`\nCritical CSS inlined: ${total} HTML files`);

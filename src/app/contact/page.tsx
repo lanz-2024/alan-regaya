@@ -33,6 +33,7 @@ const breadcrumbLd = buildBreadcrumbList([{ name: 'Contact', path: '/contact' }]
 export default function ContactPage() {
   return (
     <>
+      <link rel="preconnect" href="https://challenges.cloudflare.com" crossOrigin="anonymous" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <div className="pt-16">

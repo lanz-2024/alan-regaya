@@ -57,7 +57,7 @@ export function Colophon() {
               href="https://github.com/lanz-2024/alan-regaya"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--color-accent-text)] hover:underline"
+              className="text-[var(--color-accent-text)] underline underline-offset-2 decoration-1 decoration-[var(--color-accent-text)]/40 hover:decoration-[var(--color-accent-text)]"
             >
               GitHub
             </a>
@@ -82,7 +82,7 @@ export function Colophon() {
           </ul>
           <p className="text-xs text-[var(--color-text-muted)] mt-4">
             Last measured {home.measuredAt} · full breakdown on{' '}
-            <a href="/proof" className="text-[var(--color-accent-text)] hover:underline">
+            <a href="/proof" className="text-[var(--color-accent-text)] underline underline-offset-2 decoration-1 decoration-[var(--color-accent-text)]/40 hover:decoration-[var(--color-accent-text)]">
               /proof
             </a>
             {' '}or re-run via{' '}
@@ -90,7 +90,7 @@ export function Colophon() {
               href={psiHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--color-accent-text)] hover:underline"
+              className="text-[var(--color-accent-text)] underline underline-offset-2 decoration-1 decoration-[var(--color-accent-text)]/40 hover:decoration-[var(--color-accent-text)]"
             >
               PageSpeed Insights
             </a>

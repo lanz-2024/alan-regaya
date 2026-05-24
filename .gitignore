@@ -59,7 +59,8 @@ secrets/
 # local-only session/handoff/tooling artifacts
 HANDOFF.md
 .playwright-mcp/
-.claude/
+.claude/*
+!.claude/skills/
 .cursor/
 .idea/
 .vscode/
