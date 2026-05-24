@@ -6,9 +6,10 @@ import { siteConfig } from '@/data/site-config';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 import { tagToSlug } from '@/lib/blog-tags';
-import { buildToc, injectHeadingIds, getRelatedPosts } from '@/lib/blog-post-utils';
+import { buildToc, injectHeadingIds, getRelatedPosts, getAdjacentPosts } from '@/lib/blog-post-utils';
 import { TableOfContents } from '@/components/blog/TableOfContents';
 import { RelatedPosts } from '@/components/blog/RelatedPosts';
+import { PostPrevNext } from '@/components/blog/PostPrevNext';
 import { ReadingProgressBar } from '@/components/blog/ReadingProgressBar';
 
 export function generateStaticParams() {
@@ -49,6 +50,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const toc = buildToc(post.content);
   const contentHtml = injectHeadingIds(post.content);
   const related = getRelatedPosts(post, 3);
+  const { prev, next } = getAdjacentPosts(post);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -96,6 +98,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </div>
             </header>
             <div className="prose" dangerouslySetInnerHTML={{ __html: contentHtml }} />
+            <PostPrevNext prev={prev} next={next} />
             <RelatedPosts posts={related} />
           </article>
           {toc.length >= 2 && (
