@@ -66,7 +66,7 @@ export function GearCard({ item }: { item: GearItem }) {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-[var(--color-accent-text)] hover:underline"
+                className="text-sm text-[var(--color-accent-text)] underline underline-offset-2 decoration-1 decoration-[var(--color-accent-text)]/40 hover:decoration-[var(--color-accent-text)]"
               >
                 View speedtest result ↗
               </a>

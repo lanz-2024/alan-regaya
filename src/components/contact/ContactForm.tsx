@@ -49,6 +49,7 @@ export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [turnstileToken, setTurnstileToken] = useState<string>('');
+  const [shouldLoadTurnstile, setShouldLoadTurnstile] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const widgetContainerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
@@ -56,7 +57,7 @@ export function ContactForm() {
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
 
   useEffect(() => {
-    if (!siteKey || !widgetContainerRef.current) return;
+    if (!shouldLoadTurnstile || !siteKey || !widgetContainerRef.current) return;
     let cancelled = false;
 
     loadTurnstileScript()
@@ -81,7 +82,9 @@ export function ContactForm() {
         widgetIdRef.current = null;
       }
     };
-  }, [siteKey]);
+  }, [shouldLoadTurnstile, siteKey]);
+
+  const armTurnstile = () => setShouldLoadTurnstile(true);
 
   function validate(formData: FormData): Record<string, string> {
     const errs: Record<string, string> = {};
@@ -173,6 +176,7 @@ export function ContactForm() {
             placeholder="Your name"
             aria-describedby={errors.name ? 'contact-name-error' : undefined}
             className={inputClass}
+            onFocus={armTurnstile}
           />
           {errors.name && (
             <p id="contact-name-error" className="mt-1 text-xs text-red-400" role="alert">{errors.name}</p>
@@ -189,6 +193,7 @@ export function ContactForm() {
             placeholder="your@email.com"
             aria-describedby={errors.email ? 'contact-email-error' : undefined}
             className={inputClass}
+            onFocus={armTurnstile}
           />
           {errors.email && (
             <p id="contact-email-error" className="mt-1 text-xs text-red-400" role="alert">{errors.email}</p>
@@ -220,6 +225,7 @@ export function ContactForm() {
           placeholder="Tell me about the project or opportunity…"
           aria-describedby={errors.message ? 'contact-message-error' : undefined}
           className={`${inputClass} resize-none`}
+          onFocus={armTurnstile}
         />
         {errors.message && (
           <p id="contact-message-error" className="mt-1 text-xs text-red-400" role="alert">{errors.message}</p>
@@ -228,7 +234,7 @@ export function ContactForm() {
 
       {siteKey && (
         <div className="mb-6">
-          <div ref={widgetContainerRef} aria-label="Cloudflare Turnstile verification" />
+          <div ref={widgetContainerRef} />
           {errors.captcha && (
             <p className="mt-2 text-xs text-red-400" role="alert">{errors.captcha}</p>
           )}
