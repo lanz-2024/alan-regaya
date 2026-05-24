@@ -41,7 +41,7 @@ export default function ContactPage() {
           <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">Get in Touch</p>
           <h1 className="text-4xl font-bold mb-4">Let&apos;s work together</h1>
           <p className="text-[var(--color-text-muted)] mb-12 text-lg leading-relaxed">
-            Send a message below and I&apos;ll reply within 1&ndash;2 business days. See <a href="/services" className="underline hover:text-[var(--color-text)] transition-colors">what I work on</a> or <a href="/about" className="underline hover:text-[var(--color-text)] transition-colors">read more about me</a>.
+            Send a message below and I&apos;ll reply within 1&ndash;2 business days. <a href="/about" className="underline hover:text-[var(--color-text)] transition-colors">More about me</a>.
           </p>
 
           <div className="md:grid md:grid-cols-[1fr_2fr] md:gap-12">
