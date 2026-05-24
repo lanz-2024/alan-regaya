@@ -45,6 +45,16 @@ export function injectHeadingIds(html: string): string {
   });
 }
 
+export function getAdjacentPosts(post: BlogPost): { prev: BlogPost | null; next: BlogPost | null } {
+  const sorted = [...blogPosts].sort((a, b) => a.date.localeCompare(b.date));
+  const i = sorted.findIndex((p) => p.slug === post.slug);
+  if (i === -1) return { prev: null, next: null };
+  return {
+    prev: i > 0 ? sorted[i - 1] : null,
+    next: i < sorted.length - 1 ? sorted[i + 1] : null,
+  };
+}
+
 export function getRelatedPosts(post: BlogPost, limit = 3): BlogPost[] {
   const tagSet = new Set(post.tags);
   return blogPosts
