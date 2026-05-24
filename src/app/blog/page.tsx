@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { blogPosts } from '@/data/blog-posts';
 import { siteConfig } from '@/data/site-config';
-import { BlogCard } from '@/components/blog/BlogCard';
+import { BlogSearch } from '@/components/blog/BlogSearch';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 import { getAllTags } from '@/lib/blog-tags';
@@ -62,11 +62,7 @@ export default function BlogPage() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-6">
-          {blogPosts.map((post) => (
-            <BlogCard key={post.slug} post={post} />
-          ))}
-        </div>
+        <BlogSearch posts={blogPosts} />
         <div className="mt-12">
           <Link href="/" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors">
             ← Back home
