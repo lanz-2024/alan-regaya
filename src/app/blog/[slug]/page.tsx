@@ -5,6 +5,7 @@ import { blogPosts } from '@/data/blog-posts';
 import { siteConfig } from '@/data/site-config';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { tagToSlug } from '@/lib/blog-tags';
 import { buildToc, injectHeadingIds, getRelatedPosts, getAdjacentPosts } from '@/lib/blog-post-utils';
 import { TableOfContents } from '@/components/blog/TableOfContents';
@@ -70,8 +71,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <>
       <ReadingProgressBar />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbLd} />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-24">
         <Link href="/blog" className="text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors mb-8 inline-block">
           ← Back to Blog

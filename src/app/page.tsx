@@ -6,6 +6,7 @@ import { TechStack } from '@/components/home/TechStack';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { siteConfig } from '@/data/site-config';
 import { buildWebPage } from '@/lib/seo/webpage';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 const webPageLd = buildWebPage({
   path: '/',
@@ -18,7 +19,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }} />
+      <JsonLd data={webPageLd} />
       <Hero />
       <Stats stats={{ commits: stats.totalCommits, prs: stats.totalPRs, stars: stats.totalStars }} />
       <FeaturedProjects />
