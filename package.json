@@ -10,7 +10,12 @@
     "start": "next start",
     "lint": "eslint",
     "screenshots": "npx ts-node --esm scripts/capture-screenshots.ts",
-    "measure:psi": "node scripts/measure-psi.mjs"
+    "measure:psi": "node scripts/measure-psi.mjs",
+    "gate:lighthouse": "node scripts/gate-lighthouse.mjs",
+    "postinstall": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-push": "node scripts/gate-lighthouse.mjs"
   },
   "dependencies": {
     "next": "16.2.1",
@@ -33,7 +38,10 @@
     "critters": "^0.0.23",
     "eslint": "^9",
     "eslint-config-next": "16.2.1",
+    "lighthouse": "^12.2.0",
     "playwright": "^1.58.2",
+    "serve": "^14.2.4",
+    "simple-git-hooks": "^2.11.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
