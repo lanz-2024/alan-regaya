@@ -20,7 +20,10 @@ if (!htmlPath) {
 }
 
 const html = fs.readFileSync(htmlPath, 'utf8');
-const renderedCards = (html.match(/text-xl font-semibold/g) ?? []).length;
+// "Verify on PSI" appears once per receipt card and is never present in inlined critical CSS,
+// so it's a stable per-card marker (unlike Tailwind class strings which the critters postbuild
+// step inlines into <style>, doubling any class-based count).
+const renderedCards = (html.match(/Verify on PSI/g) ?? []).length;
 
 if (renderedCards !== expectedCards) {
   console.error(
