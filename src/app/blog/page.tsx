@@ -21,6 +21,12 @@ export const metadata: Metadata = {
       'application/rss+xml': [{ url: `${siteConfig.url}/feed.xml`, title: `${siteConfig.name} — Blog RSS` }],
     },
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Blog | ${siteConfig.name}`,
+    description: 'Technical writing on Next.js, WordPress, WooCommerce performance, migrations, and AI-augmented development workflows.',
+    images: [siteConfig.ogImage],
+  },
 };
 
 const breadcrumbLd = buildBreadcrumbList([{ name: 'Blog', path: '/blog' }]);

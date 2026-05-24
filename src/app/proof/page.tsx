@@ -3,8 +3,14 @@ import { ProofGrid } from '@/components/proof/ProofGrid';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { siteConfig } from '@/data/site-config';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { buildWebPage } from '@/lib/seo/webpage';
 
 const breadcrumbLd = buildBreadcrumbList([{ name: 'Proof', path: '/proof' }]);
+const webPageLd = buildWebPage({
+  path: '/proof',
+  name: `Proof | ${siteConfig.name}`,
+  description: `Lighthouse and Core Web Vitals scores for ${siteConfig.name}'s portfolio.`,
+});
 
 export const metadata: Metadata = {
   title: 'Proof',
@@ -26,6 +32,7 @@ export const metadata: Metadata = {
 export default function ProofPage() {
   return (
     <div className="pt-16">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       <ProofGrid />
       <ContactSection />
