@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { siteConfig } from '@/data/site-config';
 import { blogPosts } from '@/data/blog-posts';
 import { projects } from '@/data/projects';
+import { getAllTags } from '@/lib/blog-tags';
 
 export const dynamic = 'force-static';
 
@@ -22,6 +23,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(post.date),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
+    })),
+    ...getAllTags().map((t) => ({
+      url: `${siteConfig.url}/blog/tag/${t.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
     })),
     ...projects
       .filter((p) => p.caseStudy)
