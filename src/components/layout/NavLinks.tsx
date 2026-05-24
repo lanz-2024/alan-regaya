@@ -3,7 +3,15 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const linkClass = 'text-sm text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors';
+const primaryLinks = [
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/setup', label: 'Setup' },
+  { href: '/contact', label: 'Contact' },
+] as const;
+
+const baseClass = 'text-sm transition-colors';
 
 export function NavLinks() {
   const pathname = usePathname();
@@ -25,33 +33,24 @@ export function NavLinks() {
 
   return (
     <>
-      <Link href="/about" className={linkClass} onClick={handleNavClick('/about')}>
-        About
-      </Link>
-      <Link href="/about#experience" className={linkClass}>
-        Experience
-      </Link>
-      <Link href="/projects" className={linkClass} onClick={handleNavClick('/projects')}>
-        Projects
-      </Link>
-      <Link href="/setup" className={linkClass} onClick={handleNavClick('/setup')}>
-        Setup
-      </Link>
-      <Link href="/blog" className={linkClass} onClick={handleNavClick('/blog')}>
-        Blog
-      </Link>
-      <Link href="/faq" className={linkClass} onClick={handleNavClick('/faq')}>
-        FAQ
-      </Link>
-      <Link href="/proof" className={linkClass} onClick={handleNavClick('/proof')}>
-        Proof
-      </Link>
-      <Link href="/lessons" className={linkClass} onClick={handleNavClick('/lessons')}>
-        Lessons
-      </Link>
-      <Link href="/now" className={linkClass} onClick={handleNavClick('/now')}>
-        Now
-      </Link>
+      {primaryLinks.map(({ href, label }) => {
+        const isActive = pathname === href || pathname.startsWith(href + '/');
+        return (
+          <Link
+            key={href}
+            href={href}
+            onClick={handleNavClick(href)}
+            aria-current={isActive ? 'page' : undefined}
+            className={`${baseClass} ${
+              isActive
+                ? 'text-[var(--color-text)] font-medium'
+                : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
+            }`}
+          >
+            {label}
+          </Link>
+        );
+      })}
     </>
   );
 }
