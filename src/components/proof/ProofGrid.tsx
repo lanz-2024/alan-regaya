@@ -2,6 +2,9 @@ import { proofRuns, proofStack } from '@/data/proof';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 import { ScoreCard } from './ScoreCard';
 
+// Component edit forces Next.js to re-prerender /proof when src/data/proof.ts changes
+// (data-only edits via path alias were not invalidating this segment).
+
 const psiUrl = (target: string) => `https://pagespeed.web.dev/analysis?url=${encodeURIComponent(target)}`;
 
 export function ProofGrid() {
