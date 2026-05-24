@@ -1,80 +1,89 @@
+export type SkillCategoryId = 'frontend' | 'backend' | 'data' | 'systems' | 'devops';
+
+export interface Skill {
+  name: string;
+  level: number;
+  featured?: boolean;
+  shortName?: string;
+}
+
 export interface SkillCategory {
+  id: SkillCategoryId;
   name: string;
   icon: string;
-  skills: { name: string; level: number }[];
+  skills: Skill[];
 }
 
 export const skillCategories: SkillCategory[] = [
   {
+    id: 'frontend',
     name: 'Frontend',
     icon: '⚡',
     skills: [
-      { name: 'Next.js', level: 95 },
-      { name: 'React', level: 95 },
-      { name: 'TypeScript', level: 90 },
-      { name: 'Tailwind CSS', level: 90 },
+      { name: 'Next.js', level: 95, featured: true },
+      { name: 'React', level: 95, featured: true },
+      { name: 'TypeScript', level: 90, featured: true },
+      { name: 'Tailwind CSS', level: 90, featured: true },
       { name: 'JavaScript (ES2023+)', level: 95 },
     ],
   },
   {
+    id: 'backend',
     name: 'Backend',
     icon: '🔧',
     skills: [
-      { name: 'PHP 8.x', level: 90 },
-      { name: 'WordPress / WooCommerce', level: 95 },
-      { name: 'Node.js', level: 80 },
+      { name: 'PHP 8.x', level: 90, featured: true, shortName: 'PHP' },
+      { name: 'WordPress', level: 95, featured: true },
+      { name: 'WooCommerce', level: 95, featured: true },
+      { name: 'Node.js', level: 80, featured: true },
       { name: 'REST API Design', level: 90 },
-      { name: 'GraphQL', level: 80 },
+      { name: 'GraphQL', level: 80, featured: true },
     ],
   },
   {
+    id: 'systems',
     name: 'Systems',
     icon: '🦀',
     skills: [
-      { name: 'Rust', level: 65 },
-      { name: 'Tauri 2.0', level: 70 },
+      { name: 'Rust', level: 65, featured: true },
+      { name: 'Tauri 2.0', level: 70, featured: true, shortName: 'Tauri' },
       { name: 'WP-CLI', level: 85 },
       { name: 'Bash / Shell', level: 80 },
       { name: 'Linux / SSH', level: 85 },
     ],
   },
   {
+    id: 'data',
     name: 'Data & Search',
     icon: '🔍',
     skills: [
-      { name: 'Typesense', level: 90 },
-      { name: 'MySQL', level: 85 },
+      { name: 'Typesense', level: 90, featured: true },
+      { name: 'MySQL', level: 85, featured: true },
       { name: 'SQLite', level: 75 },
       { name: 'Redis', level: 70 },
     ],
   },
   {
+    id: 'devops',
     name: 'DevOps & Tools',
     icon: '🚀',
     skills: [
       { name: 'Git / GitHub', level: 90 },
-      { name: 'Vercel', level: 90 },
+      { name: 'Vercel', level: 90, featured: true },
       { name: 'Kinsta', level: 85 },
-      { name: 'GitHub Actions', level: 80 },
+      { name: 'GitHub Actions', level: 80, featured: true },
       { name: 'Docker', level: 70 },
     ],
   },
 ];
 
-export const techStackIcons: { name: string; category: string }[] = [
-  { name: 'Next.js', category: 'frontend' },
-  { name: 'React', category: 'frontend' },
-  { name: 'TypeScript', category: 'frontend' },
-  { name: 'Tailwind CSS', category: 'frontend' },
-  { name: 'PHP', category: 'backend' },
-  { name: 'WordPress', category: 'backend' },
-  { name: 'WooCommerce', category: 'backend' },
-  { name: 'Typesense', category: 'data' },
-  { name: 'MySQL', category: 'data' },
-  { name: 'GraphQL', category: 'data' },
-  { name: 'Rust', category: 'systems' },
-  { name: 'Tauri', category: 'systems' },
-  { name: 'Vercel', category: 'devops' },
-  { name: 'GitHub Actions', category: 'devops' },
-  { name: 'Node.js', category: 'backend' },
-];
+export interface TechStackIcon {
+  name: string;
+  category: SkillCategoryId;
+}
+
+export const techStackIcons: TechStackIcon[] = skillCategories.flatMap((cat) =>
+  cat.skills
+    .filter((s) => s.featured)
+    .map((s) => ({ name: s.shortName ?? s.name, category: cat.id })),
+);
