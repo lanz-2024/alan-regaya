@@ -54,6 +54,46 @@ export const proofRuns: ProofRun[] = [
     desktop: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100 },
     vitals: { lcp: '1.0s', inp: '18ms', cls: '0.00', ttfb: '165ms' },
   },
+  {
+    page: 'FAQ',
+    url: 'https://alanregaya.dev/faq',
+    measuredAt: '2026-05-24',
+    mobile: { performance: 51, accessibility: 100, bestPractices: 100, seo: 100 },
+    desktop: { performance: 41, accessibility: 92, bestPractices: 92, seo: 92 },
+    vitals: { lcp: '3.3s', inp: '80ms', cls: '0.00', ttfb: '—' },
+  },
+  {
+    page: 'Setup',
+    url: 'https://alanregaya.dev/setup',
+    measuredAt: '2026-05-24',
+    mobile: { performance: 51, accessibility: 78, bestPractices: 75, seo: 92 },
+    desktop: { performance: 96, accessibility: 95, bestPractices: 92, seo: 92 },
+    vitals: { lcp: '3.8s', inp: '500ms', cls: '0.00', ttfb: '600ms' },
+  },
+  {
+    page: 'Proof',
+    url: 'https://alanregaya.dev/proof',
+    measuredAt: '2026-05-24',
+    mobile: { performance: 96, accessibility: 95, bestPractices: 92, seo: 92 },
+    desktop: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100 },
+    vitals: { lcp: '2.1s', inp: '0ms', cls: '0.00', ttfb: '900ms' },
+  },
+  {
+    page: 'Lessons',
+    url: 'https://alanregaya.dev/lessons',
+    measuredAt: '2026-05-24',
+    mobile: { performance: 93, accessibility: 95, bestPractices: 92, seo: 90 },
+    desktop: { performance: 99, accessibility: 95, bestPractices: 92, seo: 100 },
+    vitals: { lcp: '1.7s', inp: '30ms', cls: '0.00', ttfb: '600ms' },
+  },
+  {
+    page: 'Now',
+    url: 'https://alanregaya.dev/now',
+    measuredAt: '2026-05-24',
+    mobile: { performance: 51, accessibility: 91, bestPractices: 92, seo: 92 },
+    desktop: { performance: 51, accessibility: 100, bestPractices: 100, seo: 100 },
+    vitals: { lcp: '3.4s', inp: '149ms', cls: '0.00', ttfb: '601ms' },
+  },
 ];
 
 export const proofStack = [
