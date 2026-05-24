@@ -4,6 +4,7 @@ import { blogPosts } from '@/data/blog-posts';
 import { siteConfig } from '@/data/site-config';
 import { BlogCard } from '@/components/blog/BlogCard';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { getAllTags } from '@/lib/blog-tags';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -44,6 +45,22 @@ export default function BlogPage() {
             Technical writing on performance optimization, WordPress migrations, and building AI-augmented development workflows.
           </p>
         </header>
+        <div className="mb-10">
+          <p className="text-xs font-mono uppercase tracking-widest text-[var(--color-text-muted)] mb-3">
+            Browse by topic
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {getAllTags().map((t) => (
+              <Link
+                key={t.slug}
+                href={`/blog/tag/${t.slug}`}
+                className="text-xs font-mono px-2 py-0.5 rounded bg-[var(--color-surface-2)] text-[var(--color-accent-text)] hover:text-[var(--color-text)] transition-colors"
+              >
+                {t.tag} <span className="opacity-60">·{t.count}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
         <div className="flex flex-col gap-6">
           {blogPosts.map((post) => (
             <BlogCard key={post.slug} post={post} />

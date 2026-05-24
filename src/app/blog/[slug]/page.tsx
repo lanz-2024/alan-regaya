@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { blogPosts } from '@/data/blog-posts';
 import { siteConfig } from '@/data/site-config';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { tagToSlug } from '@/lib/blog-tags';
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -67,9 +68,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <header className="mb-12">
             <div className="flex flex-wrap gap-2 mb-4">
               {post.tags.map((tag) => (
-                <span key={tag} className="text-xs font-mono px-2 py-1 rounded bg-[var(--color-surface-2)] text-[var(--color-accent-text)]">
+                <Link
+                  key={tag}
+                  href={`/blog/tag/${tagToSlug(tag)}`}
+                  className="text-xs font-mono px-2 py-1 rounded bg-[var(--color-surface-2)] text-[var(--color-accent-text)] hover:text-[var(--color-text)] transition-colors"
+                >
                   {tag}
-                </span>
+                </Link>
               ))}
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold text-[var(--color-text)] mb-4 leading-tight">{post.title}</h1>
