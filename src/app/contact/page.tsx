@@ -40,27 +40,9 @@ export default function ContactPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-24">
           <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">Get in Touch</p>
           <h1 className="text-4xl font-bold mb-4">Let&apos;s work together</h1>
-          <p className="text-[var(--color-text-muted)] mb-8 text-lg leading-relaxed">
-            {siteConfig.availability}. Currently powering 7-figure online stores for clients across AU, UK, and US &mdash; based in the Philippines, working remotely.
+          <p className="text-[var(--color-text-muted)] mb-12 text-lg leading-relaxed">
+            Send a message below and I&apos;ll reply within 1&ndash;2 business days. See <a href="/services" className="underline hover:text-[var(--color-text)] transition-colors">what I offer</a> or <a href="/about" className="underline hover:text-[var(--color-text)] transition-colors">more about me</a>.
           </p>
-
-          <ul className="flex flex-wrap gap-2 mb-12" aria-label="Services">
-            {[
-              'Headless WooCommerce',
-              'Next.js e-commerce',
-              'WordPress development',
-              'Performance optimization',
-              'Core Web Vitals',
-              'Open-source collaboration',
-            ].map((service) => (
-              <li
-                key={service}
-                className="text-xs font-mono px-3 py-1 rounded border border-[var(--color-border)] text-[var(--color-text-muted)]"
-              >
-                {service}
-              </li>
-            ))}
-          </ul>
 
           <div className="md:grid md:grid-cols-[1fr_2fr] md:gap-12">
             {/* Sidebar — info cards */}
