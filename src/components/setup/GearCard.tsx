@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
+import { PictureImage } from '@/components/shared/PictureImage';
 import { GearItem } from '@/data/gear';
 import { ImageModal } from './ImageModal';
 
@@ -25,7 +25,7 @@ export function GearCard({ item }: { item: GearItem }) {
             onClick={() => setModalOpen(true)}
             aria-label={`View full image: ${item.alt ?? item.name}`}
           >
-            <Image
+            <PictureImage
               src={item.image}
               alt={item.alt ?? item.name}
               fill

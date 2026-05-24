@@ -42,15 +42,25 @@ next-env.d.ts
 
 # generated at build time — not committed
 /public/screenshots/*.webp
+/public/screenshots/*.avif
 /public/logo.webp
+/public/logo.avif
 /public/setup/claude-cli.webp
+/public/setup/claude-cli.avif
 /public/gear/macbook-m4-14.webp
+/public/gear/macbook-m4-14.avif
 /public/gear/macbook-m4-max-16.webp
+/public/gear/macbook-m4-max-16.avif
 /public/gear/dygma-defy.webp
+/public/gear/dygma-defy.avif
 /public/gear/pldt-speedtest.webp
+/public/gear/pldt-speedtest.avif
 /public/gear/realme-buds-t200-lite.webp
+/public/gear/realme-buds-t200-lite.avif
 /public/gear/smart-5g-max.webp
+/public/gear/smart-5g-max.avif
 /public/gear/ugreen-vertical-mouse.webp
+/public/gear/ugreen-vertical-mouse.avif
 .credentials
 .ssh-credentials
 secrets/

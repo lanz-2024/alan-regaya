@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { PictureImage } from '@/components/shared/PictureImage';
 import Link from 'next/link';
 import { MobileNav } from './MobileNav';
 import { NavLinks } from './NavLinks';
@@ -9,7 +9,7 @@ export function Header() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 grid grid-cols-[auto_1fr_auto] items-center">
         <MobileNav />
         <Link href="/" aria-label="Home" className="justify-self-center md:justify-self-start">
-          <Image
+          <PictureImage
             src="/logo.webp"
             alt="AR logo"
             width={128}
