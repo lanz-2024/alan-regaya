@@ -68,7 +68,7 @@ function audit(filePath) {
   const findings = [];
   const has = {
     metadata: /export\s+const\s+metadata\s*:/.test(src) || /export\s+async\s+function\s+generateMetadata/.test(src),
-    jsonLd: /type="application\/ld\+json"/.test(src),
+    jsonLd: /type="application\/ld\+json"/.test(src) || /<JsonLd[\s/>]/.test(src),
     breadcrumb: /buildBreadcrumbList\s*\(/.test(src),
     webPage: /buildWebPage\s*\(/.test(src) || /'@type'\s*:\s*'(WebPage|CollectionPage|ProfilePage|ContactPage|AboutPage|FAQPage|ItemPage|Article|BlogPosting|Blog|ItemList)'/.test(src),
   };
