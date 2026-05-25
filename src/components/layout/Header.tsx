@@ -20,8 +20,8 @@ export function Header() {
       data-scrolled={scrolled || undefined}
       className="fixed top-0 left-0 right-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-200 border-b border-transparent data-[scrolled]:border-[var(--color-border)] data-[scrolled]:bg-[var(--color-background)]/85 data-[scrolled]:backdrop-blur-sm"
     >
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 h-16 grid grid-cols-[auto_1fr_auto] items-center gap-6">
-        <div className="flex items-center gap-3">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 h-16 grid grid-cols-[1fr_auto_1fr] items-center gap-6">
+        <div className="flex items-center gap-3 justify-self-start">
           <MobileNav />
           <Link
             href="/"
@@ -52,10 +52,10 @@ export function Header() {
             priority
           />
         </Link>
-        <nav className="hidden md:flex items-center justify-center gap-6" aria-label="Main navigation">
+        <nav className="hidden md:flex items-center justify-center gap-6 justify-self-center" aria-label="Main navigation">
           <NavLinks />
         </nav>
-        <div className="flex items-center justify-end">
+        <div className="flex items-center justify-end justify-self-end">
           <Link
             href="/contact"
             className="hidden sm:inline-flex items-center px-4 py-2 bg-[var(--color-accent)] text-white text-sm font-medium rounded hover:bg-[var(--color-accent-hover)] transition-colors"
