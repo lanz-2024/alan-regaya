@@ -4,6 +4,7 @@ import { siteConfig } from '@/data/site-config';
 import { nowUpdated, nowBuilding, nowLearning, nowReading, nowOff, NowEntry } from '@/data/now';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 import { buildWebPage } from '@/lib/seo/webpage';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 const breadcrumbLd = buildBreadcrumbList([{ name: 'Now', path: '/now' }]);
 const webPageLd = buildWebPage({
@@ -59,8 +60,8 @@ export default function NowPage() {
   const formatted = new Date(nowUpdated).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
   return (
     <div className="pt-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd data={webPageLd} />
+      <JsonLd data={breadcrumbLd} />
       <section className="py-20 border-b border-[var(--color-border)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">

@@ -5,6 +5,7 @@ import { SectionHeading } from '@/components/shared/SectionHeading';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { siteConfig } from '@/data/site-config';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -48,8 +49,8 @@ export default function ProjectsPage() {
   return (
     <>
       {firstScreenshot && <link rel="preload" as="image" href={firstScreenshot} />}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbLd} />
       <div className="pt-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-24">
           <SectionHeading
