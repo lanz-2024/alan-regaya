@@ -93,7 +93,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               </div>
               <h1 className="text-3xl sm:text-4xl font-bold text-[var(--color-text)] mb-4 leading-tight">{post.title}</h1>
               <div className="flex items-center gap-4 text-sm text-[var(--color-text-muted)]">
-                <time dateTime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+                <time dateTime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>
                 <span>·</span>
                 <span>{post.readTime}</span>
               </div>
