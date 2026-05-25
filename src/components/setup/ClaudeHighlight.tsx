@@ -1,5 +1,11 @@
-import { PictureImage } from '@/components/shared/PictureImage';
+'use client';
+import { useState } from 'react';
+import Image from 'next/image';
 import { Badge } from '@/components/shared/Badge';
+import { ImageModal } from './ImageModal';
+
+const CLAUDE_IMG = '/setup/claude-cli.webp';
+const CLAUDE_ALT = 'Claude CLI terminal session — Opus 4.7 plan mode, status bar, usage stats';
 
 const capabilities = [
   'workflow automation',
@@ -16,6 +22,8 @@ const capabilities = [
 ];
 
 export function ClaudeHighlight() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <section className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]" aria-label="Claude CLI highlight">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -24,21 +32,29 @@ export function ClaudeHighlight() {
           AI-Assisted Development with Claude CLI
         </h2>
         <div className="glow-border rounded-lg overflow-hidden bg-[var(--color-background)]">
-          {/* Terminal screenshot with hover pan-reveal effect */}
+          {/* Desktop: hover pan-reveal. Mobile/tablet: tap to open zoom modal. */}
           <div className="group relative aspect-video overflow-hidden bg-[var(--color-surface-2)] cursor-zoom-in">
-            <PictureImage
-              src="/setup/claude-cli.webp"
-              alt="Claude CLI terminal session — Opus 4.7 plan mode, status bar, usage stats"
+            <Image
+              src={CLAUDE_IMG}
+              alt={CLAUDE_ALT}
               fill
               priority
-              className="object-cover object-top [transition:object-position_3s_ease-in-out] group-hover:object-bottom"
+              className="object-cover object-top [transition:object-position_3s_ease-in-out] lg:group-hover:object-bottom"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1152px"
             />
-            {/* Bottom gradient hint — fades on hover to reveal status bar */}
-            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-500 group-hover:opacity-0 pointer-events-none" />
-            <span className="absolute bottom-3 right-4 text-xs font-mono text-white/50 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none select-none">
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-500 lg:group-hover:opacity-0 pointer-events-none" />
+            <span className="hidden lg:inline absolute bottom-3 right-4 text-xs font-mono text-white/50 transition-opacity duration-300 group-hover:opacity-0 pointer-events-none select-none">
               hover to reveal ↓
             </span>
+            <span className="lg:hidden absolute bottom-3 right-4 text-xs font-mono text-white/60 pointer-events-none select-none">
+              tap to zoom
+            </span>
+            <button
+              type="button"
+              onClick={() => setModalOpen(true)}
+              aria-label={`View full image: ${CLAUDE_ALT}`}
+              className="absolute inset-0 lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]"
+            />
           </div>
           <div className="p-6 sm:p-8">
             <p className="text-[var(--color-text-muted)] leading-relaxed mb-6 max-w-3xl">
@@ -54,6 +70,10 @@ export function ClaudeHighlight() {
           </div>
         </div>
       </div>
+
+      {modalOpen && (
+        <ImageModal src={CLAUDE_IMG} alt={CLAUDE_ALT} onClose={() => setModalOpen(false)} />
+      )}
     </section>
   );
 }
