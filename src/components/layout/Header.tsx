@@ -65,9 +65,9 @@ export function Header() {
           <Link
             href="/contact"
             aria-label="Contact"
-            className="sm:hidden p-2 text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
+            className="sm:hidden py-2 pl-2 pr-0 text-[var(--color-text-muted)] hover:text-[var(--color-text)] transition-colors"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 -mr-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 translate-x-[2.5px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </Link>
