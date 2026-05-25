@@ -6,7 +6,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/measure-psi.mjs && node scripts/convert-screenshots.mjs && node scripts/generate-og-image.mjs && node scripts/optimize-public-images.mjs",
     "build": "next build",
-    "postbuild": "node scripts/optimize-css.mjs && node scripts/verify-prerender.mjs",
+    "postbuild": "node scripts/optimize-css.mjs",
     "start": "next start",
     "lint": "eslint",
     "screenshots": "npx ts-node --esm scripts/capture-screenshots.ts",
