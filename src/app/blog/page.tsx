@@ -64,7 +64,7 @@ export default function BlogPage() {
                 href={`/blog/tag/${t.slug}`}
                 className="text-xs font-mono px-2 py-0.5 rounded bg-[var(--color-surface-2)] text-[var(--color-accent-text)] hover:text-[var(--color-text)] transition-colors"
               >
-                {t.tag} <span className="opacity-60">·{t.count}</span>
+                {t.tag} <span className="text-[var(--color-text-muted)]">·{t.count}</span>
               </Link>
             ))}
           </div>
