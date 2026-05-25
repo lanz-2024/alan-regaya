@@ -36,7 +36,7 @@ export const projects: Project[] = [
     id: 'headless-woocommerce',
     name: 'Headless WooCommerce',
     type: 'open-source',
-    description: 'Production-ready Next.js storefront for WooCommerce. Handles cart, checkout, authentication, and real-time search via Typesense. Powers multiple 7-figure e-commerce stores.',
+    description: 'Production-ready Next.js storefront for WooCommerce. Handles cart, checkout, authentication, and real-time search via Typesense.',
     tech: ['Next.js', 'React', 'TypeScript', 'WooCommerce REST API', 'GraphQL', 'Typesense'],
     github: 'https://github.com/blaze-commerce/headless-woocommerce',
     stars: 91,
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     outcome: 'Production across 40+ headless stores',
     tradeoff: {
       decision: 'Index sync hooks over scheduled cron',
-      rationale: 'Cron-based reindex was simpler but lagged behind product edits by minutes. Hooking directly into WooCommerce save_post / order events keeps the index near-real-time, with a fallback full-rebuild for drift recovery.',
+      rationale: 'Cron-based reindex was simpler but lagged behind product edits by minutes. Hooking directly into WooCommerce save_post / order events lands updates in the index within ~2s of the WP save, with a fallback full-rebuild for drift recovery.',
     },
   },
   {
@@ -125,7 +125,7 @@ export const projects: Project[] = [
         },
         {
           heading: 'Approach',
-          body: '<p>Next.js App Router on the front, WooCommerce + Blocksy left intact on the back. A Typesense index mirrors the product catalog, rebuilt on every <code>save_post</code> / stock-change hook so search is near-real-time. A custom scent-builder flow ships as a client component that talks directly to the cart REST endpoint — no page reloads through the bundle-builder flow.</p><p>Critical CSS is inlined at build time. Hero images are pre-converted to WebP and preloaded. There is zero third-party JavaScript on the storefront.</p>',
+          body: '<p>Next.js App Router on the front, WooCommerce + Blocksy left intact on the back. A Typesense index mirrors the product catalog, rebuilt on every <code>save_post</code> / stock-change hook so the storefront search reflects the WP edit within seconds. A custom scent-builder flow ships as a client component that talks directly to the cart REST endpoint — no page reloads through the bundle-builder flow.</p><p>Critical CSS is inlined at build time. Hero images are pre-converted to WebP and preloaded. There is zero third-party JavaScript on the storefront.</p>',
         },
         {
           heading: 'Outcome',
@@ -226,7 +226,7 @@ export const projects: Project[] = [
         },
         {
           heading: 'My role',
-          body: '<p>Lead engineer. I rewrote the pricing engine as a single set of WooCommerce filters with deterministic precedence (member tier → bulk quantity → loyalty redemption → coupon), migrated the loyalty data into a custom table with a small REST surface, and rebuilt the membership signup + dashboard pages.</p>',
+          body: '<p>Lead engineer. I rewrote the pricing engine as a single set of WooCommerce filters with a fixed order: member tier → bulk quantity → loyalty redemption → coupon, migrated the loyalty data into a custom table with a small REST surface, and rebuilt the membership signup + dashboard pages.</p>',
         },
         {
           heading: 'Approach',
