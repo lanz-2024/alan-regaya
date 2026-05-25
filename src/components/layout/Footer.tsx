@@ -90,7 +90,7 @@ export function Footer() {
             </ul>
           </nav>
 
-          <nav aria-labelledby="footer-connect" className="text-center md:text-left">
+          <nav aria-labelledby="footer-connect" className="col-span-2 md:col-span-1 text-center md:text-left">
             <h3 id="footer-connect" className={headingClass}>Connect</h3>
             <ul className="flex flex-col gap-2 items-center md:items-start">
               {connectLinks.map((l) =>
