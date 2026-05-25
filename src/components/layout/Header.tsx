@@ -55,7 +55,7 @@ export function Header() {
         <nav className="hidden md:flex items-center justify-center gap-6 justify-self-center" aria-label="Main navigation">
           <NavLinks />
         </nav>
-        <div className="flex items-center justify-end justify-self-end">
+        <div className="col-start-3 flex items-center justify-end justify-self-end">
           <Link
             href="/contact"
             className="hidden sm:inline-flex items-center px-4 py-2 bg-[var(--color-accent)] text-white text-sm font-medium rounded hover:bg-[var(--color-accent-hover)] transition-colors"
