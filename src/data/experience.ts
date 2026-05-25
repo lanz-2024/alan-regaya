@@ -45,13 +45,14 @@ export const experience: ExperienceEntry[] = [
     role: 'MIS Administrator',
     period: 'Apr 2018 — Mar 2021',
     location: 'Philippines',
-    description: 'Managed corporate IT infrastructure including websites, email servers, domain management, and cloud hosting for a logistics company.',
+    description: 'Managed corporate IT infrastructure including websites, email servers, domain management, and cloud hosting for a logistics company. Also built and maintained internal business applications and integrations using Laravel, CodeIgniter, and ASP.NET over ~3 years.',
     highlights: [
       'Managed corporate websites, domain infrastructure, email servers (Exchange/SMTP), and cloud hosting environments (AWS, cPanel)',
+      'Built and maintained internal web apps and tools using Laravel, CodeIgniter, and ASP.NET (C#) — operations dashboards, shipment tracking utilities, and intranet integrations',
       'Coordinated with vendors for DNS management, SSL certificate renewals, and server security patching',
       'Provided technical support for 200+ employees across multiple office locations',
     ],
-    tech: ['AWS', 'cPanel', 'Exchange', 'DNS', 'SSL', 'WordPress'],
+    tech: ['AWS', 'cPanel', 'Exchange', 'DNS', 'SSL', 'WordPress', 'Laravel', 'CodeIgniter', 'ASP.NET', 'C#'],
   },
   {
     company: "People's Television Network, Inc.",
