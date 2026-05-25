@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { ContactForm } from '@/components/contact/ContactForm';
 import { siteConfig } from '@/data/site-config';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -34,8 +35,8 @@ export default function ContactPage() {
   return (
     <>
       <link rel="preconnect" href="https://challenges.cloudflare.com" crossOrigin="anonymous" />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbLd} />
       <div className="pt-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-24">
           <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">Get in Touch</p>

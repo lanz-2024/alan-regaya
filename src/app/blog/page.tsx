@@ -5,6 +5,7 @@ import { siteConfig } from '@/data/site-config';
 import { BlogSearch } from '@/components/blog/BlogSearch';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { getAllTags } from '@/lib/blog-tags';
 
 export const metadata: Metadata = {
@@ -42,8 +43,8 @@ export default function BlogPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbLd} />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-24">
         <header className="mb-12">
           <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-3">Writing</p>

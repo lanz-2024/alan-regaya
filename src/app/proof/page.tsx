@@ -4,6 +4,7 @@ import { ContactSection } from '@/components/shared/ContactSection';
 import { siteConfig } from '@/data/site-config';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
 import { buildWebPage } from '@/lib/seo/webpage';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 const breadcrumbLd = buildBreadcrumbList([{ name: 'Proof', path: '/proof' }]);
 const webPageLd = buildWebPage({
@@ -32,8 +33,8 @@ export const metadata: Metadata = {
 export default function ProofPage() {
   return (
     <div className="pt-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd data={webPageLd} />
+      <JsonLd data={breadcrumbLd} />
       <ProofGrid />
       <ContactSection />
     </div>

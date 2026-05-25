@@ -4,6 +4,7 @@ import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CommandPalette } from '@/components/layout/CommandPalette';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { siteConfig } from '@/data/site-config';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'optional', weight: ['400', '600', '700'], adjustFontFallback: true });
@@ -85,7 +86,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <JsonLd data={jsonLd} />
       </head>
       <body>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-500 focus:text-white focus:rounded">

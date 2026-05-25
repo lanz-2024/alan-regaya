@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { siteConfig } from '@/data/site-config';
 import { faqCategories } from '@/data/faqs';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'FAQ',
@@ -38,8 +39,8 @@ const breadcrumbLd = buildBreadcrumbList([{ name: 'FAQ', path: '/faq' }]);
 export default function FAQPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbLd} />
       <div className="pt-16">
         <section className="py-20 border-b border-[var(--color-border)]">
           <div className="max-w-3xl mx-auto px-4 sm:px-6">

@@ -8,6 +8,7 @@ import { ContributionGraph } from '@/components/about/ContributionGraph';
 import { ContactSection } from '@/components/shared/ContactSection';
 import { siteConfig } from '@/data/site-config';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -39,8 +40,8 @@ export default async function AboutPage() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbLd} />
       <div className="pt-16">
         <OriginStory />
         <section id="about-me" className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]">
