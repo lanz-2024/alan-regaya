@@ -20,10 +20,14 @@ export function Header() {
       data-scrolled={scrolled || undefined}
       className="fixed top-0 left-0 right-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-200 border-b border-transparent data-[scrolled]:border-[var(--color-border)] data-[scrolled]:bg-[var(--color-background)]/85 data-[scrolled]:backdrop-blur-sm"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 grid grid-cols-[auto_1fr_auto] items-center gap-6">
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 h-16 grid grid-cols-[auto_1fr_auto] items-center gap-6">
         <div className="flex items-center gap-3">
           <MobileNav />
-          <Link href="/" aria-label="Alan Regaya — home" className="flex items-center">
+          <Link
+            href="/"
+            aria-label="Alan Regaya — home"
+            className="hidden md:flex items-center"
+          >
             <Image
               src="/logo.webp"
               alt="Alan Regaya"
@@ -34,6 +38,20 @@ export function Header() {
             />
           </Link>
         </div>
+        <Link
+          href="/"
+          aria-label="Alan Regaya — home"
+          className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center"
+        >
+          <Image
+            src="/logo.webp"
+            alt="Alan Regaya"
+            width={72}
+            height={72}
+            className="h-9 w-9"
+            priority
+          />
+        </Link>
         <nav className="hidden md:flex items-center justify-center gap-6" aria-label="Main navigation">
           <NavLinks />
         </nav>
