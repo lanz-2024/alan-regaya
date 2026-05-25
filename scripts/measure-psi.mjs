@@ -32,6 +32,11 @@ const PAGES = [
   { page: 'About',    url: 'https://alanregaya.dev/about' },
   { page: 'Projects', url: 'https://alanregaya.dev/projects' },
   { page: 'Blog',     url: 'https://alanregaya.dev/blog' },
+  { page: 'FAQ',      url: 'https://alanregaya.dev/faq' },
+  { page: 'Setup',    url: 'https://alanregaya.dev/setup' },
+  { page: 'Proof',    url: 'https://alanregaya.dev/proof' },
+  { page: 'Lessons',  url: 'https://alanregaya.dev/lessons' },
+  { page: 'Now',      url: 'https://alanregaya.dev/now' },
 ];
 
 const FORCE = process.env.PSI_FORCE === '1';
