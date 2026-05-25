@@ -15,9 +15,9 @@ type CommandItem = {
   perform: () => void | Promise<void>;
 };
 
-export function CommandPalette() {
+export function CommandPalette({ defaultOpen = false }: { defaultOpen?: boolean } = {}) {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   const [query, setQueryRaw] = useState('');
   const [activeIdx, setActiveIdx] = useState(0);
 
