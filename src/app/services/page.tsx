@@ -4,6 +4,7 @@ import { ContactSection } from '@/components/shared/ContactSection';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 import { siteConfig } from '@/data/site-config';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { buildWebPage } from '@/lib/seo/webpage';
 import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
@@ -24,6 +25,11 @@ export const metadata: Metadata = {
 };
 
 const breadcrumbLd = buildBreadcrumbList([{ name: 'Services', path: '/services' }]);
+const webPageLd = buildWebPage({
+  path: '/services',
+  name: `Services | ${siteConfig.name}`,
+  description: `What ${siteConfig.name} offers — headless WooCommerce builds, Next.js e-commerce, WordPress development, performance optimization, custom plugins, and architecture consulting.`,
+});
 
 const services = [
   {
@@ -112,6 +118,7 @@ const process = [
 export default function ServicesPage() {
   return (
     <div className="pt-16">
+      <JsonLd data={webPageLd} />
       <JsonLd data={breadcrumbLd} />
 
       <section className="py-24" aria-labelledby="services-heading">
