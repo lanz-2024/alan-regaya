@@ -5,6 +5,7 @@ import { siteConfig } from '@/data/site-config';
 const siteLinks = [
   { href: '/about', label: 'About' },
   { href: '/projects', label: 'Projects' },
+  { href: '/services', label: 'Services' },
   { href: '/setup', label: 'Setup' },
   { href: '/now', label: 'Now' },
   { href: '/about#experience', label: 'Experience' },
