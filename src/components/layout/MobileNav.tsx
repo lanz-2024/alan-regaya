@@ -9,6 +9,7 @@ const primaryLinks = [
   { href: '/projects', label: 'Projects', scroll: true },
   { href: '/blog', label: 'Blog', scroll: true },
   { href: '/setup', label: 'Setup', scroll: true },
+  { href: '/services', label: 'Services', scroll: true },
   { href: '/contact', label: 'Contact', scroll: true },
 ];
 
