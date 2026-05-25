@@ -33,6 +33,9 @@ export const skillCategories: SkillCategory[] = [
     icon: '🔧',
     skills: [
       { name: 'PHP 8.x', level: 90, featured: true, shortName: 'PHP' },
+      { name: 'Laravel', level: 70 },
+      { name: 'CodeIgniter', level: 65, shortName: 'CI' },
+      { name: 'ASP.NET (C#)', level: 65, shortName: '.NET' },
       { name: 'WordPress', level: 95, featured: true },
       { name: 'WooCommerce', level: 95, featured: true },
       { name: 'Node.js', level: 80, featured: true },
