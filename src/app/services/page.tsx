@@ -65,7 +65,7 @@ const services = [
     icon: '🔍',
     name: 'Search, data & integrations',
     description:
-      'Typesense-powered storefront search, MySQL schema design, Redis caching, and third-party API integrations (REST, GraphQL, webhooks). Sane indexes, fast queries, predictable failure modes.',
+      'Typesense-powered storefront search, MySQL schema design, Redis caching, and third-party API integrations (REST, GraphQL, webhooks). Indexes designed so a reindex is idempotent and a failed sync can’t corrupt the storefront.',
     deliverables: ['Typesense', 'MySQL / SQLite', 'Redis', 'REST / GraphQL'],
   },
   {
@@ -74,8 +74,7 @@ const services = [
     description: (
       <>
         Short engagements for teams considering a headless migration, stuck on a WooCommerce scaling
-        problem, or making framework decisions. Pragmatic recommendations grounded in production
-        experience —{' '}
+        problem, or weighing framework decisions. Same stack I run for paying clients, not theory —{' '}
         <Link href="/about" className="underline hover:text-[var(--color-text)] transition-colors">
           read more about me
         </Link>
@@ -100,12 +99,12 @@ const process = [
   {
     step: '03',
     title: 'Build',
-    body: 'Iterative delivery with checkpoint demos. Code in your repo from day one, not a black box.',
+    body: 'Weekly demos against a working branch. You hold the repo from commit one.',
   },
   {
     step: '04',
     title: 'Handover',
-    body: 'Documentation, runbook, and a post-launch window for fixes — not a Slack ghost-out.',
+    body: 'README, runbook, and two weeks of bugfix support after launch.',
   },
 ];
 
