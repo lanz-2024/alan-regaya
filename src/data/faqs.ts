@@ -56,7 +56,7 @@ export const faqCategories: FAQCategory[] = [
       },
       {
         q: 'Why are you learning Rust and Tauri?',
-        a: "Most of my career has been in dynamic languages where you trade safety for speed of iteration. Rust forces a different mental model — ownership, lifetimes, and zero-cost abstractions — and Tauri lets me ship that as small, native desktop apps. It's a deliberate move to round out the systems-programming side of my skillset.",
+        a: "Most of my career has been in dynamic languages where you trade safety for speed of iteration. Rust forces a different mental model — ownership and lifetimes do the work that a runtime usually papers over — and Tauri lets me ship that as small, native desktop apps. It's a deliberate move to round out the systems-programming side of my skillset.",
       },
       {
         q: 'How do you stay current with new technology?',
@@ -78,7 +78,7 @@ export const faqCategories: FAQCategory[] = [
       },
       {
         q: 'Why open source?',
-        a: "Open source forces a higher standard. Code that goes public has to be readable by strangers, documented enough for someone else to onboard, and stable enough not to break their production. That discipline makes the rest of my work better too.",
+        a: "Open source forces a higher standard. Code that goes public has to be readable by strangers and stable enough that someone else can put it in front of real customers. That discipline makes the rest of my work better too.",
       },
       {
         q: 'Where can I see your work?',

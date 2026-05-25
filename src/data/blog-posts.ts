@@ -12,7 +12,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'typesense-indexing-patterns-woocommerce',
     title: 'Typesense Indexing Patterns for Headless WooCommerce',
-    description: 'Real-world patterns for indexing 10k+ WooCommerce products into Typesense — schema design, incremental sync hooks, faceted search, and the gotchas of running a search engine alongside WordPress.',
+    description: 'How I keep a Typesense index in sync with WooCommerce when product edits, stock changes, and bulk imports all want to break it.',
     date: '2026-05-18',
     readTime: '11 min read',
     tags: ['Typesense', 'WooCommerce', 'Search', 'Headless'],
@@ -73,7 +73,7 @@ const adapter = new TypesenseInstantSearchAdapter({
   {
     slug: 'tauri-vs-electron-lessons',
     title: 'Tauri vs Electron: What I Learned Shipping a Desktop App in Both',
-    description: 'After porting a developer tool from Electron to Tauri, here is the honest breakdown — bundle size, native webview quirks, IPC patterns, Rust learning curve, and when each framework is actually the right call.',
+    description: 'I ported a developer tool from Electron to Tauri 2.0. Here is what that actually cost, what it bought, and when I would still pick Electron.',
     date: '2026-05-10',
     readTime: '10 min read',
     tags: ['Tauri', 'Electron', 'Desktop', 'Rust'],
@@ -86,7 +86,7 @@ const adapter = new TypesenseInstantSearchAdapter({
 <p><strong>Security model.</strong> Tauri's permission system requires you to allowlist exactly which APIs the frontend can call. Electron's default-allow nodeIntegration is a footgun that's caused real CVEs. Tauri's allowlist forces you to think about attack surface from day one.</p>
 <p><strong>Update flow.</strong> Tauri's built-in updater signs releases with a public/private key pair and verifies before applying. Setting this up in Electron requires either electron-updater (which works) or rolling your own (which most teams do, badly).</p>
 <h2>Where Electron Still Wins</h2>
-<p><strong>Webview consistency.</strong> This is the big one. Chromium is Chromium everywhere. WebKitGTK on Linux is months behind WKWebView on macOS. Modern CSS features — container queries, <code>:has()</code>, view transitions — land at different times on each platform. I shipped one release with a perfectly working layout on macOS that broke on Linux because the GTK webview was too old.</p>
+<p><strong>Webview consistency.</strong> Chromium is Chromium everywhere. WebKitGTK on Linux is months behind WKWebView on macOS. Modern CSS features — container queries, <code>:has()</code>, view transitions — land at different times on each platform. I shipped one release with a perfectly working layout on macOS that broke on Linux because the GTK webview was too old.</p>
 <p><strong>Node.js ecosystem access.</strong> Want to call <code>simple-git</code> or <code>better-sqlite3</code> from the backend? In Electron, you just import it. In Tauri, you write Rust — or you shell out to Node via <code>tauri::api::process::Command</code>, which negates the bundle-size argument.</p>
 <p><strong>Debugging.</strong> Electron's renderer is just Chrome DevTools. Tauri's renderer on Linux is WebKitGTK's inspector, which is functional but feels like 2017.</p>
 <p><strong>Team velocity.</strong> If your team is JavaScript-first, the Rust ramp-up is real. Simple things — async file I/O, error handling across the IPC boundary, lifetime annotations — take weeks to internalize. For a small utility, you'll ship Electron faster.</p>
@@ -120,7 +120,7 @@ enum AppError {
   {
     slug: 'headless-woocommerce-architecture-decisions',
     title: 'Headless WooCommerce: The Architecture Decisions That Actually Matter',
-    description: 'A frank look at the decisions that shape a headless WooCommerce project — REST vs GraphQL, cart-on-WP vs cart-on-frontend, ISR vs SSR, and the operational realities most tutorials skip.',
+    description: 'The architecture forks every headless WooCommerce project has to call early — and the ones tutorials skip because the answer is "it depends on your team".',
     date: '2026-05-02',
     readTime: '12 min read',
     tags: ['WooCommerce', 'Headless', 'Next.js', 'Architecture'],
@@ -133,7 +133,7 @@ enum AppError {
 <p><strong>Pick GraphQL when:</strong> the frontend needs to compose data from products, categories, posts, and ACF fields in a single request, or when you're already running GraphQL elsewhere in the stack.</p>
 <p>On a recent project, I migrated from GraphQL to REST mid-build. The reason: WPGraphQL's variable-product queries were generating 80+ SQL queries per request, and the fix required patching WooGraphQL's resolvers. Falling back to two REST calls plus client-side composition was faster to ship and easier to cache at the CDN edge.</p>
 <h2>Decision 2: Cart on WordPress or Cart on Frontend</h2>
-<p>This is the decision that quietly defines the entire project.</p>
+<p>This is the decision that defines the rest of the project. Every other architecture choice bends around it.</p>
 <p><strong>Cart on WordPress (CoCart, Store API):</strong> sessions, shipping, taxes, coupons, payment all stay in WooCommerce. The frontend is a view layer. Pros: zero risk of cart divergence from order; all extensions (subscriptions, bookings, bundles) work; payment methods stay PCI-scoped to WordPress. Cons: every cart interaction is a network round-trip to WordPress, and WordPress becomes a hard runtime dependency for the frontend.</p>
 <p><strong>Cart on frontend (custom Stripe/Square integration):</strong> the cart lives in the frontend (Zustand, localStorage), and the order is created on WordPress only at checkout completion. Pros: instant cart interactions, frontend can work briefly during WordPress downtime. Cons: you reimplement every WooCommerce cart feature — shipping, taxes, coupons, stock validation — which is months of work and a permanent maintenance tax.</p>
 <p>For 90% of projects, cart-on-WordPress via Store API is the right answer. The latency cost is real but manageable with optimistic UI updates. Reimplementing WooCommerce's cart logic is a trap.</p>
@@ -167,12 +167,12 @@ enum AppError {
   {
     slug: 'core-web-vitals-at-scale',
     title: 'Core Web Vitals at Scale: Lessons from 30+ Production Sites',
-    description: 'What actually moves the needle on LCP, CLS, and INP when optimizing WooCommerce storefronts in production — from critical CSS inlining to image pipelines and font loading strategies.',
+    description: 'The standard caching-and-CDN advice gets a WooCommerce storefront to a 70 Lighthouse score. Here is what it takes to push past 90 on real production traffic.',
     date: '2026-03-20',
     readTime: '8 min read',
     tags: ['Performance', 'Next.js', 'WooCommerce', 'Core Web Vitals'],
     content: `<h2>The Real Problem with WooCommerce Performance</h2>
-<p>After optimizing 30+ production WooCommerce sites, I've learned that the standard advice — "enable caching, compress images, use a CDN" — gets you to a 70 Lighthouse score. Getting to 90+ requires a fundamentally different approach.</p>
+<p>After optimizing 30+ production WooCommerce sites, I've learned that the standard advice — enable caching, compress images, use a CDN — gets you to a 70 Lighthouse score. Pushing past 90 means rethinking the render path itself.</p>
 <p>Here's what actually works at scale.</p>
 <h2>Critical CSS Inlining</h2>
 <p>The single biggest LCP win on static Next.js sites is eliminating render-blocking CSS. With the <code>critters</code> library in the postbuild step, above-the-fold styles are inlined into the HTML and the full stylesheet is loaded asynchronously.</p>
@@ -202,7 +202,7 @@ await sharp(src)
   {
     slug: 'building-mcp-server-wordpress',
     title: 'Building an MCP Server for WordPress Site Management',
-    description: 'How I built a Model Context Protocol server to manage 30+ WordPress sites via Claude — SSH over pure JS, WP-CLI auto-detection, and the gotchas of running server infrastructure in a serverless context.',
+    description: 'Why SSH + WP-CLI beat a pure-JS implementation when I built the MCP server that lets Claude manage 30+ WordPress sites — and what broke on the way there.',
     date: '2026-03-15',
     readTime: '10 min read',
     tags: ['MCP', 'WordPress', 'Claude', 'SSH', 'WP-CLI'],
@@ -274,7 +274,7 @@ async function findWpCli(conn) {
   {
     slug: 'zero-downtime-wordpress-migrations',
     title: 'Zero-Downtime WordPress Migrations: Lessons from 30+ Sites',
-    description: 'The non-obvious failures that bite you during WordPress migrations — silent WP Importer failures, attachment ID collisions, Fluid Checkout\'s hidden options, and the go-live simulation that prevents production disasters.',
+    description: 'The silent failures that cause WordPress migrations to roll back at 2am — and the go-live simulation I now run before any production cutover.',
     date: '2026-03-10',
     readTime: '12 min read',
     tags: ['WordPress', 'WooCommerce', 'Migrations', 'DevOps'],
@@ -312,13 +312,13 @@ async function findWpCli(conn) {
   {
     slug: 'ai-augmented-development-workflow',
     title: 'My AI-Augmented Development Workflow with Claude Code',
-    description: 'How I built a system of 48+ custom skills, safety gates, and automated workflows that make Claude Code a genuine force multiplier — not just a code autocomplete.',
+    description: 'How 48 custom skills and a handful of safety gates turn Claude Code into something I actually trust on production WordPress, instead of a fancier autocomplete.',
     date: '2026-03-05',
     readTime: '9 min read',
     tags: ['Claude Code', 'AI', 'Workflow', 'Productivity'],
     content: `<h2>Beyond Code Autocomplete</h2>
 <p>Most developers use AI as a faster Stack Overflow — paste an error, get a fix. That's useful, but it barely scratches the surface.</p>
-<p>After a year of building with Claude Code, I've developed a workflow where Claude can independently execute multi-hour development tasks, manage WordPress migrations, run E2E test suites, and make architecture decisions with appropriate guardrails.</p>
+<p>After a year of building with Claude Code, I've developed a workflow where Claude can independently execute multi-hour development tasks, manage WordPress migrations, run E2E test suites, and make architecture decisions inside guardrails I trust.</p>
 <p>Here's how it's structured.</p>
 <h2>The Skills System</h2>
 <p>Claude Code supports custom "skills" — markdown files with detailed instructions that Claude loads on demand. I've built 48+ skills covering everything from WordPress migration protocols to ClickUp documentation workflows.</p>
