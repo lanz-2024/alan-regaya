@@ -52,8 +52,8 @@ export function Footer() {
     <footer className="mt-24 border-t border-[var(--color-border)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" aria-label="Alan Regaya — home" className="inline-flex items-center gap-3">
+          <div className="col-span-2 md:col-span-1 text-center md:text-left">
+            <Link href="/" aria-label="Alan Regaya — home" className="flex md:inline-flex justify-center md:justify-start items-center gap-3">
               <Image
                 src="/logo.webp"
                 alt=""
@@ -63,23 +63,23 @@ export function Footer() {
               />
               <span className="text-lg font-medium text-[var(--color-text)]">{siteConfig.name}</span>
             </Link>
-            <p className="mt-3 text-sm text-[var(--color-text-muted)] max-w-xs">
+            <p className="mt-3 text-sm text-[var(--color-text-muted)] max-w-xs mx-auto md:mx-0">
               {siteConfig.tagline}
             </p>
           </div>
 
-          <nav aria-labelledby="footer-site">
+          <nav aria-labelledby="footer-site" className="text-center md:text-left">
             <h3 id="footer-site" className={headingClass}>Site</h3>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-2 items-center md:items-start">
               {siteLinks.map((l) => (
                 <li key={l.href}><Link href={l.href} className={linkClass}>{l.label}</Link></li>
               ))}
             </ul>
           </nav>
 
-          <nav aria-labelledby="footer-writing">
+          <nav aria-labelledby="footer-writing" className="text-center md:text-left">
             <h3 id="footer-writing" className={headingClass}>Writing</h3>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-2 items-center md:items-start">
               {writingLinks.map((l) =>
                 l.external ? (
                   <li key={l.href}><a href={l.href} className={linkClass}>{l.label}</a></li>
@@ -90,9 +90,9 @@ export function Footer() {
             </ul>
           </nav>
 
-          <nav aria-labelledby="footer-connect">
+          <nav aria-labelledby="footer-connect" className="col-span-2 md:col-span-1 text-center md:text-left">
             <h3 id="footer-connect" className={headingClass}>Connect</h3>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-2 items-center md:items-start">
               {connectLinks.map((l) =>
                 l.href.startsWith('http') ? (
                   <li key={l.href}>
