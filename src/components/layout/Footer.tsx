@@ -69,7 +69,7 @@ export function Footer() {
           </div>
 
           <nav aria-labelledby="footer-site" className="text-center md:text-left">
-            <h3 id="footer-site" className={headingClass}>Site</h3>
+            <h2 id="footer-site" className={headingClass}>Site</h2>
             <ul className="flex flex-col gap-2 items-center md:items-start">
               {siteLinks.map((l) => (
                 <li key={l.href}><Link href={l.href} className={linkClass}>{l.label}</Link></li>
@@ -78,7 +78,7 @@ export function Footer() {
           </nav>
 
           <nav aria-labelledby="footer-writing" className="text-center md:text-left">
-            <h3 id="footer-writing" className={headingClass}>Writing</h3>
+            <h2 id="footer-writing" className={headingClass}>Writing</h2>
             <ul className="flex flex-col gap-2 items-center md:items-start">
               {writingLinks.map((l) =>
                 l.external ? (
@@ -91,7 +91,7 @@ export function Footer() {
           </nav>
 
           <nav aria-labelledby="footer-connect" className="col-span-2 md:col-span-1 text-center md:text-left">
-            <h3 id="footer-connect" className={headingClass}>Connect</h3>
+            <h2 id="footer-connect" className={headingClass}>Connect</h2>
             <ul className="flex flex-col gap-2 items-center md:items-start">
               {connectLinks.map((l) =>
                 l.href.startsWith('http') ? (

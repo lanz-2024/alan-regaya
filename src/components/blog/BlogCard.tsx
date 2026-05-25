@@ -22,7 +22,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
         </h2>
         <p className="text-sm text-[var(--color-text-muted)] mb-4 leading-relaxed">{post.description}</p>
         <div className="flex items-center justify-between text-xs text-[var(--color-text-muted)]">
-          <time dateTime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+          <time dateTime={post.date}>{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}</time>
           <span>{post.readTime}</span>
         </div>
       </Link>
