@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-// Converts source PNG/JPG under public/ to right-sized WebP at prebuild.
-// Outputs are gitignored; sources stay tracked. Skips files already WebP
-// and skips when the WebP target is newer than the source.
+// Converts source PNG/JPG under public/ to right-sized WebP + AVIF at prebuild.
+// Outputs are gitignored; sources stay tracked. Per-format mtime-skip keeps
+// incremental builds fast.
 import { readdir, stat } from 'fs/promises';
 import { resolve, extname, basename, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -12,44 +12,105 @@ const sharp = require('sharp');
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 const PUBLIC = resolve(__dirname, '../public');
 
-// Per-directory target: max width in px (WebP) — chosen for display * 2 (retina).
+// Per-directory target: max width in px — chosen for display * 2 (retina).
+// AVIF quality scale runs lower than WebP for similar visual quality.
 const TARGETS = [
-  { dir: 'gear', maxWidth: 800, quality: 82 },
-  { dir: 'setup', maxWidth: 1200, quality: 82 },
+  { dir: 'gear', maxWidth: 800, webpQuality: 82, avifQuality: 60 },
+  { dir: 'setup', maxWidth: 1200, webpQuality: 82, avifQuality: 60 },
 ];
 
-async function convertOne(src, maxWidth, quality) {
-  const dest = resolve(dirname(src), basename(src, extname(src)) + '.webp');
+async function isFresh(src, dest) {
   try {
     const [s, d] = await Promise.all([stat(src), stat(dest).catch(() => null)]);
-    if (d && d.mtimeMs >= s.mtimeMs) return null;
-  } catch {}
-  await sharp(src)
-    .resize(maxWidth, undefined, { fit: 'inside', withoutEnlargement: true })
-    .webp({ quality })
-    .toFile(dest);
-  const after = (await stat(dest)).size;
-  const before = (await stat(src)).size;
-  return { src: basename(src), dest: basename(dest), before, after };
+    return Boolean(d && d.mtimeMs >= s.mtimeMs);
+  } catch {
+    return false;
+  }
 }
 
-let total = 0;
+async function convertOne(src, maxWidth, { webpQuality, avifQuality }) {
+  const stem = basename(src, extname(src));
+  const webpDest = resolve(dirname(src), stem + '.webp');
+  const avifDest = resolve(dirname(src), stem + '.avif');
+
+  const pipeline = () =>
+    sharp(src).resize(maxWidth, undefined, { fit: 'inside', withoutEnlargement: true });
+
+  const results = [];
+
+  if (!(await isFresh(src, webpDest))) {
+    await pipeline().webp({ quality: webpQuality }).toFile(webpDest);
+    const [before, after] = await Promise.all([stat(src), stat(webpDest)]);
+    results.push({ format: 'webp', dest: basename(webpDest), before: before.size, after: after.size });
+  }
+
+  if (!(await isFresh(src, avifDest))) {
+    // effort: 4 is a reasonable size/speed tradeoff; default 9 is much slower.
+    await pipeline().avif({ quality: avifQuality, effort: 4 }).toFile(avifDest);
+    const [before, after] = await Promise.all([stat(src), stat(avifDest)]);
+    results.push({ format: 'avif', dest: basename(avifDest), before: before.size, after: after.size });
+  }
+
+  return { src: basename(src), results };
+}
+
+let totalWebp = 0;
+let totalAvif = 0;
+
 for (const t of TARGETS) {
   const dirAbs = resolve(PUBLIC, t.dir);
   let files;
   try { files = await readdir(dirAbs); } catch { continue; }
   const sources = files.filter(f => /\.(png|jpg|jpeg)$/i.test(f));
   for (const f of sources) {
-    const r = await convertOne(resolve(dirAbs, f), t.maxWidth, t.quality);
-    if (r) { console.log(`  ✓ ${t.dir}/${r.src} (${r.before} B) → ${r.dest} (${r.after} B)`); total++; }
+    const r = await convertOne(resolve(dirAbs, f), t.maxWidth, { webpQuality: t.webpQuality, avifQuality: t.avifQuality });
+    for (const out of r.results) {
+      console.log(`  ✓ ${t.dir}/${r.src} (${out.before} B) → ${out.dest} (${out.after} B)`);
+      if (out.format === 'webp') totalWebp++; else totalAvif++;
+    }
   }
 }
 
-// logo.png → logo.webp at 128 px (header renders at max 64 CSS px).
+// logo.png → logo.webp/.avif at 128 px (header renders at max 64 CSS px).
 const logoSrc = resolve(PUBLIC, 'logo.png');
 try {
-  const r = await convertOne(logoSrc, 128, 90);
-  if (r) { console.log(`  ✓ logo.png (${r.before} B) → ${r.dest} (${r.after} B)`); total++; }
+  const r = await convertOne(logoSrc, 128, { webpQuality: 90, avifQuality: 80 });
+  for (const out of r.results) {
+    console.log(`  ✓ logo.png (${out.before} B) → ${out.dest} (${out.after} B)`);
+    if (out.format === 'webp') totalWebp++; else totalAvif++;
+  }
 } catch {}
 
-console.log(`Converted ${total} image(s) to WebP.`);
+// Second pass: ensure every .webp in scanned dirs has an .avif sibling.
+// Some assets ship as committed .webp with no PNG/JPG source — without this
+// pass they'd reference a missing .avif and <picture> would render broken
+// (browsers don't fall through <source type="image/avif"> on 404).
+async function ensureAvifForWebp(dirAbs, avifQuality, maxWidth) {
+  let files;
+  try { files = await readdir(dirAbs); } catch { return 0; }
+  let made = 0;
+  for (const f of files) {
+    if (!/\.webp$/i.test(f)) continue;
+    const stem = basename(f, extname(f));
+    const webpSrc = resolve(dirAbs, f);
+    const avifDest = resolve(dirAbs, stem + '.avif');
+    if (await isFresh(webpSrc, avifDest)) continue;
+    await sharp(webpSrc)
+      .resize(maxWidth, undefined, { fit: 'inside', withoutEnlargement: true })
+      .avif({ quality: avifQuality, effort: 4 })
+      .toFile(avifDest);
+    const [before, after] = await Promise.all([stat(webpSrc), stat(avifDest)]);
+    console.log(`  ✓ ${basename(dirAbs)}/${f} (${before.size} B) → ${stem}.avif (${after.size} B) [from webp]`);
+    made++;
+  }
+  return made;
+}
+
+for (const t of TARGETS) {
+  totalAvif += await ensureAvifForWebp(resolve(PUBLIC, t.dir), t.avifQuality, t.maxWidth);
+}
+// Also cover /public root for stray .webp like logo.webp (already covered by
+// logo.png path above, but harmless to double-check).
+totalAvif += await ensureAvifForWebp(PUBLIC, 80, 128);
+
+console.log(`Converted ${totalWebp} WebP + ${totalAvif} AVIF image(s).`);

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { PictureImage } from '@/components/shared/PictureImage';
 import Link from 'next/link';
 import { MobileNav } from './MobileNav';
 import { NavLinks } from './NavLinks';
@@ -28,7 +28,7 @@ export function Header() {
             aria-label="Alan Regaya — home"
             className="hidden md:flex items-center"
           >
-            <Image
+            <PictureImage
               src="/logo.webp"
               alt="Alan Regaya"
               width={72}
@@ -43,7 +43,7 @@ export function Header() {
           aria-label="Alan Regaya — home"
           className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center"
         >
-          <Image
+          <PictureImage
             src="/logo.webp"
             alt="Alan Regaya"
             width={72}
