@@ -17,7 +17,7 @@ export function ScrollToTop() {
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       const anchor = (e.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
       if (!anchor) return;
       if (anchor.target && anchor.target !== '_self') return;
@@ -30,8 +30,8 @@ export function ScrollToTop() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
-    document.addEventListener('click', onClick);
-    return () => document.removeEventListener('click', onClick);
+    document.addEventListener('click', onClick, true);
+    return () => document.removeEventListener('click', onClick, true);
   }, []);
 
   return null;
