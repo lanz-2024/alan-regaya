@@ -38,7 +38,7 @@ export const faqCategories: FAQCategory[] = [
       },
       {
         q: 'How many years of experience do you have?',
-        a: "6+ years of professional development experience, focused on the intersection of modern frontend (Next.js, React, TypeScript) and deep WordPress/WooCommerce. That combination is rare and increasingly in demand as more stores migrate to headless architectures.",
+        a: "6+ years of professional development experience, focused on the intersection of modern frontend (Next.js, React, TypeScript) and deep WordPress/WooCommerce. That combination is rare and increasingly in demand as more stores migrate to headless architectures. On the broader backend side, I also have ~3 years building internal business apps with Laravel, CodeIgniter, and ASP.NET (C#) — earned during an earlier MIS Administrator role at Asia Pacific Express Corporation.",
       },
       {
         q: 'Are you open to new opportunities?',
