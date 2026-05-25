@@ -44,7 +44,7 @@ export function Footer() {
   const connectLinks = [
     { href: siteConfig.github, label: 'GitHub', icon: <GitHubIcon /> },
     { href: siteConfig.linkedin, label: 'LinkedIn', icon: <LinkedInIcon /> },
-    { href: `mailto:${siteConfig.email}`, label: siteConfig.email, icon: <EmailIcon /> },
+    { href: '/contact', label: 'Contact', icon: <EmailIcon /> },
   ];
 
   return (
@@ -92,18 +92,23 @@ export function Footer() {
           <nav aria-labelledby="footer-connect">
             <h3 id="footer-connect" className={headingClass}>Connect</h3>
             <ul className="flex flex-col gap-2">
-              {connectLinks.map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className={linkClass}
-                    {...(l.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  >
-                    {l.icon}
-                    <span>{l.label}</span>
-                  </a>
-                </li>
-              ))}
+              {connectLinks.map((l) =>
+                l.href.startsWith('http') ? (
+                  <li key={l.href}>
+                    <a href={l.href} className={linkClass} target="_blank" rel="noopener noreferrer">
+                      {l.icon}
+                      <span>{l.label}</span>
+                    </a>
+                  </li>
+                ) : (
+                  <li key={l.href}>
+                    <Link href={l.href} className={linkClass}>
+                      {l.icon}
+                      <span>{l.label}</span>
+                    </Link>
+                  </li>
+                )
+              )}
             </ul>
           </nav>
         </div>
