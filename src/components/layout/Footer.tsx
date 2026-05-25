@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/data/site-config';
 
@@ -30,20 +29,33 @@ export function Footer() {
 
   return (
     <footer className="mt-24 border-t border-[var(--color-border)]">
+      <section
+        aria-labelledby="footer-cta"
+        className="border-b border-[var(--color-border)]"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 id="footer-cta" className="text-2xl sm:text-3xl font-light text-[var(--color-text)]">
+              Let&apos;s build something.
+            </h2>
+            <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+              {siteConfig.availability} — {siteConfig.location}.
+            </p>
+          </div>
+          <Link
+            href="/contact"
+            className="inline-flex items-center px-5 py-3 bg-[var(--color-accent)] text-white text-sm font-medium rounded hover:bg-[var(--color-accent-hover)] transition-colors whitespace-nowrap"
+          >
+            Get in Touch →
+          </Link>
+        </div>
+      </section>
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" aria-label="Alan Regaya — home" className="inline-flex items-center gap-3">
-              <Image
-                src="/logo.webp"
-                alt=""
-                width={80}
-                height={80}
-                className="h-10 w-10"
-              />
-              <span className="text-lg font-medium text-[var(--color-text)]">{siteConfig.name}</span>
-            </Link>
-            <p className="mt-3 text-sm text-[var(--color-text-muted)] max-w-xs">
+            <p className="text-lg font-medium text-[var(--color-text)]">{siteConfig.name}</p>
+            <p className="mt-2 text-sm text-[var(--color-text-muted)] max-w-xs">
               {siteConfig.tagline}
             </p>
           </div>
