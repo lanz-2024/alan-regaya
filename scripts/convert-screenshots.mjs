@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Converts public/screenshots/*.png to WebP at build time.
-// Runs as prebuild — WebP files are gitignored, PNGs stay in source.
+// Converts public/screenshots/*.png to WebP + AVIF at build time.
+// Runs as prebuild — outputs are gitignored, PNGs stay in source.
 import { readdir } from 'fs/promises';
 import { resolve, basename, extname } from 'path';
 import { fileURLToPath } from 'url';
@@ -22,9 +22,14 @@ if (pngs.length === 0) {
 
 await Promise.all(pngs.map(async (png) => {
   const src = resolve(screenshotsDir, png);
-  const dest = resolve(screenshotsDir, basename(png, '.png') + '.webp');
-  await sharp(src).resize(640, undefined, { fit: 'inside', withoutEnlargement: true }).webp({ quality: 78 }).toFile(dest);
-  console.log(`  ✓ ${png} → ${basename(dest)}`);
+  const stem = basename(png, '.png');
+  const webpDest = resolve(screenshotsDir, stem + '.webp');
+  const avifDest = resolve(screenshotsDir, stem + '.avif');
+  const pipeline = () =>
+    sharp(src).resize(640, undefined, { fit: 'inside', withoutEnlargement: true });
+  await pipeline().webp({ quality: 78 }).toFile(webpDest);
+  await pipeline().avif({ quality: 55, effort: 4 }).toFile(avifDest);
+  console.log(`  ✓ ${png} → ${basename(webpDest)} + ${basename(avifDest)}`);
 }));
 
-console.log(`Converted ${pngs.length} screenshots to WebP.`);
+console.log(`Converted ${pngs.length} screenshots to WebP + AVIF.`);

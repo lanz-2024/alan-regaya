@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { PictureImage } from '@/components/shared/PictureImage';
 import { Badge } from '@/components/shared/Badge';
 
 const capabilities = [
@@ -26,7 +26,7 @@ export function ClaudeHighlight() {
         <div className="glow-border rounded-lg overflow-hidden bg-[var(--color-background)]">
           {/* Terminal screenshot with hover pan-reveal effect */}
           <div className="group relative aspect-video overflow-hidden bg-[var(--color-surface-2)] cursor-zoom-in">
-            <Image
+            <PictureImage
               src="/setup/claude-cli.webp"
               alt="Claude CLI terminal session — Opus 4.7 plan mode, status bar, usage stats"
               fill

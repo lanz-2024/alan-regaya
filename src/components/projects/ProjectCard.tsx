@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { PictureImage } from '@/components/shared/PictureImage';
 import Link from 'next/link';
 import { Badge } from '@/components/shared/Badge';
 import { Project } from '@/data/projects';
@@ -20,12 +20,11 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
     <article className="glow-border rounded-lg overflow-hidden bg-[var(--color-surface)] flex flex-col">
       {project.screenshot && (
         <div className="relative aspect-video overflow-hidden bg-[var(--color-surface-2)]">
-          <Image
+          <PictureImage
             src={project.screenshot}
             alt={`Screenshot of ${project.name}`}
             fill
             priority={priority}
-            fetchPriority={priority ? 'high' : 'auto'}
             className="object-cover object-top transition-transform duration-300 hover:scale-105"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />

@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useCallback } from 'react';
-import Image from 'next/image';
+import { PictureImage } from '@/components/shared/PictureImage';
 
 interface ImageModalProps {
   src: string;
@@ -45,13 +45,12 @@ export function ImageModal({ src, alt, onClose }: ImageModalProps) {
         className="relative max-w-5xl max-h-[90vh] w-full cursor-default"
         onClick={(e) => e.stopPropagation()}
       >
-        <Image
+        <PictureImage
           src={src}
           alt={alt}
           width={1200}
           height={900}
           className="object-contain w-full h-auto max-h-[90vh] rounded-lg shadow-2xl"
-          unoptimized
         />
       </div>
     </div>
