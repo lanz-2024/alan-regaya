@@ -15,6 +15,7 @@ const STEP = 0.25;
 export function ImageModal({ src, alt, onClose }: ImageModalProps) {
   const [zoom, setZoom] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [isInteracting, setIsInteracting] = useState(false);
   const draggingRef = useRef<{ startX: number; startY: number; baseX: number; baseY: number } | null>(null);
   const pinchRef = useRef<{ startDist: number; startZoom: number } | null>(null);
 
@@ -44,13 +45,8 @@ export function ImageModal({ src, alt, onClose }: ImageModalProps) {
     };
   }, [handleKey]);
 
-  useEffect(() => {
-    reset();
-  }, [src, reset]);
-
-  useEffect(() => {
-    if (zoom === 1 && (pan.x !== 0 || pan.y !== 0)) setPan({ x: 0, y: 0 });
-  }, [zoom, pan.x, pan.y]);
+  // Pan only applies when zoomed in; resetting to 1× effectively recenters via this guard.
+  const effectivePan = zoom > 1 ? pan : { x: 0, y: 0 };
 
   const onWheel = (e: React.WheelEvent) => {
     e.preventDefault();
@@ -61,6 +57,7 @@ export function ImageModal({ src, alt, onClose }: ImageModalProps) {
     if (zoom <= 1) return;
     (e.target as Element).setPointerCapture?.(e.pointerId);
     draggingRef.current = { startX: e.clientX, startY: e.clientY, baseX: pan.x, baseY: pan.y };
+    setIsInteracting(true);
   };
   const onPointerMove = (e: React.PointerEvent) => {
     const d = draggingRef.current;
@@ -69,6 +66,7 @@ export function ImageModal({ src, alt, onClose }: ImageModalProps) {
   };
   const onPointerUp = () => {
     draggingRef.current = null;
+    if (!pinchRef.current) setIsInteracting(false);
   };
 
   const onTouchStart = (e: React.TouchEvent) => {
@@ -76,6 +74,7 @@ export function ImageModal({ src, alt, onClose }: ImageModalProps) {
       const dx = e.touches[0].clientX - e.touches[1].clientX;
       const dy = e.touches[0].clientY - e.touches[1].clientY;
       pinchRef.current = { startDist: Math.hypot(dx, dy), startZoom: zoom };
+      setIsInteracting(true);
     }
   };
   const onTouchMove = (e: React.TouchEvent) => {
@@ -89,7 +88,10 @@ export function ImageModal({ src, alt, onClose }: ImageModalProps) {
     }
   };
   const onTouchEnd = (e: React.TouchEvent) => {
-    if (e.touches.length < 2) pinchRef.current = null;
+    if (e.touches.length < 2) {
+      pinchRef.current = null;
+      if (!draggingRef.current) setIsInteracting(false);
+    }
   };
 
   return (
@@ -122,13 +124,13 @@ export function ImageModal({ src, alt, onClose }: ImageModalProps) {
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
-        style={{ touchAction: 'none', cursor: zoom > 1 ? (draggingRef.current ? 'grabbing' : 'grab') : 'default' }}
+        style={{ touchAction: 'none', cursor: zoom > 1 ? (isInteracting ? 'grabbing' : 'grab') : 'default' }}
       >
         <div
           style={{
-            transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
+            transform: `translate(${effectivePan.x}px, ${effectivePan.y}px) scale(${zoom})`,
             transformOrigin: 'center',
-            transition: draggingRef.current || pinchRef.current ? 'none' : 'transform 120ms ease-out',
+            transition: isInteracting ? 'none' : 'transform 120ms ease-out',
             willChange: 'transform',
           }}
         >

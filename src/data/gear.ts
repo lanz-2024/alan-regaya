@@ -20,13 +20,7 @@ export const gear: GearItem[] = [
     subcategory: 'Compute',
     image: '/gear/macbook-m4-14.png',
     alt: 'macOS About This Mac — MacBook Pro 14", M4 Pro, 24GB RAM',
-    specs: [
-      'Apple M4 Pro',
-      '24GB Unified Memory',
-      '500GB SSD',
-      'macOS Sequoia',
-      'Source: UpTrade (refurbished)',
-    ],
+    specs: ['Apple M4 Pro', '24GB Unified Memory', '500GB SSD', 'macOS Sequoia'],
   },
   {
     id: 'bow-k700-keyboard',
@@ -42,6 +36,8 @@ export const gear: GearItem[] = [
     name: 'External Displays',
     category: 'Current',
     subcategory: 'Display',
+    image: '/gear/external-displays.webp',
+    alt: 'Dual display setup — 52.5" Devant Smart TV (primary) and 23.5" Samsung Monitor (secondary)',
     specs: [
       '52.5" Devant Smart TV (primary, HDMI)',
       '23.5" Samsung Monitor (secondary, HDMI)',
@@ -107,7 +103,14 @@ export const gear: GearItem[] = [
     subcategory: 'Compute',
     image: '/gear/macbook-m4-max-16.jpg',
     alt: 'MacBook Pro 14" with M5 Pro chip',
-    specs: ['Apple M5 Pro', '48GB Unified Memory', '2TB SSD', '18-core CPU', '20-core GPU'],
+    specs: [
+      'Apple M5 Pro',
+      '48GB Unified Memory',
+      '2TB SSD',
+      '18-core CPU',
+      '20-core GPU',
+      'Source: UpTrade (refurbished)',
+    ],
   },
   {
     id: 'dygma-defy',
