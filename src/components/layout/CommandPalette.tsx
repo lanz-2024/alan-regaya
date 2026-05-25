@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { blogPosts } from '@/data/blog-posts';
+import { blogPostsIndex as blogPosts } from '@/data/blog-posts-index';
 import { projects } from '@/data/projects';
 import { siteConfig } from '@/data/site-config';
 
