@@ -15,10 +15,12 @@
     "gate:schema": "node scripts/gate-schema.mjs --strict",
     "audit:schema": "node scripts/gate-schema.mjs --report",
     "fix:schema": "node scripts/gate-schema.mjs --fix",
+    "gate:sitemap": "node scripts/gate-sitemap.mjs",
+    "audit:sitemap": "node scripts/gate-sitemap.mjs",
     "postinstall": "simple-git-hooks"
   },
   "simple-git-hooks": {
-    "pre-push": "node scripts/gate-schema.mjs && node scripts/gate-lighthouse.mjs"
+    "pre-push": "node scripts/gate-schema.mjs && node scripts/gate-sitemap.mjs && node scripts/gate-lighthouse.mjs"
   },
   "dependencies": {
     "next": "16.2.1",
