@@ -4,6 +4,7 @@ import { ContactSection } from '@/components/shared/ContactSection';
 import { SectionHeading } from '@/components/shared/SectionHeading';
 import { siteConfig } from '@/data/site-config';
 import { buildBreadcrumbList } from '@/lib/seo/breadcrumbs';
+import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Services',
@@ -111,7 +112,7 @@ const process = [
 export default function ServicesPage() {
   return (
     <div className="pt-16">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <JsonLd data={breadcrumbLd} />
 
       <section className="py-24" aria-labelledby="services-heading">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
