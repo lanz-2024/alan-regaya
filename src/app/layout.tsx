@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { CommandPalette } from '@/components/layout/CommandPalette';
+import { CommandPaletteLoader } from '@/components/layout/CommandPaletteLoader';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { siteConfig } from '@/data/site-config';
@@ -97,7 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
-        <CommandPalette />
+        <CommandPaletteLoader />
       </body>
     </html>
   );

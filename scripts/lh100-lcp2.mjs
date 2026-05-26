@@ -1,0 +1,22 @@
+// Dump raw LCP element details to figure out the structure
+import { writeFile } from 'fs/promises';
+const KEY = process.env.PSI_API_KEY;
+const url = 'https://alanregaya.dev/about';
+const u = new URL('https://www.googleapis.com/pagespeedonline/v5/runPagespeed');
+u.searchParams.set('url', url);
+u.searchParams.set('strategy', 'mobile');
+u.searchParams.append('category', 'performance');
+u.searchParams.set('key', KEY);
+const r = await fetch(u);
+const j = await r.json();
+const a = j.lighthouseResult?.audits || {};
+const lcp = a['largest-contentful-paint-element'];
+const prio = a['prioritize-lcp-image'];
+const lcpAudit = a['largest-contentful-paint'];
+console.log('--- largest-contentful-paint-element ---');
+console.log(JSON.stringify(lcp, null, 2).slice(0, 3000));
+console.log('--- prioritize-lcp-image ---');
+console.log(JSON.stringify(prio, null, 2).slice(0, 2000));
+console.log('--- LCP numeric / phases ---');
+console.log('score:', lcpAudit?.score, 'display:', lcpAudit?.displayValue, 'numeric:', lcpAudit?.numericValue);
+await writeFile('.lh100/lcp-raw.json', JSON.stringify({ lcp, prio, lcpAudit }, null, 2));
