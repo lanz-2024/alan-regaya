@@ -76,6 +76,27 @@ const services = [
     deliverables: ['Typesense', 'MySQL / SQLite', 'Redis', 'REST / GraphQL'],
   },
   {
+    icon: '🚚',
+    name: 'Site & DNS migrations',
+    description:
+      'Zero-downtime moves between hosts and registrars — full WordPress/WooCommerce migrations, DNS cutovers with TTL pre-staging, MX/SPF/DKIM preservation, and Cloudflare proxy setup. Pre-flight checks, dry-run on staging, then go-live with rollback ready.',
+    deliverables: ['DNS cutover', 'Host-to-host', 'Cloudflare', 'Zero downtime'],
+  },
+  {
+    icon: '🛠️',
+    name: 'WordPress maintenance & management',
+    description:
+      'Ongoing care for production WordPress and WooCommerce sites — core/plugin/theme updates on staging first, daily backups, uptime and security monitoring, malware cleanup, and monthly performance reports. Predictable retainers, not break-fix.',
+    deliverables: ['Staged updates', 'Backups', 'Security', 'Uptime monitoring'],
+  },
+  {
+    icon: '☁️',
+    name: 'Hosting & CDN setup',
+    description:
+      'Provisioning and tuning across Kinsta, WP Engine, SiteGround, and Hostinger, with Cloudflare and Bunny.net for CDN/edge, and registrar work on GoDaddy and others. PHP/MySQL tuning, object cache, page rules, and TLS — set up so the host’s defaults actually work for you.',
+    deliverables: ['Kinsta / WPE', 'SiteGround / Hostinger', 'Cloudflare / Bunny', 'GoDaddy DNS'],
+  },
+  {
     icon: '🧭',
     name: 'Architecture review & consulting',
     description: (
