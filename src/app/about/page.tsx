@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { getGitHubStats } from '@/lib/github';
 import { OriginStory } from '@/components/about/OriginStory';
 import { Timeline } from '@/components/about/Timeline';
@@ -45,7 +46,23 @@ export default async function AboutPage() {
       <div className="pt-16">
         <OriginStory />
         <section id="about-me" className="py-24 bg-[var(--color-surface)] border-y border-[var(--color-border)]">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-start">
+              <div className="flex justify-center md:justify-start md:sticky md:top-24">
+                <div className="relative">
+                  <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-[var(--color-accent)] to-blue-500/30 opacity-60 blur" aria-hidden="true" />
+                  <Image
+                    src="/profile.png"
+                    alt={`${siteConfig.name} — ${siteConfig.title}`}
+                    width={224}
+                    height={224}
+                    priority={false}
+                    sizes="(min-width: 768px) 224px, 176px"
+                    className="relative w-44 h-44 md:w-56 md:h-56 rounded-full object-cover ring-2 ring-[var(--color-accent)]/60 ring-offset-4 ring-offset-[var(--color-surface)] shadow-xl"
+                  />
+                </div>
+              </div>
+              <div>
             <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">Today</p>
             <h2 className="text-3xl font-bold mb-6">About Me</h2>
             <div className="space-y-4 text-[var(--color-text-muted)] leading-relaxed">
@@ -76,6 +93,8 @@ export default async function AboutPage() {
                 <p className="text-[var(--color-text-muted)]">Location</p>
                 <p className="text-[var(--color-text)] font-medium">{siteConfig.location}</p>
                 <p className="text-[var(--color-text-muted)]">{siteConfig.availability}</p>
+              </div>
+            </div>
               </div>
             </div>
           </div>
