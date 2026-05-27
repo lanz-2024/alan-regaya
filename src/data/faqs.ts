@@ -52,7 +52,7 @@ export const faqCategories: FAQCategory[] = [
     items: [
       {
         q: 'What is your primary tech stack?',
-        a: "Frontend: Next.js, React, TypeScript, Tailwind CSS. Backend: PHP 8.x, WordPress/WooCommerce, Node.js, REST and GraphQL. Data & Search: Typesense, MySQL, SQLite, Redis. DevOps: Git, Vercel, Kinsta, GitHub Actions, Docker. I'm also actively learning Rust and Tauri 2.0 for cross-platform tooling.",
+        a: "Frontend: Next.js, React, TypeScript, Tailwind CSS. Backend: PHP 8.x, WordPress/WooCommerce (including Divi and other page-builder themes), Node.js, REST and GraphQL. Data & Search: Typesense, MySQL, SQLite, Redis. DevOps: Git, Vercel, Kinsta, GitHub Actions, Docker. I'm also actively learning Rust and Tauri 2.0 for cross-platform tooling.",
       },
       {
         q: 'Why are you learning Rust and Tauri?',

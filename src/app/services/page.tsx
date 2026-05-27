@@ -50,7 +50,7 @@ const services = [
     icon: '🔧',
     name: 'WordPress & WooCommerce development',
     description:
-      'Custom plugins, themes, payment/integration work, and back-of-house tooling. PHP 8.x, WP-CLI, properly tested. ~3 years of Laravel, CodeIgniter, and ASP.NET (C#) experience for custom internal apps and integrations outside WordPress. Equally comfortable in classic and block-based stacks.',
+      'Custom plugins, themes, payment/integration work, and back-of-house tooling. PHP 8.x, WP-CLI, properly tested. ~3 years of Laravel, CodeIgniter, and ASP.NET (C#) experience for custom internal apps and integrations outside WordPress. Equally comfortable in classic, block-based, and page-builder stacks — including Divi child themes and custom modules where a visual builder is non-negotiable.',
     deliverables: ['Custom plugins', 'Payment integrations', 'REST endpoints', 'WP-CLI tooling'],
   },
   {

@@ -38,6 +38,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'ASP.NET (C#)', level: 65, featured: true, shortName: 'ASP.NET' },
       { name: 'WordPress', level: 95, featured: true },
       { name: 'WooCommerce', level: 95, featured: true },
+      { name: 'Divi', level: 80, featured: true },
       { name: 'Node.js', level: 80, featured: true },
       { name: 'REST API Design', level: 90 },
       { name: 'GraphQL', level: 80, featured: true },
