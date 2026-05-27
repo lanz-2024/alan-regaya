@@ -1,11 +1,22 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/data/site-config';
 
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 overflow-hidden pt-20 sm:pt-24 lg:pt-16 pb-8 lg:pb-0" aria-labelledby="hero-heading">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-950/20 via-[var(--color-background)] to-[var(--color-background)] pointer-events-none" aria-hidden="true" />
+      <Image
+        src="/hero-bg.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center pointer-events-none -z-10"
+        aria-hidden="true"
+      />
+      {/* Dark overlay for legibility over the photo */}
+      <div className="absolute inset-0 bg-black/70 pointer-events-none" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-[var(--color-background)] pointer-events-none" aria-hidden="true" />
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
       <div className="relative max-w-3xl mx-auto text-center">
