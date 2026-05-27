@@ -25,7 +25,7 @@ export const experience: ExperienceEntry[] = [
       'Optimized 5,500+ client site images saving 181MB; tuned Core Web Vitals across 40+ production sites',
       'Developed Smart Time Tracker (Rust + React + Tauri) with dual-signal activity detection and ClickUp OAuth — 54 releases',
     ],
-    tech: ['Next.js', 'React', 'TypeScript', 'PHP', 'WordPress', 'WooCommerce', 'Typesense', 'GTM', 'Tailwind CSS', 'Vercel'],
+    tech: ['Next.js', 'React', 'TypeScript', 'PHP', 'WordPress', 'WooCommerce', 'Divi', 'Typesense', 'GTM', 'Tailwind CSS', 'Vercel'],
   },
   {
     company: 'Blaze Commerce',
@@ -35,10 +35,11 @@ export const experience: ExperienceEntry[] = [
     description: 'Developed custom WordPress plugins and themes for e-commerce clients, focusing on WooCommerce customization and database performance.',
     highlights: [
       'Developed custom WordPress plugins and themes with modern PHP standards — PSR-4 autoloading, namespaces, dependency injection',
+      'Built and customized client sites on Divi and other page-builder themes, including child themes, custom modules, and hand-written CSS/PHP overrides where the visual builder fell short',
       'Optimized MySQL database queries, reducing page load times by 60% through index optimization and query refactoring',
       'Implemented Git workflows with feature branching, code reviews, and automated deployment pipelines',
     ],
-    tech: ['PHP', 'JavaScript', 'WordPress', 'WooCommerce', 'MySQL', 'CSS', 'GitHub Actions'],
+    tech: ['PHP', 'JavaScript', 'WordPress', 'WooCommerce', 'Divi', 'MySQL', 'CSS', 'GitHub Actions'],
   },
   {
     company: 'Asia Pacific Express Corporation',
