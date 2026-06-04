@@ -64,7 +64,7 @@ export const discProfile: DiscProfileData = {
     },
   ],
   source: {
-    label: '123test DISC assessment',
-    url: 'https://www.123test.com/disc-personality-test/',
+    label: '123test DISC report',
+    url: 'https://www.123test.com/report/18QUO2F1KFMAT6YWU5/',
   },
 };
