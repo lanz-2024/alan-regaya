@@ -5,6 +5,7 @@ import { OriginStory } from '@/components/about/OriginStory';
 import { Timeline } from '@/components/about/Timeline';
 import { Skills } from '@/components/about/Skills';
 import { DiscProfile } from '@/components/about/DiscProfile';
+import { CliftonStrengths } from '@/components/about/CliftonStrengths';
 import { Principles } from '@/components/about/Principles';
 import { ContributionGraph } from '@/components/about/ContributionGraph';
 import { ContactSection } from '@/components/shared/ContactSection';
@@ -104,6 +105,7 @@ export default async function AboutPage() {
         <Timeline />
         <Skills />
         <DiscProfile />
+        <CliftonStrengths />
         <ContributionGraph calendar={stats.contributionCalendar} />
         <ContactSection />
       </div>
