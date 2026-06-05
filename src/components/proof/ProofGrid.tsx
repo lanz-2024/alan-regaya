@@ -11,7 +11,7 @@ export function ProofGrid() {
         <SectionHeading
           label="Receipts"
           title="Lighthouse scores, page by page"
-          subtitle="Live PageSpeed Insights runs from a recent measurement. Click any “Verify on PSI” link to re-run against the production URL yourself."
+          subtitle="PageSpeed Insights runs captured automatically at deploy time. Click any “Verify on PSI” link to re-run against the production URL yourself."
         />
         <div className="space-y-8">
           {proofRuns.map((run) => (
@@ -40,8 +40,8 @@ export function ProofGrid() {
                   <dd className="font-mono text-[var(--color-text)]">{run.vitals.lcp}</dd>
                 </div>
                 <div>
-                  <dt className="text-[10px] uppercase tracking-wider text-[var(--color-text-muted)]">INP</dt>
-                  <dd className="font-mono text-[var(--color-text)]">{run.vitals.inp}</dd>
+                  <dt className="text-[10px] uppercase tracking-wider text-[var(--color-text-muted)]">TBT</dt>
+                  <dd className="font-mono text-[var(--color-text)]">{run.vitals.tbt}</dd>
                 </div>
                 <div>
                   <dt className="text-[10px] uppercase tracking-wider text-[var(--color-text-muted)]">CLS</dt>
