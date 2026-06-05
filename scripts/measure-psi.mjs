@@ -1,23 +1,23 @@
 #!/usr/bin/env node
 // Build-time PageSpeed Insights refresher.
 //
-//   npm run measure:psi           # respects all safety conditions
-//   PSI_FORCE=1 npm run measure:psi   # bypass staleness + env checks
+//   npm run measure:psi   # refreshes src/data/proof.ts from live PSI
+//   PSI_SKIP=1 npm run build   # skip the refresh (fast local builds)
+//
+// Runs on EVERY build via `prebuild` — deploys and redeploys alike — so
+// the /proof wall always shows scores measured against the previously
+// deployed production site, taken right before this deployment.
 //
 // Hits the public PSI API once per page+strategy and rewrites
-// src/data/proof.ts. Designed to run on a developer machine or in CI
-// — zero runtime cost on the deployed site, so refreshing never
-// hinders the live scores.
+// src/data/proof.ts. Zero runtime cost on the deployed site.
 //
-// Safety conditions (skip-with-warning, never crash the build):
-//   1. No PSI_API_KEY            → skip (anonymous PSI is throttled)
-//   2. VERCEL_ENV !== 'production' (preview/dev) → skip
-//   3. Existing data younger than PSI_MAX_AGE_DAYS (default 7) → skip
-//   4. Any fetch error           → skip, keep existing proof.ts
+// Safety (skip-with-warning, never crash the build):
+//   1. PSI_SKIP=1        → skip explicitly
+//   2. Any fetch error   → keep existing proof.ts
 //
-// Override with PSI_FORCE=1.
-//
-// Get a free key at https://console.cloud.google.com/apis/credentials
+// PSI_API_KEY is optional but recommended — anonymous PSI is throttled;
+// the fetcher backs off on 429s either way. Get a free key at
+// https://console.cloud.google.com/apis/credentials
 // (restrict to "PageSpeed Insights API").
 
 import { readFile, writeFile } from 'node:fs/promises';
@@ -39,42 +39,19 @@ const PAGES = [
   { page: 'Now',      url: 'https://alanregaya.dev/now' },
 ];
 
-const FORCE = process.env.PSI_FORCE === '1';
-const MAX_AGE_DAYS = Number(process.env.PSI_MAX_AGE_DAYS ?? 7);
-
 const skip = (reason) => {
-  console.log(`[measure-psi] skip: ${reason} (set PSI_FORCE=1 to override)`);
+  console.log(`[measure-psi] skip: ${reason}`);
   process.exit(0);
 };
 
-// --- Safety gate 1: API key ---------------------------------------------
-if (!process.env.PSI_API_KEY && !FORCE) {
-  skip('PSI_API_KEY not set — anonymous PSI is rate-limited');
+// --- Safety gate 1: explicit opt-out only --------------------------------
+// Scores MUST refresh on every build (deploys AND redeploys), so there is
+// no staleness or env gate. PSI_SKIP=1 is the single escape hatch.
+if (process.env.PSI_SKIP === '1') {
+  skip('PSI_SKIP=1 set — keeping existing proof.ts');
 }
-
-// --- Safety gate 2: production-only -------------------------------------
-// VERCEL_ENV is "production" | "preview" | "development".
-// Locally (no VERCEL_ENV), allow the run so devs can refresh manually.
-if (process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production' && !FORCE) {
-  skip(`VERCEL_ENV=${process.env.VERCEL_ENV} — only refresh on production`);
-}
-
-// --- Safety gate 3: data freshness --------------------------------------
-let existing = '';
-try {
-  existing = await readFile(OUT, 'utf8');
-} catch {
-  // first run; existing stays empty
-}
-if (!FORCE && existing) {
-  const m = existing.match(/"measuredAt":\s*"(\d{4}-\d{2}-\d{2})"/);
-  if (m) {
-    const ageMs = Date.now() - new Date(m[1]).getTime();
-    const ageDays = ageMs / 86400000;
-    if (ageDays < MAX_AGE_DAYS) {
-      skip(`data is ${ageDays.toFixed(1)} days old (< ${MAX_AGE_DAYS}d threshold)`);
-    }
-  }
+if (!process.env.PSI_API_KEY) {
+  console.log('[measure-psi] PSI_API_KEY not set — running anonymously (throttled, with backoff)');
 }
 
 const round = (n) => Math.round(Number(n) * 100);
@@ -90,9 +67,11 @@ async function fetchPsi(url, strategy, attempt = 1) {
   }
   if (process.env.PSI_API_KEY) api.searchParams.set('key', process.env.PSI_API_KEY);
   const r = await fetch(api, { headers: { 'User-Agent': 'measure-psi/1.0' } });
-  if (r.status === 429 && attempt <= 5) {
+  // Retry throttling (429) AND transient PSI server errors (5xx) — a single
+  // flaky 500 must not abort the whole refresh (it did, on prod builds).
+  if ((r.status === 429 || r.status >= 500) && attempt <= 5) {
     const wait = 5000 * 2 ** (attempt - 1);
-    console.log(`  429 — backing off ${wait}ms (attempt ${attempt})`);
+    console.log(`  HTTP ${r.status} — backing off ${wait}ms (attempt ${attempt})`);
     await sleep(wait);
     return fetchPsi(url, strategy, attempt + 1);
   }
@@ -118,30 +97,51 @@ function extractVitals(mobileData) {
   const ttfb = audits['server-response-time']?.numericValue ?? 0;
   return {
     lcp: fmtMs(lcp),
-    inp: fmtMs(tbt),
+    tbt: fmtMs(tbt),
     cls: cls.toFixed(2),
     ttfb: fmtMs(ttfb),
   };
 }
 
-// --- Safety gate 4: never crash the build -------------------------------
+// Previous rows for per-page fallback. Script-generated proof.ts arrays are
+// valid JSON; hand-edited legacy data won't parse and simply yields no fallback.
+let previousRuns = [];
+try {
+  const src = await readFile(OUT, 'utf8');
+  const m = src.match(/proofRuns: ProofRun\[\] = (\[[\s\S]*?\n\]);/);
+  if (m) previousRuns = JSON.parse(m[1]);
+} catch {
+  // first run or unparseable — no fallback entries
+}
+
+// --- Safety gate 2: never crash the build -------------------------------
 try {
   const today = new Date().toISOString().slice(0, 10);
   const runs = [];
   for (const { page, url } of PAGES) {
     console.log(`Measuring ${page} (${url})...`);
-    const mobile = await fetchPsi(url, 'mobile');
-    await sleep(2000);
-    const desktop = await fetchPsi(url, 'desktop');
-    await sleep(2000);
-    runs.push({
-      page,
-      url,
-      measuredAt: today,
-      mobile: extractScores(mobile),
-      desktop: extractScores(desktop),
-      vitals: extractVitals(mobile),
-    });
+    try {
+      const [mobile, desktop] = await Promise.all([
+        fetchPsi(url, 'mobile'),
+        fetchPsi(url, 'desktop'),
+      ]);
+      runs.push({
+        page,
+        url,
+        measuredAt: today,
+        mobile: extractScores(mobile),
+        desktop: extractScores(desktop),
+        vitals: extractVitals(mobile),
+      });
+    } catch (err) {
+      // Per-page fallback: keep this page's previous entry so one stubborn
+      // page can't abort the refresh of the other eight.
+      const prev = previousRuns.find((r) => r.url === url);
+      if (!prev) throw err;
+      console.warn(`  WARN: ${err.message} — keeping previous ${page} entry (${prev.measuredAt})`);
+      runs.push(prev);
+    }
+    await sleep(1000);
   }
 
   const stack = [
@@ -163,7 +163,7 @@ try {
 
 export type CoreWebVitals = {
   lcp: string;
-  inp: string;
+  tbt: string;
   cls: string;
   ttfb: string;
 };

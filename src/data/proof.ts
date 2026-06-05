@@ -7,7 +7,7 @@ export type LighthouseScores = {
 
 export type CoreWebVitals = {
   lcp: string;
-  inp: string;
+  tbt: string;
   cls: string;
   ttfb: string;
 };
@@ -28,7 +28,7 @@ export const proofRuns: ProofRun[] = [
     measuredAt: '2026-05-23',
     mobile: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100 },
     desktop: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100 },
-    vitals: { lcp: '1.1s', inp: '24ms', cls: '0.00', ttfb: '180ms' },
+    vitals: { lcp: '1.1s', tbt: '24ms', cls: '0.00', ttfb: '180ms' },
   },
   {
     page: 'About',
@@ -36,7 +36,7 @@ export const proofRuns: ProofRun[] = [
     measuredAt: '2026-05-23',
     mobile: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100 },
     desktop: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100 },
-    vitals: { lcp: '1.0s', inp: '20ms', cls: '0.00', ttfb: '170ms' },
+    vitals: { lcp: '1.0s', tbt: '20ms', cls: '0.00', ttfb: '170ms' },
   },
   {
     page: 'Projects',
@@ -44,7 +44,7 @@ export const proofRuns: ProofRun[] = [
     measuredAt: '2026-05-23',
     mobile: { performance: 99, accessibility: 100, bestPractices: 100, seo: 100 },
     desktop: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100 },
-    vitals: { lcp: '1.2s', inp: '22ms', cls: '0.00', ttfb: '175ms' },
+    vitals: { lcp: '1.2s', tbt: '22ms', cls: '0.00', ttfb: '175ms' },
   },
   {
     page: 'Blog',
@@ -52,7 +52,7 @@ export const proofRuns: ProofRun[] = [
     measuredAt: '2026-05-23',
     mobile: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100 },
     desktop: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100 },
-    vitals: { lcp: '1.0s', inp: '18ms', cls: '0.00', ttfb: '165ms' },
+    vitals: { lcp: '1.0s', tbt: '18ms', cls: '0.00', ttfb: '165ms' },
   },
   {
     page: 'FAQ',
@@ -60,7 +60,7 @@ export const proofRuns: ProofRun[] = [
     measuredAt: '2026-05-24',
     mobile: { performance: 51, accessibility: 100, bestPractices: 100, seo: 100 },
     desktop: { performance: 41, accessibility: 92, bestPractices: 92, seo: 92 },
-    vitals: { lcp: '3.3s', inp: '80ms', cls: '0.00', ttfb: '—' },
+    vitals: { lcp: '3.3s', tbt: '80ms', cls: '0.00', ttfb: '—' },
   },
   {
     page: 'Setup',
@@ -68,7 +68,7 @@ export const proofRuns: ProofRun[] = [
     measuredAt: '2026-05-24',
     mobile: { performance: 51, accessibility: 78, bestPractices: 75, seo: 92 },
     desktop: { performance: 96, accessibility: 95, bestPractices: 92, seo: 92 },
-    vitals: { lcp: '3.8s', inp: '500ms', cls: '0.00', ttfb: '600ms' },
+    vitals: { lcp: '3.8s', tbt: '500ms', cls: '0.00', ttfb: '600ms' },
   },
   {
     page: 'Proof',
@@ -76,7 +76,7 @@ export const proofRuns: ProofRun[] = [
     measuredAt: '2026-05-24',
     mobile: { performance: 96, accessibility: 95, bestPractices: 92, seo: 92 },
     desktop: { performance: 100, accessibility: 100, bestPractices: 100, seo: 100 },
-    vitals: { lcp: '2.1s', inp: '0ms', cls: '0.00', ttfb: '900ms' },
+    vitals: { lcp: '2.1s', tbt: '0ms', cls: '0.00', ttfb: '900ms' },
   },
   {
     page: 'Lessons',
@@ -84,7 +84,7 @@ export const proofRuns: ProofRun[] = [
     measuredAt: '2026-05-24',
     mobile: { performance: 93, accessibility: 95, bestPractices: 92, seo: 90 },
     desktop: { performance: 99, accessibility: 95, bestPractices: 92, seo: 100 },
-    vitals: { lcp: '1.7s', inp: '30ms', cls: '0.00', ttfb: '600ms' },
+    vitals: { lcp: '1.7s', tbt: '30ms', cls: '0.00', ttfb: '600ms' },
   },
   {
     page: 'Now',
@@ -92,7 +92,7 @@ export const proofRuns: ProofRun[] = [
     measuredAt: '2026-05-24',
     mobile: { performance: 51, accessibility: 91, bestPractices: 92, seo: 92 },
     desktop: { performance: 51, accessibility: 100, bestPractices: 100, seo: 100 },
-    vitals: { lcp: '3.4s', inp: '149ms', cls: '0.00', ttfb: '601ms' },
+    vitals: { lcp: '3.4s', tbt: '149ms', cls: '0.00', ttfb: '601ms' },
   },
 ];
 

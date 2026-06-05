@@ -100,7 +100,8 @@ function run(cmd, args, opts = {}) {
 }
 
 console.log('[lh-gate] building...');
-run('npm', ['run', 'build']);
+// PSI_SKIP: gate audits localhost — no need to refresh proof.ts from PSI here.
+run('npm', ['run', 'build'], { env: { ...process.env, PSI_SKIP: '1' } });
 
 const serveCmd = existsSync(join(REPO, 'out'))
   ? { cmd: 'npx', args: ['--yes', 'serve', 'out', '-l', String(PORT), '--no-clipboard'] }
@@ -263,7 +264,7 @@ console.log('\n[lh-gate] re-running audits after Claude fix attempt...');
 cleanup();
 await new Promise(r => setTimeout(r, 1000));
 
-run('npm', ['run', 'build']);
+run('npm', ['run', 'build'], { env: { ...process.env, PSI_SKIP: '1' } });
 
 const server2 = spawn(serveCmd.cmd, serveCmd.args, { cwd: REPO, shell: true, stdio: 'pipe' });
 let server2Dead = false;
