@@ -127,6 +127,15 @@ export function CliftonStrengths() {
         <p className="mt-10 text-xs text-[var(--color-text-muted)]">
           {cliftonMeta.source.label} · assessed {cliftonMeta.assessedOn}.{' '}
           <a
+            href={cliftonMeta.report.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--color-accent-text)] underline"
+          >
+            {cliftonMeta.report.label}
+          </a>{' '}
+          ·{' '}
+          <a
             href={cliftonMeta.source.url}
             target="_blank"
             rel="noopener noreferrer"
