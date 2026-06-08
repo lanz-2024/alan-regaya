@@ -85,4 +85,9 @@ export const cliftonMeta = {
     label: 'Gallup CliftonStrengths 34',
     url: 'https://www.gallup.com/cliftonstrengths/en/253715/34-cliftonstrengths-themes.aspx',
   },
+  /** My official Gallup CliftonStrengths 34 report (self-hosted; opens in-browser, not a download). */
+  report: {
+    label: 'View my full report (PDF)',
+    url: '/alan-regaya-cliftonstrengths-34.pdf',
+  },
 };
