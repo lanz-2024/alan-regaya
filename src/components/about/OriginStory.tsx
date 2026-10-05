@@ -9,44 +9,44 @@ export function OriginStory() {
           <h3 className="text-[var(--color-text)] font-semibold mb-3">The Friendster Profile (Elementary School)</h3>
           <p>
             My first encounter with web development wasn&apos;t in a classroom. It was on Friendster, when I was in elementary school and wanted my profile to look different from everyone else&apos;s.
-            What started as copying snippets from forums quickly turned into actually understanding what I was copying. I wrote CSS for animations, custom color schemes, and background effects.
-            I added JavaScript for interactive elements — modals, scrolling navigation effects, dynamic text. Then I went further and wrote PHP to build a visitor counter and an authenticated chatbox that displayed the commenter&apos;s profile name to prevent impersonation.
+            What started as copying snippets from forums quickly turned into understanding what I was copying. I wrote CSS for animations, custom color schemes, and background effects.
+            I added JavaScript for interactive elements: modals, scrolling navigation effects, dynamic text. Then I went further and wrote PHP to build a visitor counter and an authenticated chatbox that displayed the commenter&apos;s profile name to prevent impersonation.
           </p>
           <p className="mt-3">
-            None of this was planned. It was just a kid who wanted a cool profile and kept following threads of curiosity until he accidentally learned full-stack web development —
+            None of this was planned. It was just a kid who wanted a cool profile and kept following threads of curiosity until he accidentally learned full-stack web development,
             years before any formal computer science education.
           </p>
         </div>
 
         <div>
-          <h3 className="text-[var(--color-text)] font-semibold mb-3">High School — The Mentor Who Made It Click</h3>
+          <h3 className="text-[var(--color-text)] font-semibold mb-3">High school: the mentor who made it click</h3>
           <p>
-            The curiosity from Friendster carried into high school, but what sharpened it into something more was a teacher: Carmelo &ldquo;Melo&rdquo; Diaz.
+            The curiosity from Friendster carried into high school, but what sharpened it into something more was a teacher: Carmelo &quot;Melo&quot; Diaz.
             He was my computer and web development instructor, and more than anything else, a mentor I genuinely respected.
             He saw potential in me before I fully saw it in myself, and that recognition mattered.
           </p>
           <p className="mt-3">
-            The grades reflected it — consistently 99s and 100s on quizzes and exams. But the scores weren&apos;t really about talent.
+            The grades reflected it: consistently 99s and 100s on quizzes and exams. But the scores weren&apos;t really about talent.
             They were about mindset. Believing I could do it was more than half the battle; the skills just grew from there.
             Sir Melo gave me that foundation.
           </p>
           <p className="mt-3">
             Outside of class, I had another habit nobody really taught me: dismantling laptops. I&apos;d take them apart just to understand
-            how everything fit together, then reassemble them — just to see if I could. Pure curiosity. The same instinct that drove me
+            how everything fit together, then reassemble them, just to see if I could. Pure curiosity. The same instinct that drove me
             to reverse-engineer Friendster CSS now had me learning what a heatsink does and why RAM slots matter.
           </p>
         </div>
 
         <div>
-          <h3 className="text-[var(--color-text)] font-semibold mb-3">The College Thesis (First Real Project)</h3>
+          <h3 className="text-[var(--color-text)] font-semibold mb-3">The college thesis (first real project)</h3>
           <p>
             For my senior thesis at AMA Computer College, I proposed digitizing my university&apos;s entirely paper-based administrative forms system.
-            The core of the project was a custom WordPress plugin that could dynamically generate forms with conditional logic — showing or hiding fields based on user input, applying validation rules per field type, and managing submissions through an approval workflow.
+            The core of the project was a custom WordPress plugin that could dynamically generate forms with conditional logic: showing or hiding fields based on user input, applying validation rules per field type, and managing submissions through an approval workflow.
           </p>
           <p className="mt-3">
             The build was the easier part. The majority of the work went into the research: documenting the methodology, the development process, the testing, and the findings in a bound thesis.
-            It was also where I first learned to think in flowcharts — mapping out every conditional branch of the form logic as proper flowchart diagrams, with decision nodes, process boxes, and defined flow formats, before writing a single line of code. A habit that stuck.
-            It was my first experience of the full arc of a real project — from problem identification through solution design, implementation, and formal documentation.
+            It was also where I first learned to think in flowcharts, mapping out every conditional branch of the form logic as proper flowchart diagrams, with decision nodes, process boxes, and defined flow formats, before writing a single line of code. A habit that stuck.
+            It was my first experience of the full arc of a real project, from problem identification through solution design, implementation, and formal documentation.
             It also happened to be my first serious WordPress project.
           </p>
         </div>

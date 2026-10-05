@@ -69,7 +69,7 @@ export default function NowPage() {
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-[var(--color-text)]">What I&apos;m doing now</h1>
           <p className="text-[var(--color-text-muted)] leading-relaxed">
-            A snapshot of what has my attention this month — in the tradition of{' '}
+            A snapshot of what has my attention this month, in the tradition of{' '}
             <a
               href="https://nownownow.com/about"
               target="_blank"

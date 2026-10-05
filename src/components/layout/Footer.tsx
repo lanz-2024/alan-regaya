@@ -53,7 +53,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4">
           <div className="col-span-2 md:col-span-1 text-center md:text-left">
-            <Link href="/" aria-label="Alan Regaya — home" className="flex md:inline-flex justify-center md:justify-start items-center gap-3">
+            <Link href="/" aria-label="Alan Regaya, home" className="flex md:inline-flex justify-center md:justify-start items-center gap-3">
               <Image
                 src="/logo.webp"
                 alt=""

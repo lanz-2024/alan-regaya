@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const project = projects.find((p) => p.id === slug && p.caseStudy);
   if (!project || !project.caseStudy) return {};
   const url = `${siteConfig.url}/projects/${project.id}`;
-  const title = `${project.name} — Case Study`;
+  const title = `${project.name} | Case study`;
   return {
     title,
     description: project.caseStudy.summary,
@@ -51,7 +51,7 @@ export default async function ProjectCaseStudyPage({ params }: { params: Promise
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: `${project.name} — Case Study`,
+    headline: `${project.name} | Case study`,
     description: cs.summary,
     datePublished: cs.shippedAt,
     author: { '@type': 'Person', name: siteConfig.name, url: siteConfig.url },

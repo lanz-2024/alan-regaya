@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${siteConfig.url}/blog`,
     types: {
-      'application/rss+xml': [{ url: `${siteConfig.url}/feed.xml`, title: `${siteConfig.name} — Blog RSS` }],
+      'application/rss+xml': [{ url: `${siteConfig.url}/feed.xml`, title: `${siteConfig.name} Blog RSS` }],
     },
   },
   twitter: {

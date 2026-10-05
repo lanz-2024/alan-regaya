@@ -19,7 +19,7 @@ export const gear: GearItem[] = [
     category: 'Current',
     subcategory: 'Compute',
     image: '/gear/macbook-m4-14.png',
-    alt: 'macOS About This Mac — MacBook Pro 14", M4 Pro, 24GB RAM',
+    alt: 'macOS About This Mac: MacBook Pro 14", M4 Pro, 24GB RAM',
     specs: ['Apple M4 Pro', '24GB Unified Memory', '500GB SSD', 'macOS Sequoia'],
   },
   {
@@ -37,7 +37,7 @@ export const gear: GearItem[] = [
     category: 'Current',
     subcategory: 'Display',
     image: '/gear/external-displays.webp',
-    alt: 'Dual display setup — 52.5" Devant Smart TV (primary) and 23.5" Samsung Monitor (secondary)',
+    alt: 'Dual display setup: 52.5" Devant Smart TV (primary) and 23.5" Samsung Monitor (secondary)',
     specs: [
       '52.5" Devant Smart TV (primary, HDMI)',
       '23.5" Samsung Monitor (secondary, HDMI)',
@@ -162,11 +162,11 @@ export const gear: GearItem[] = [
     specs: [
       'Pairs with M5 Max + M5 Ultra above',
       'Replaces paid AI (Claude, etc.) for daily dev',
-      'No context window caps — full repo in working memory',
+      'No context window caps, full repo in working memory',
       'No rate limits (5-hour / weekly quotas)',
       'Zero per-token cost after hardware',
       'Code & secrets stay on-device (privacy)',
-      'Offline-capable — no network round-trips',
+      'Offline-capable, no network round-trips',
     ],
   },
 ];

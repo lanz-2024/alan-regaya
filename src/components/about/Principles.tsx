@@ -10,7 +10,7 @@ export function Principles() {
         <h2 className="text-3xl font-bold mb-3 text-[var(--color-text)]">Principles</h2>
         <p className="text-[var(--color-text-muted)] leading-relaxed mb-10">
           A short list of opinions I&apos;ve formed by shipping production e-commerce for six years. They&apos;re
-          falsifiable — every project on this site should reflect them.
+          falsifiable, so every project on this site should reflect them.
         </p>
         <ol className="space-y-8">
           {principles.map((p, i) => (
