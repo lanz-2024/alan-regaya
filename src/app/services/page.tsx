@@ -9,17 +9,17 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Services',
-  description: `What ${siteConfig.name} offers — headless WooCommerce builds, Next.js e-commerce, WordPress development, performance optimization, custom plugins, and architecture consulting. ${siteConfig.yearsExperience}+ years powering 7-figure online stores.`,
+  description: `What ${siteConfig.name} offers: headless WooCommerce builds, Next.js e-commerce, WordPress development, performance optimization, custom plugins, and architecture consulting. ${siteConfig.yearsExperience}+ years working on 7-figure online stores.`,
   alternates: { canonical: `${siteConfig.url}/services` },
   openGraph: {
     title: `Services | ${siteConfig.name}`,
-    description: `What ${siteConfig.name} offers — headless WooCommerce builds, Next.js e-commerce, WordPress development, performance optimization, custom plugins, and architecture consulting.`,
+    description: `What ${siteConfig.name} offers: headless WooCommerce builds, Next.js e-commerce, WordPress development, performance optimization, custom plugins, and architecture consulting.`,
     url: `${siteConfig.url}/services`,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     title: `Services | ${siteConfig.name}`,
-    description: `What ${siteConfig.name} offers — headless WooCommerce builds, Next.js e-commerce, WordPress development, performance optimization, custom plugins, and architecture consulting.`,
+    description: `What ${siteConfig.name} offers: headless WooCommerce builds, Next.js e-commerce, WordPress development, performance optimization, custom plugins, and architecture consulting.`,
     images: [siteConfig.ogImage],
   },
 };
@@ -28,7 +28,7 @@ const breadcrumbLd = buildBreadcrumbList([{ name: 'Services', path: '/services' 
 const webPageLd = buildWebPage({
   path: '/services',
   name: `Services | ${siteConfig.name}`,
-  description: `What ${siteConfig.name} offers — headless WooCommerce builds, Next.js e-commerce, WordPress development, performance optimization, custom plugins, and architecture consulting.`,
+  description: `What ${siteConfig.name} offers: headless WooCommerce builds, Next.js e-commerce, WordPress development, performance optimization, custom plugins, and architecture consulting.`,
 });
 
 const services = [
@@ -36,7 +36,7 @@ const services = [
     icon: '🛒',
     name: 'Headless WooCommerce builds',
     description:
-      'Next.js storefronts wired to a WordPress + WooCommerce back-end via REST/GraphQL. The exact stack behind blaze-commerce/headless-woocommerce — an open-source project running in production across multiple countries.',
+      'Next.js storefronts wired to a WordPress + WooCommerce back-end via REST/GraphQL. The exact stack behind blaze-commerce/headless-woocommerce, an open-source project running in production across multiple countries.',
     deliverables: ['Next.js storefront', 'WP/WC back-end', 'Typesense search', 'Order/cart sync'],
   },
   {
@@ -50,7 +50,7 @@ const services = [
     icon: '🔧',
     name: 'WordPress & WooCommerce development',
     description:
-      'Custom plugins, themes, payment/integration work, and back-of-house tooling. PHP 8.x, WP-CLI, properly tested. ~3 years of Laravel, CodeIgniter, and ASP.NET (C#) experience for custom internal apps and integrations outside WordPress. Equally comfortable in classic, block-based, and page-builder stacks — including Divi child themes and custom modules where a visual builder is non-negotiable.',
+      'Custom plugins, themes, payment/integration work, and back-of-house tooling. PHP 8.x, WP-CLI, properly tested. ~3 years of Laravel, CodeIgniter, and ASP.NET (C#) experience for custom internal apps and integrations outside WordPress. Equally comfortable in classic, block-based, and page-builder stacks, including Divi child themes and custom modules where a visual builder is non-negotiable.',
     deliverables: ['Custom plugins', 'Payment integrations', 'REST endpoints', 'WP-CLI tooling'],
   },
   {
@@ -59,7 +59,7 @@ const services = [
     description: (
       <>
         Lighthouse audits and concrete fixes to hit 90+ across Performance, Accessibility, Best
-        Practices, and SEO. This site holds 100/100/100/100 mobile —{' '}
+        Practices, and SEO. This site holds 100/100/100/100 mobile.{' '}
         <Link href="/proof" className="underline hover:text-[var(--color-text)] transition-colors">
           see the proof
         </Link>
@@ -72,28 +72,28 @@ const services = [
     icon: '🔍',
     name: 'Search, data & integrations',
     description:
-      'Typesense-powered storefront search, MySQL schema design, Redis caching, and third-party API integrations (REST, GraphQL, webhooks). Indexes designed so a reindex is idempotent and a failed sync can’t corrupt the storefront.',
+      'Typesense-powered storefront search, MySQL schema design, Redis caching, and third-party API integrations (REST, GraphQL, webhooks). Indexes designed so a reindex is idempotent and a failed sync can\'t corrupt the storefront.',
     deliverables: ['Typesense', 'MySQL / SQLite', 'Redis', 'REST / GraphQL'],
   },
   {
     icon: '🚚',
     name: 'Site & DNS migrations',
     description:
-      'Zero-downtime moves between hosts and registrars — full WordPress/WooCommerce migrations, DNS cutovers with TTL pre-staging, MX/SPF/DKIM preservation, and Cloudflare proxy setup. Pre-flight checks, dry-run on staging, then go-live with rollback ready.',
+      'Zero-downtime moves between hosts and registrars: full WordPress/WooCommerce migrations, DNS cutovers with TTL pre-staging, MX/SPF/DKIM preservation, and Cloudflare proxy setup. Pre-flight checks, dry-run on staging, then go-live with rollback ready.',
     deliverables: ['DNS cutover', 'Host-to-host', 'Cloudflare', 'Zero downtime'],
   },
   {
     icon: '🛠️',
     name: 'WordPress maintenance & management',
     description:
-      'Ongoing care for production WordPress and WooCommerce sites — core/plugin/theme updates on staging first, daily backups, uptime and security monitoring, malware cleanup, and monthly performance reports. Predictable retainers, not break-fix.',
+      'Ongoing care for production WordPress and WooCommerce sites: core/plugin/theme updates on staging first, daily backups, uptime and security monitoring, malware cleanup, and monthly performance reports. Predictable retainers, not break-fix.',
     deliverables: ['Staged updates', 'Backups', 'Security', 'Uptime monitoring'],
   },
   {
     icon: '☁️',
     name: 'Hosting & CDN setup',
     description:
-      'Provisioning and tuning across Kinsta, WP Engine, SiteGround, and Hostinger, with Cloudflare and Bunny.net for CDN/edge, and registrar work on GoDaddy and others. PHP/MySQL tuning, object cache, page rules, and TLS — set up so the host’s defaults actually work for you.',
+      'Provisioning and tuning across Kinsta, WP Engine, SiteGround, and Hostinger, with Cloudflare and Bunny.net for CDN/edge, and registrar work on GoDaddy and others. PHP/MySQL tuning, object cache, page rules, and TLS, set up so the host\'s defaults work for you.',
     deliverables: ['Kinsta / WPE', 'SiteGround / Hostinger', 'Cloudflare / Bunny', 'GoDaddy DNS'],
   },
   {
@@ -102,7 +102,7 @@ const services = [
     description: (
       <>
         Short engagements for teams considering a headless migration, stuck on a WooCommerce scaling
-        problem, or weighing framework decisions. Same stack I run for paying clients, not theory —{' '}
+        problem, or weighing framework decisions. Same stack I run for paying clients, not theory.{' '}
         <Link href="/about" className="underline hover:text-[var(--color-text)] transition-colors">
           read more about me
         </Link>
@@ -163,7 +163,7 @@ export default function ServicesPage() {
                   <h3 className="font-semibold text-lg">{s.name}</h3>
                 </div>
                 <p className="text-[var(--color-text-muted)] leading-relaxed mb-4">{s.description}</p>
-                <ul className="flex flex-wrap gap-2" aria-label={`${s.name} — key tools`}>
+                <ul className="flex flex-wrap gap-2" aria-label={`${s.name}: key tools`}>
                   {s.deliverables.map((d) => (
                     <li
                       key={d}

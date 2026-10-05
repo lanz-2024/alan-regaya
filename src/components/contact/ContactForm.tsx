@@ -222,7 +222,7 @@ export function ContactForm() {
           name="message"
           required
           rows={6}
-          placeholder="Tell me about the project or opportunity…"
+          placeholder="Tell me about the project or opportunity..."
           aria-describedby={errors.message ? 'contact-message-error' : undefined}
           className={`${inputClass} resize-none`}
           onFocus={armTurnstile}
@@ -246,7 +246,7 @@ export function ContactForm() {
         disabled={status === 'sending' || status === 'success'}
         className="w-full sm:w-auto px-8 py-3 bg-[var(--color-accent)] text-white rounded font-medium hover:bg-[var(--color-accent-hover)] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {status === 'sending' ? 'Sending…' : status === 'success' ? 'Sent ✓' : 'Send Message'}
+        {status === 'sending' ? 'Sending...' : status === 'success' ? 'Sent' : 'Send message'}
       </button>
 
       <p className="mt-4 text-xs text-[var(--color-text-muted)]">
@@ -255,7 +255,7 @@ export function ContactForm() {
 
       {status === 'success' && (
         <p className="mt-4 text-sm text-green-400" role="status">
-          Message sent — I&apos;ll get back to you within 1–2 business days.
+          Message sent. I&apos;ll get back to you within 1 to 2 business days.
         </p>
       )}
       {status === 'error' && (

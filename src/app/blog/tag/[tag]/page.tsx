@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ tag: stri
   const info = getTagBySlug(slug);
   if (!info) return {};
   const url = `${siteConfig.url}/blog/tag/${info.slug}`;
-  const title = `#${info.tag} — Blog`;
+  const title = `#${info.tag} | Blog`;
   const description = `All posts tagged ${info.tag} by ${siteConfig.name}.`;
   return {
     title,

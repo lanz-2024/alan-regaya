@@ -15,7 +15,7 @@ const webPageLd = buildWebPage({
 
 export const metadata: Metadata = {
   title: 'Proof',
-  description: `Lighthouse and Core Web Vitals scores for ${siteConfig.name}'s portfolio — verifiable on PageSpeed Insights.`,
+  description: `Lighthouse and Core Web Vitals scores for ${siteConfig.name}'s portfolio, verifiable on PageSpeed Insights.`,
   alternates: { canonical: `${siteConfig.url}/proof` },
   openGraph: {
     title: `Proof | ${siteConfig.name}`,

@@ -5,7 +5,7 @@ import { Badge } from '@/components/shared/Badge';
 import { ImageModal } from './ImageModal';
 
 const CLAUDE_IMG = '/setup/claude-cli.webp';
-const CLAUDE_ALT = 'Claude CLI terminal session — Opus 4.7 plan mode, status bar, usage stats';
+const CLAUDE_ALT = 'Claude CLI terminal session: Opus 4.7 plan mode, status bar, usage stats';
 
 const capabilities = [
   'workflow automation',
@@ -58,7 +58,7 @@ export function ClaudeHighlight() {
           </div>
           <div className="p-6 sm:p-8">
             <p className="text-[var(--color-text-muted)] leading-relaxed mb-6 max-w-3xl">
-              Claude CLI is my primary tool for AI-assisted development — driving workflow automation, CI/CD pipelines,
+              Claude CLI is my primary tool for AI-assisted development, driving workflow automation, CI/CD pipelines,
               documentation, e2e/regression/edge-case testing, security and performance testing, migrations, custom
               skills, MCPs, and agent orchestration.
             </p>

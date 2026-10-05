@@ -62,7 +62,7 @@ export function ContributionGraph({ calendar }: { calendar: ContributionWeek[] }
             <svg
               width={svgWidth}
               height={svgHeight}
-              aria-label={`GitHub contribution heatmap — ${totalContributions.toLocaleString()} contributions in the last year`}
+              aria-label={`GitHub contribution heatmap: ${totalContributions.toLocaleString()} contributions in the last year`}
               role="img"
             >
               {/* Month labels */}

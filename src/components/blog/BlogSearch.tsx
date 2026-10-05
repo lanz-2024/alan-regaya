@@ -33,7 +33,7 @@ export function BlogSearch({ posts }: { posts: BlogPost[] }) {
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search posts by title, description, or tag…"
+          placeholder="Search posts by title, description, or tag..."
           className="w-full px-4 py-3 rounded border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none focus:border-[var(--color-accent-text)] transition-colors"
           autoComplete="off"
           spellCheck={false}
