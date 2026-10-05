@@ -6,17 +6,17 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: `Get in touch with ${siteConfig.name} — available for full-stack roles, headless WooCommerce builds, WordPress and Next.js development, and performance optimization. Based in the Philippines, working remotely with AU, UK, and US clients.`,
+  description: `Get in touch with ${siteConfig.name}. Available for full-stack roles, headless WooCommerce builds, WordPress and Next.js development, and performance optimization. Based in the Philippines, working remotely with AU, UK, and US clients.`,
   alternates: { canonical: `${siteConfig.url}/contact` },
   openGraph: {
     title: `Contact | ${siteConfig.name}`,
-    description: `Get in touch with ${siteConfig.name} — available for full-stack roles, headless WooCommerce builds, WordPress and Next.js development, and performance optimization. Based in the Philippines, working remotely with AU, UK, and US clients.`,
+    description: `Get in touch with ${siteConfig.name}. Available for full-stack roles, headless WooCommerce builds, WordPress and Next.js development, and performance optimization. Based in the Philippines, working remotely with AU, UK, and US clients.`,
     url: `${siteConfig.url}/contact`,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     title: `Contact | ${siteConfig.name}`,
-    description: `Get in touch with ${siteConfig.name} — available for full-stack roles, headless WooCommerce builds, WordPress and Next.js development, and performance optimization. Based in the Philippines, working remotely with AU, UK, and US clients.`,
+    description: `Get in touch with ${siteConfig.name}. Available for full-stack roles, headless WooCommerce builds, WordPress and Next.js development, and performance optimization. Based in the Philippines, working remotely with AU, UK, and US clients.`,
     images: [siteConfig.ogImage],
   },
 };
@@ -42,7 +42,7 @@ export default function ContactPage() {
           <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">Get in Touch</p>
           <h1 className="text-4xl font-bold mb-4">Let&apos;s work together</h1>
           <p className="text-[var(--color-text-muted)] mb-12 text-lg leading-relaxed">
-            Send a message below and I&apos;ll reply within 1&ndash;2 business days. See <a href="/services" className="underline hover:text-[var(--color-text)] transition-colors">what I offer</a> or <a href="/about" className="underline hover:text-[var(--color-text)] transition-colors">more about me</a>.
+            Send a message below and I&apos;ll reply within 1 to 2 business days. See <a href="/services" className="underline hover:text-[var(--color-text)] transition-colors">what I offer</a> or <a href="/about" className="underline hover:text-[var(--color-text)] transition-colors">more about me</a>.
           </p>
 
           <div className="md:grid md:grid-cols-[1fr_2fr] md:gap-12">
@@ -50,7 +50,7 @@ export default function ContactPage() {
             <div className="space-y-4 mb-12 md:mb-0 text-sm">
               <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-4">
                 <p className="text-[var(--color-text-muted)] mb-1">Response time</p>
-                <p className="font-medium">1&ndash;2 business days</p>
+                <p className="font-medium">1 to 2 business days</p>
                 <p className="text-xs text-[var(--color-text-muted)] mt-1">PHT &middot; UTC+8</p>
               </div>
               <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-4">

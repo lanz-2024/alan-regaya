@@ -16,7 +16,7 @@ const webPageLd = buildWebPage({
 
 export const metadata: Metadata = {
   title: 'Lessons',
-  description: `Short post-mortems from production incidents and design mistakes ${siteConfig.name} has shipped — context, what was missed, and what changed afterward.`,
+  description: `Short post-mortems from production incidents and design mistakes ${siteConfig.name} has shipped: context, what was missed, and what changed afterward.`,
   alternates: { canonical: `${siteConfig.url}/lessons` },
   openGraph: {
     title: `Lessons | ${siteConfig.name}`,
@@ -43,7 +43,7 @@ export default function LessonsPage() {
           </p>
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-[var(--color-text)]">Lessons</h1>
           <p className="text-[var(--color-text-muted)] leading-relaxed">
-            Things I&apos;ve shipped, broken, or over-engineered — and what I changed in my process because of
+            Things I&apos;ve shipped, broken, or over-engineered, and what I changed in my process because of
             them. Public because hiding mistakes is how you repeat them, and because the only post-mortems
             worth writing are the ones someone else can read.
           </p>

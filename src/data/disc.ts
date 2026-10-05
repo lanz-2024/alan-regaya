@@ -32,7 +32,7 @@ export const discProfile: DiscProfileData = {
   type: 'C-S',
   typeLabel: 'Conscientious · Steady',
   intro:
-    'A DISC assessment reads me as a C‑S type — conscientious and steady. It’s the same instinct behind the principles above: understand the constraint, sweat the details, and ship something precise.',
+    'A DISC assessment reads me as a C-S type: conscientious and steady. It\'s the same instinct behind the principles above: understand the constraint, sweat the details, and ship something precise.',
   factors: [
     {
       letter: 'C',
@@ -45,7 +45,7 @@ export const discProfile: DiscProfileData = {
       letter: 'S',
       name: 'Steadiness',
       score: 30,
-      definition: 'My temperament — patience, persistence, and thoughtfulness.',
+      definition: 'My temperament: patience, persistence, and thoughtfulness.',
       color: '#22c55e',
     },
     {

@@ -87,7 +87,7 @@ export function CommandPalette({ defaultOpen = false }: { defaultOpen?: boolean 
     const actions: CommandItem[] = [
       {
         id: 'a-copy-email',
-        label: copied ? 'Copied!' : `Copy email — ${siteConfig.email}`,
+        label: copied ? 'Copied!' : `Copy email: ${siteConfig.email}`,
         hint: 'Action',
         group: 'Actions',
         keywords: 'clipboard contact',
@@ -204,7 +204,7 @@ export function CommandPalette({ defaultOpen = false }: { defaultOpen?: boolean 
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Jump to page, project, post, or action…"
+            placeholder="Jump to page, project, post, or action..."
             aria-label="Search commands"
             className="w-full bg-transparent px-4 py-3 text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] outline-none"
           />

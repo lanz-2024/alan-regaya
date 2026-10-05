@@ -64,7 +64,7 @@ export const csThemes: CSTheme[] = [
 
 /** One-line "how you can thrive" descriptors for the top 10 themes. */
 export const csBlurbs: Record<number, string> = {
-  1: 'Inspired by the future and what could be — and energizes others with that vision.',
+  1: 'Inspired by the future and what could be, and energizes others with that vision.',
   2: 'Organizes people and resources with flexibility for maximum productivity.',
   3: 'Takes serious care in decisions and anticipates obstacles before they appear.',
   4: 'Creates alternative paths and quickly spots the relevant patterns and issues.',
@@ -79,7 +79,7 @@ export const csBlurbs: Record<number, string> = {
 export const cliftonMeta = {
   leadDomain: 'Strategic Thinking' as CSDomain,
   intro:
-    'Gallup’s CliftonStrengths ranks 34 talent themes by how naturally each shows up. My top ten lean hard on Strategic Thinking and Executing — the same “see the pattern, then ship it” instinct behind everything else on this page.',
+    'Gallup\'s CliftonStrengths ranks 34 talent themes by how naturally each shows up. My top ten lean toward Strategic Thinking and Executing, the same "see the pattern, then ship it" instinct behind everything else on this page.',
   assessedOn: 'October 2022',
   source: {
     label: 'Gallup CliftonStrengths 34',

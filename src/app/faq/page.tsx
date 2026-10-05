@@ -7,17 +7,17 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'FAQ',
-  description: `Answers to common questions about ${siteConfig.name} — background, experience, tech stack, work style, and availability.`,
+  description: `Answers to common questions about ${siteConfig.name}: background, experience, tech stack, work style, and availability.`,
   alternates: { canonical: `${siteConfig.url}/faq` },
   openGraph: {
     title: `FAQ | ${siteConfig.name}`,
-    description: `Common questions about ${siteConfig.name} — background, experience, stack, and how I work.`,
+    description: `Common questions about ${siteConfig.name}: background, experience, stack, and how I work.`,
     url: `${siteConfig.url}/faq`,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     title: `FAQ | ${siteConfig.name}`,
-    description: `Common questions about ${siteConfig.name} — background, experience, stack, and how I work.`,
+    description: `Common questions about ${siteConfig.name}: background, experience, stack, and how I work.`,
     images: [siteConfig.ogImage],
   },
 };
@@ -49,7 +49,7 @@ export default function FAQPage() {
             </p>
             <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-[var(--color-text)]">Questions &amp; Answers</h1>
             <p className="text-[var(--color-text-muted)] leading-relaxed">
-              A consolidated answer set to the questions I most often get asked — about my background, stack,
+              Answers to the questions I get asked most, about my background, stack,
               projects, and how I work. If something isn&apos;t covered here, the{' '}
               <Link href="/contact" className="text-[var(--color-accent-text)] underline underline-offset-2">
                 contact page
@@ -103,7 +103,7 @@ export default function FAQPage() {
           <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
             <h2 className="text-2xl font-bold mb-3 text-[var(--color-text)]">Didn&apos;t find your answer?</h2>
             <p className="text-[var(--color-text-muted)] mb-6">
-              Happy to answer specifics over email — usually within a day or two.
+              Happy to answer specifics over email, usually within a day or two.
             </p>
             <Link
               href="/contact"

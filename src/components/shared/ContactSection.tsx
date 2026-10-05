@@ -12,7 +12,7 @@ export function ContactSection() {
         <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-4">Get in Touch</p>
         <h2 id="contact-heading" className="text-3xl sm:text-4xl font-bold mb-4">Let&apos;s work together</h2>
         <p className="text-[var(--color-text-muted)] mb-8">
-          {siteConfig.availability}. I&apos;m particularly interested in headless e-commerce, performance-critical Next.js apps, and projects that push modern web capabilities.
+          {siteConfig.availability}. I&apos;m particularly interested in headless e-commerce, performance-critical Next.js apps, and projects that push what the web can do.
         </p>
         <div ref={ref} className={`fade-in${isVisible ? ' visible' : ''} flex items-center justify-center gap-8`}>
           <Link

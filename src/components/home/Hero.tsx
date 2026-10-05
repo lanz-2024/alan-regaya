@@ -39,14 +39,14 @@ export function Hero() {
         <p className="text-xl sm:text-2xl text-[var(--color-text-muted)] mb-4 lg:mb-6">{siteConfig.title}</p>
 
         <p className="text-base sm:text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto mb-6 lg:mb-10 leading-relaxed">
-          I build fast, scalable{' '}
+          I build fast{' '}
           <Link
             href="/projects"
             className="text-white underline decoration-[var(--color-accent)] decoration-2 underline-offset-4 hover:text-[var(--color-accent-text)] transition-colors"
           >
             headless WooCommerce storefronts, Next.js e-commerce apps, and WordPress platforms
           </Link>
-          . Currently powering 7-figure online stores for clients across AU, UK, and US &mdash; based in the Philippines, working remotely.
+          . Currently working on 7-figure online stores for clients across AU, UK, and US. Based in the Philippines, working remotely.
         </p>
 
         <div className="flex items-center justify-center">

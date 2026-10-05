@@ -11,7 +11,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'Setup',
-  description: `The workstation gear, AI development workflow, and hobbies of ${siteConfig.name} — a full-stack developer based in the Philippines.`,
+  description: `The workstation gear, AI development workflow, and hobbies of ${siteConfig.name}, a full-stack developer based in the Philippines.`,
   alternates: { canonical: `${siteConfig.url}/setup` },
   openGraph: {
     title: `Setup | ${siteConfig.name}`,

@@ -11,7 +11,7 @@ export function ProofGrid() {
         <SectionHeading
           label="Receipts"
           title="Lighthouse scores, page by page"
-          subtitle="PageSpeed Insights runs captured automatically at deploy time. Click any “Verify on PSI” link to re-run against the production URL yourself."
+          subtitle="PageSpeed Insights runs captured automatically at deploy time. Click any &quot;Verify on PSI&quot; link to re-run against the production URL yourself."
         />
         <div className="space-y-8">
           {proofRuns.map((run) => (
@@ -27,7 +27,7 @@ export function ProofGrid() {
                   rel="noopener noreferrer"
                   className="text-xs font-mono text-[var(--color-accent-text)] hover:underline"
                 >
-                  Verify on PSI →
+                  Verify on PSI
                 </a>
               </header>
               <div className="grid sm:grid-cols-2 gap-4">

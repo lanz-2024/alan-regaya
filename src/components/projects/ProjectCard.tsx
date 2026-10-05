@@ -66,7 +66,7 @@ export function ProjectCard({ project, priority = false }: { project: Project; p
               href={`/projects/${project.id}`}
               className="text-[var(--color-accent-text)] hover:underline"
             >
-              Case study →
+              Case study
             </Link>
           )}
           {project.github && (

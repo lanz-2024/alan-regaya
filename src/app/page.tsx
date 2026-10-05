@@ -10,7 +10,7 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 const webPageLd = buildWebPage({
   path: '/',
-  name: `${siteConfig.name} — ${siteConfig.title}`,
+  name: `${siteConfig.name} | ${siteConfig.title}`,
   description: siteConfig.description,
 });
 

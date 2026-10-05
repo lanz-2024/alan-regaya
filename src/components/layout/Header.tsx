@@ -25,7 +25,7 @@ export function Header() {
           <MobileNav />
           <Link
             href="/"
-            aria-label="Alan Regaya — home"
+            aria-label="Alan Regaya, home"
             className="hidden md:flex items-center"
           >
             <PictureImage
@@ -40,7 +40,7 @@ export function Header() {
         </div>
         <Link
           href="/"
-          aria-label="Alan Regaya — home"
+          aria-label="Alan Regaya, home"
           className="md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center"
         >
           <PictureImage
