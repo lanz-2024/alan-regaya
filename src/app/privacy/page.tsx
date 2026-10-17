@@ -46,17 +46,33 @@ export default function PrivacyPage() {
           </p>
           <p className="mt-3">
             The domain is held in your browser&apos;s session storage for the current tab only and is
-            cleared when you close the tab. It is not a cookie, is never sent anywhere unless you submit
-            the form, and is not shared with any analytics or advertising service.
+            cleared when you close the tab. It is not a cookie and is never sent anywhere unless you
+            submit the form. Separately, the site&apos;s analytics (see below) also see the referring site.
           </p>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-[var(--color-text)] mb-2">Analytics &amp; Cookies</h2>
           <p>
-            This site does not use cookies, tracking scripts, or third-party analytics. The referral
-            source described above is the only visit information collected, and only when you send an
-            enquiry.
+            This site uses Vercel Web Analytics to see how visitors find and use it. It records
+            anonymous page views, including the referring site, the page visited, approximate location
+            (such as country), and device, operating system and browser type. Vercel does not collect
+            personal identifiers that track you across other websites or applications. Visitors are
+            told apart by a hash created from the incoming request rather than by cookies, and that
+            session information is discarded after 24 hours.
+          </p>
+          <p className="mt-3">
+            This site does not set cookies itself, and Vercel Web Analytics does not use third-party
+            cookies. There is no advertising tracking. For details, see{' '}
+            <a
+              href="https://vercel.com/docs/analytics/privacy-policy"
+              className="text-[var(--color-accent-text)] underline underline-offset-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Vercel&apos;s Web Analytics privacy documentation
+            </a>
+            .
           </p>
         </section>
 

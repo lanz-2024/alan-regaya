@@ -259,7 +259,7 @@ export function ContactForm() {
       </button>
 
       <p className="mt-4 text-xs text-[var(--color-text-muted)]">
-        Your message is delivered directly to my inbox, along with the website that referred you here (if any). You&apos;ll receive an automated confirmation. No data is stored. See the{' '}
+        Your message is delivered directly to my inbox, along with the website that referred you here (if any). You&apos;ll receive an automated confirmation. I don&apos;t keep form data beyond the email. See the{' '}
         <a href="/privacy" className="underline hover:text-[var(--color-text)] transition-colors">privacy policy</a>.
       </p>
 
