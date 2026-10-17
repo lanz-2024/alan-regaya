@@ -19,7 +19,7 @@ export function CliftonStrengths() {
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">
-          Talent DNA
+          Strengths
         </p>
         <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-3">
           <h2 id="strengths-heading" className="text-3xl font-bold text-[var(--color-text)]">

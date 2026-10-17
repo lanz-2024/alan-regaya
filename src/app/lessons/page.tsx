@@ -44,8 +44,8 @@ export default function LessonsPage() {
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-[var(--color-text)]">Lessons</h1>
           <p className="text-[var(--color-text-muted)] leading-relaxed">
             Things I&apos;ve shipped, broken, or over-engineered, and what I changed in my process because of
-            them. Public because hiding mistakes is how you repeat them, and because the only post-mortems
-            worth writing are the ones someone else can read.
+            them. I publish them because hiding mistakes makes them easier to repeat, and a post-mortem is only
+            worth writing if someone else can read it.
           </p>
         </div>
       </section>

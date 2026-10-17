@@ -29,7 +29,7 @@ export function ClaudeHighlight() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <p className="text-xs font-mono text-[var(--color-accent-text)] uppercase tracking-widest mb-2">AI workflow</p>
         <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-text)] mb-6">
-          AI-Assisted Development with Claude CLI
+          AI-assisted development with Claude CLI
         </h2>
         <div className="glow-border rounded-lg overflow-hidden bg-[var(--color-background)]">
           {/* Desktop: hover pan-reveal. Mobile/tablet: tap to open zoom modal. */}
@@ -58,7 +58,7 @@ export function ClaudeHighlight() {
           </div>
           <div className="p-6 sm:p-8">
             <p className="text-[var(--color-text-muted)] leading-relaxed mb-6 max-w-3xl">
-              Claude CLI is my primary tool for AI-assisted development, driving workflow automation, CI/CD pipelines,
+              Claude CLI is my primary tool for AI-assisted development. I use it for workflow automation, CI/CD pipelines,
               documentation, e2e/regression/edge-case testing, security and performance testing, migrations, custom
               skills, MCPs, and agent orchestration.
             </p>

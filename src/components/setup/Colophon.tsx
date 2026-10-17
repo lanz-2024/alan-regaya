@@ -31,7 +31,7 @@ export function Colophon() {
         headingId="colophon-heading"
         label="Colophon"
         title="This site, built in public"
-        subtitle="A working sample of the work I bring to clients: same stack, same standards."
+        subtitle="The same stack and standards I use for client work."
       />
 
       <div className="grid md:grid-cols-2 gap-6">
