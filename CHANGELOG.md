@@ -16,6 +16,7 @@
 - `github.ts`: Remove inflated +4500/+990 commit/PR offsets; update fallback stats to verified totals (9,438 commits / 1,454 PRs via GraphQL all-years query)
 
 ### Added
+- Vercel Web Analytics (`@vercel/analytics`) in the root layout for site-wide referrer, page and country stats; privacy policy and contact form notice updated to describe it (v0.10.0).
 - Contact enquiries record the referring site (v0.9.0). `ReferralSourceCapture` in the root layout reads `?source=` / `?utm_source=` / `?ref=` or `document.referrer` on landing, normalizes it to a bare hostname (aliases for lnkd.in, t.co, l.facebook.com and Android app referrers such as `android-app://com.linkedin.android/`), ignores this site's own referrers, and keeps it in `sessionStorage` for the tab.
 - `api/contact/route.ts`: notification email logo links to `https://alanregaya.dev/?source=<host>` when a valid source is known; plain link when it is not.
 - Privacy policy "Referral Source" section; contact form notice mentions the referring site and links to the policy.
