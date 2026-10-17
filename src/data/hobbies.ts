@@ -12,7 +12,7 @@ export const hobbies: Hobby[] = [
   },
   {
     title: 'Mountain biking',
-    description: 'Hitting trails and exploring terrain on two wheels.',
+    description: 'Hitting the trails.',
     icon: '🚵',
   },
   {

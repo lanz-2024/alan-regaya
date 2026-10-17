@@ -78,7 +78,7 @@ export default function NowPage() {
             >
               /now pages
             </a>
-            . Updated when things change, not on a fixed schedule.
+            . Updated when things change.
           </p>
           <p className="mt-4 text-xs font-mono text-[var(--color-text-muted)]">
             Last updated: {formatted}

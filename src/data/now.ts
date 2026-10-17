@@ -24,7 +24,7 @@ export const nowReading: NowEntry[] = [
 ];
 
 export const nowOff: NowEntry[] = [
-  { text: 'Mountain biking: hitting trails and exploring terrain on two wheels' },
+  { text: 'Mountain biking: hitting the trails' },
   { text: 'Bodyweight & core training: pushups, pull-ups, planks, squats, calf raises (no gym)' },
   { text: 'Nintendo Switch OLED when the build queue is clear: Pokémon Mystery Dungeon DX, Pokémon FireRed, Pokémon UNITE, Naruto Ultimate Ninja Storm, Naruto Ultimate Ninja Storm 4: Road to Boruto' },
   { text: 'Choir service: Tenor 2 in the Catholic Church choir' },

@@ -28,6 +28,7 @@
 - Hero: "AR" initials avatar with accent gradient background
 
 ### Changed
+- Revised paragraph wording on the About page and other pages for clarity.
 - AnimatedCounter: `useState(target)` initial value so SSR HTML shows real numbers (resets to 0 on mount to animate up)
 - Contact page: 2-column desktop layout (info sidebar + form column), stacked on mobile
 - MobileNav: always-rendered overlay with CSS `translate-x`/`opacity` transition; Tailwind hamburger morph with `duration-300`
