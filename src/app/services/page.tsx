@@ -50,7 +50,7 @@ const services = [
     icon: '🔧',
     name: 'WordPress & WooCommerce development',
     description:
-      'Custom plugins, themes, payment/integration work, and back-of-house tooling. PHP 8.x, WP-CLI, properly tested. ~3 years of Laravel, CodeIgniter, and ASP.NET (C#) experience for custom internal apps and integrations outside WordPress. Equally comfortable in classic, block-based, and page-builder stacks, including Divi child themes and custom modules where a visual builder is non-negotiable.',
+      'Custom plugins, themes, payment/integration work, and back-of-house tooling. PHP 8.x, WP-CLI, properly tested. ~3 years of Laravel, CodeIgniter, and ASP.NET (C#) experience for custom internal apps and integrations outside WordPress. I work in classic, block-based, and page-builder stacks, including Divi child themes and custom modules where a visual builder is non-negotiable.',
     deliverables: ['Custom plugins', 'Payment integrations', 'REST endpoints', 'WP-CLI tooling'],
   },
   {
@@ -72,7 +72,7 @@ const services = [
     icon: '🔍',
     name: 'Search, data & integrations',
     description:
-      'Typesense-powered storefront search, MySQL schema design, Redis caching, and third-party API integrations (REST, GraphQL, webhooks). Indexes designed so a reindex is idempotent and a failed sync can\'t corrupt the storefront.',
+      'Typesense storefront search, MySQL schema design, Redis caching, and third-party API integrations (REST, GraphQL, webhooks). Indexes designed so a reindex is idempotent and a failed sync can\'t corrupt the storefront.',
     deliverables: ['Typesense', 'MySQL / SQLite', 'Redis', 'REST / GraphQL'],
   },
   {
@@ -86,7 +86,7 @@ const services = [
     icon: '🛠️',
     name: 'WordPress maintenance & management',
     description:
-      'Ongoing care for production WordPress and WooCommerce sites: core/plugin/theme updates on staging first, daily backups, uptime and security monitoring, malware cleanup, and monthly performance reports. Predictable retainers, not break-fix.',
+      'Ongoing care for production WordPress and WooCommerce sites: core/plugin/theme updates on staging first, daily backups, uptime and security monitoring, malware cleanup, and monthly performance reports. Work runs on predictable retainers.',
     deliverables: ['Staged updates', 'Backups', 'Security', 'Uptime monitoring'],
   },
   {
@@ -102,7 +102,7 @@ const services = [
     description: (
       <>
         Short engagements for teams considering a headless migration, stuck on a WooCommerce scaling
-        problem, or weighing framework decisions. Same stack I run for paying clients, not theory.{' '}
+        problem, or weighing framework decisions. It is the same stack I run for paying clients.{' '}
         <Link href="/about" className="underline hover:text-[var(--color-text)] transition-colors">
           read more about me
         </Link>

@@ -15,17 +15,17 @@ import { JsonLd } from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
   title: 'About',
-  description: `Learn about ${siteConfig.name}'s background, experience, and the path from tinkering with Friendster profiles to building production e-commerce platforms.`,
+  description: `${siteConfig.name}'s background and experience, from tinkering with Friendster profiles to building production e-commerce platforms.`,
   alternates: { canonical: `${siteConfig.url}/about` },
   openGraph: {
     title: `About | ${siteConfig.name}`,
-    description: `Learn about ${siteConfig.name}'s background, experience, and the path from tinkering with Friendster profiles to building production e-commerce platforms.`,
+    description: `${siteConfig.name}'s background and experience, from tinkering with Friendster profiles to building production e-commerce platforms.`,
     url: `${siteConfig.url}/about`,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630, alt: siteConfig.name }],
   },
   twitter: {
     title: `About | ${siteConfig.name}`,
-    description: `Learn about ${siteConfig.name}'s background, experience, and the path from tinkering with Friendster profiles to building production e-commerce platforms.`,
+    description: `${siteConfig.name}'s background and experience, from tinkering with Friendster profiles to building production e-commerce platforms.`,
     images: [siteConfig.ogImage],
   },
 };
@@ -72,17 +72,17 @@ export default async function AboutPage() {
                 I&apos;m a Full-Stack Developer with {siteConfig.yearsExperience}+ years of experience, currently at Blaze Commerce where I architect and build headless WooCommerce storefronts and the open-source tooling behind them.
               </p>
               <p>
-                I work in frontend (Next.js, React, TypeScript) and know WordPress/WooCommerce well. That combination is rare and in demand as more stores migrate to headless architectures.
+                I work in frontend (Next.js, React, TypeScript) and know WordPress/WooCommerce well, which suits stores moving to headless architectures.
               </p>
               <p>
-                Beyond client work, I maintain open-source projects with real traction:{' '}
+                I also maintain open-source projects.{' '}
                 <a href="https://github.com/blaze-commerce/headless-woocommerce" target="_blank" rel="noopener noreferrer" className="text-[var(--color-accent-text)] underline">
                   headless-woocommerce
                 </a>{' '}
-                has 91 stars and is used in production across multiple countries.
+                has 91 stars and is used in production in multiple countries.
               </p>
               <p>
-                I&apos;m currently exploring Rust and Tauri for cross-platform desktop tooling, and I&apos;m interested in opportunities where I can bring technical ownership to complex, high-traffic e-commerce systems.
+                I&apos;m currently exploring Rust and Tauri for cross-platform desktop tooling. I&apos;m looking for roles with technical ownership of complex, high-traffic e-commerce systems.
               </p>
             </div>
             <div className="mt-8 grid grid-cols-2 gap-4 text-sm">

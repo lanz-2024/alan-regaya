@@ -20,11 +20,11 @@ export const faqCategories: FAQCategory[] = [
       },
       {
         q: 'How did you get into development?',
-        a: "It started with tinkering. Editing Friendster profile layouts as a teenager taught me that you could change how things looked and behaved if you understood the code underneath. That curiosity turned into a BS in Computer Science (AMA Computer College, 2017) and a career building production e-commerce platforms.",
+        a: "It started with tinkering. Editing Friendster profile layouts in elementary school taught me that you could change how things looked and behaved if you understood the code underneath. That curiosity turned into a BS in Computer Science (AMA Computer College, 2017) and a career building production e-commerce platforms.",
       },
       {
         q: 'Why e-commerce specifically?',
-        a: "E-commerce is one of the few domains where every layer of the stack matters: a 200ms regression hurts conversion, a botched migration loses orders, and SEO drives revenue directly. It rewards developers who can think about performance, data integrity, and UX together, which is the kind of work I enjoy most.",
+        a: "In e-commerce every layer of the stack matters: a 200ms regression hurts conversion, a botched migration loses orders, and SEO drives revenue directly. It rewards developers who can think about performance, data integrity, and UX together, which is the kind of work I enjoy most.",
       },
     ],
   },
@@ -38,7 +38,7 @@ export const faqCategories: FAQCategory[] = [
       },
       {
         q: 'How many years of experience do you have?',
-        a: "6+ years of professional development experience, focused on the intersection of modern frontend (Next.js, React, TypeScript) and deep WordPress/WooCommerce. That combination is rare and increasingly in demand as more stores migrate to headless architectures. On the broader backend side, I also have ~3 years building internal business apps with Laravel, CodeIgniter, and ASP.NET (C#), earned during an earlier MIS Administrator role at Asia Pacific Express Corporation.",
+        a: "6+ years of professional development experience, focused on frontend (Next.js, React, TypeScript) and WordPress/WooCommerce, which suits stores moving to headless architectures. On the broader backend side, I also have ~3 years building internal business apps with Laravel, CodeIgniter, and ASP.NET (C#), earned during an earlier MIS Administrator role at Asia Pacific Express Corporation.",
       },
       {
         q: 'Are you open to new opportunities?',
@@ -56,7 +56,7 @@ export const faqCategories: FAQCategory[] = [
       },
       {
         q: 'Why are you learning Rust and Tauri?',
-        a: "Most of my career has been in dynamic languages where you trade safety for speed of iteration. Rust forces a different mental model: ownership and lifetimes do the work that a runtime usually papers over. Tauri lets me ship that as small, native desktop apps. It's a deliberate move to round out the systems-programming side of my skillset.",
+        a: "Most of my career has been in dynamic languages where you trade safety for speed of iteration. Rust forces a different mental model: ownership and lifetimes do the work that a runtime usually papers over. Tauri lets me ship that as small, native desktop apps. I want to round out my systems programming.",
       },
       {
         q: 'How do you stay current with new technology?',
