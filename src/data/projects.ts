@@ -36,7 +36,7 @@ export const projects: Project[] = [
     id: 'headless-woocommerce',
     name: 'Headless WooCommerce',
     type: 'open-source',
-    description: 'Production-ready Next.js storefront for WooCommerce. Handles cart, checkout, authentication, and real-time search via Typesense.',
+    description: 'Next.js storefront for WooCommerce. Handles cart, checkout, authentication, and real-time search via Typesense.',
     tech: ['Next.js', 'React', 'TypeScript', 'WooCommerce REST API', 'GraphQL', 'Typesense'],
     github: 'https://github.com/blaze-commerce/headless-woocommerce',
     stars: 91,

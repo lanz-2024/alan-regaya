@@ -38,8 +38,8 @@ export default function PrivacyPage() {
           <p>
             When you arrive from another website, your browser tells this site which site referred you. If
             you then submit the contact form, that site&apos;s domain name only (for example,{' '}
-            <code className="text-sm">linkedin.com</code>) is included in the email I receive, so I know
-            where enquiries come from. A <code className="text-sm">?source=</code>,{' '}
+            <code className="text-sm">linkedin.com</code>) is added to the logo link in the email I receive
+            and in your confirmation email, so I know where enquiries come from. A <code className="text-sm">?source=</code>,{' '}
             <code className="text-sm">?utm_source=</code> or <code className="text-sm">?ref=</code> value
             in the link you followed is used the same way. The full page address you came from is never
             recorded, and if no referring site is known, nothing is sent.

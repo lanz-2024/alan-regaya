@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Alan Regaya',
   title: 'Full-Stack Developer',
-  tagline: 'Building fast e-commerce sites with modern web tech.',
+  tagline: 'Building fast e-commerce sites.',
   description: 'Full-Stack Developer with 6+ years building headless WooCommerce storefronts, Next.js e-commerce apps, and WordPress platforms behind 7-figure online stores. Remote · Philippines.',
   url: 'https://alanregaya.dev',
   email: 'contact@alanregaya.dev',

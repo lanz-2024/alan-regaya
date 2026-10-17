@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Fixed
+- Contact: the visitor's confirmation email logo now carries the same `?source=` link as the notification email, and the sent/failed message scrolls into view after submitting (v0.9.2).
 - Security: upgrade next and eslint-config-next 16.2.7 to 16.4.2 (critical Next.js advisories: middleware bypass, Server Actions DoS/SSRF, image optimizer issues), which also pulls patched postcss and sharp (v0.9.1).
 - `api/contact/route.ts`: Capitalize "New Enquiry" in notify email subject/heading/text and replace colon with pipe divider in subject (`New Enquiry | {topic} — {name}`)
 - `experience.ts`: Replace Algolia with Typesense (actual search tech used across client sites)
@@ -27,6 +28,7 @@
 - Hero: "AR" initials avatar with accent gradient background
 
 ### Changed
+- Revised paragraph wording on the About page and other pages for clarity.
 - AnimatedCounter: `useState(target)` initial value so SSR HTML shows real numbers (resets to 0 on mount to animate up)
 - Contact page: 2-column desktop layout (info sidebar + form column), stacked on mobile
 - MobileNav: always-rendered overlay with CSS `translate-x`/`opacity` transition; Tailwind hamburger morph with `duration-300`

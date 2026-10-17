@@ -56,7 +56,7 @@ export default function ProjectsPage() {
           <SectionHeading
             label="Portfolio"
             title="All Projects"
-            subtitle="Open-source tools, client storefronts, and work in progress. 13 projects spanning e-commerce, desktop apps, and web tooling."
+            subtitle={`Open-source tools, client storefronts, and work in progress. ${projects.length} projects spanning e-commerce, desktop apps, and web tooling.`}
           />
           <ProjectGrid projects={projects} />
         </div>

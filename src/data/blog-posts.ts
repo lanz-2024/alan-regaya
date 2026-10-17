@@ -11,13 +11,13 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     slug: 'typesense-indexing-patterns-woocommerce',
-    title: 'Typesense Indexing Patterns for Headless WooCommerce',
+    title: 'Typesense indexing patterns for headless WooCommerce',
     description: 'How I keep a Typesense index in sync with WooCommerce when product edits, stock changes, and bulk imports all want to break it.',
     date: '2026-05-18',
     readTime: '11 min read',
     tags: ['Typesense', 'WooCommerce', 'Search', 'Headless'],
     content: `<h2>Why Typesense over Algolia or Elasticsearch</h2>
-<p>For most headless WooCommerce projects, the search engine choice comes down to three options. Algolia is the easy answer, and the expensive one, with per-search pricing that scales painfully past 50k operations/month. Elasticsearch is powerful but operationally heavy: a JVM, a cluster, and a learning curve that's hard to justify for product search. Typesense lands in the middle. It's open-source, a single binary, answers queries in under 50ms on millions of documents, and has a pricing model (self-hosted or Typesense Cloud) that doesn't penalize success.</p>
+<p>For most headless WooCommerce projects, the search engine choice comes down to three options. Algolia is the easy answer, and the expensive one, with per-search pricing that scales painfully past 50k operations/month. Elasticsearch is powerful but operationally heavy: a JVM, a cluster, and a learning curve that's hard to justify for product search. Typesense lands in the middle. It's open-source, a single binary, answers queries in under 50ms on millions of documents, and its pricing (self-hosted or Typesense Cloud) isn't per search.</p>
 <p>On a recent project syncing 12k WooCommerce products, the entire Typesense Cloud bill came to $19/month. The equivalent Algolia bill would have been north of $400.</p>
 <h2>Schema design: flatten, don't nest</h2>
 <p>Typesense supports nested fields, but querying and faceting against flat fields is much faster. The pattern I use: flatten WooCommerce's taxonomy and meta structure into a denormalized document per product.</p>
@@ -68,11 +68,11 @@ const adapter = new TypesenseInstantSearchAdapter({
 <p><strong>Variable products need a strategy.</strong> Indexing each variation as its own document explodes the index size and confuses search results. The cleaner approach: index the parent product with a <code>variation_prices</code> range and a <code>variation_attributes</code> array. Variation-level filtering happens client-side on the result.</p>
 <p><strong>Multi-currency means multi-field.</strong> If the storefront ships in USD, AUD, and EUR, store <code>price_usd</code>, <code>price_aud</code>, <code>price_eur</code> as separate fields. Sorting and filtering by price requires a single numeric field; you can't sort by a per-locale lookup.</p>
 <h2>When not to use Typesense</h2>
-<p>If the catalog is under 500 products and the WooCommerce default search (with FibSearch or similar) hits acceptable latency, the operational overhead isn't worth it. Typesense earns its place when search becomes a primary UX surface (instant results, faceted refinement, typo tolerance), not just a fallback when navigation fails.</p>`,
+<p>If the catalog is under 500 products and the WooCommerce default search (with FibSearch or similar) hits acceptable latency, the operational overhead isn't worth it. Typesense earns its place when search is a primary way people browse (instant results, faceted refinement, typo tolerance).</p>`,
   },
   {
     slug: 'tauri-vs-electron-lessons',
-    title: 'Tauri vs Electron: What I Learned Shipping a Desktop App in Both',
+    title: 'Tauri vs Electron: what I learned shipping a desktop app in both',
     description: 'I ported a developer tool from Electron to Tauri 2.0. Here is what that cost, what it bought, and when I would still pick Electron.',
     date: '2026-05-10',
     readTime: '10 min read',
@@ -124,8 +124,8 @@ enum AppError {
     date: '2026-05-02',
     readTime: '12 min read',
     tags: ['WooCommerce', 'Headless', 'Next.js', 'Architecture'],
-    content: `<h2>The question behind the question</h2>
-<p>"Should we go headless?" is rarely the right question. The right one is: what does the existing WooCommerce stack cost us that a headless rebuild would fix? If the answer is "the storefront is slow", that's solvable inside WordPress with caching and a CDN, no rebuild needed. If the answer is "we want to ship the same catalog to a mobile app, a kiosk, and a marketing site", headless starts to earn its keep.</p>
+    content: `<h2>Whether to go headless</h2>
+<p>Start by asking what the existing WooCommerce stack costs us that a headless rebuild would fix. If the answer is "the storefront is slow", that's solvable inside WordPress with caching and a CDN, no rebuild needed. If the answer is "we want to ship the same catalog to a mobile app, a kiosk, and a marketing site", headless starts to earn its keep.</p>
 <p>If the rebuild makes sense, these architecture decisions determine whether the project ships in three months or twelve.</p>
 <h2>Decision 1: REST vs GraphQL</h2>
 <p>WooCommerce ships with a mature REST API. WPGraphQL + WooGraphQL adds a GraphQL layer on top. Both work, and the choice depends on your team and your read patterns.</p>
@@ -162,16 +162,16 @@ enum AppError {
 <p>Sharing the backend during migration lets you ship in stages without holding two databases in sync. The admin team keeps working in WordPress, and the storefront only changes which frontend renders the catalog.</p>
 <h2>Operational reality</h2>
 <p>Headless WooCommerce adds runtime dependencies. A broken WPGraphQL plugin update can take down your frontend. A misconfigured CDN can serve stale stock. A WordPress migration with a different domain breaks every <code>permalink</code> field in the frontend cache.</p>
-<p>The fix is monitoring and graceful degradation: health checks on the WordPress endpoint, fallback static catalog snapshots for true outages, and a frontend that can show "checkout temporarily unavailable" without 500-ing the whole page. None of this is glamorous, but it keeps the architecture running in production.</p>`,
+<p>The fix is monitoring and graceful degradation: health checks on the WordPress endpoint, fallback static catalog snapshots for true outages, and a frontend that can show "checkout temporarily unavailable" without 500-ing the whole page.</p>`,
   },
   {
     slug: 'core-web-vitals-at-scale',
-    title: 'Core Web Vitals at Scale: Lessons from 30+ Production Sites',
+    title: 'Core Web Vitals at scale: lessons from 30+ production sites',
     description: 'The standard caching-and-CDN advice gets a WooCommerce storefront to a 70 Lighthouse score. This is what it takes to push past 90 on real production traffic.',
     date: '2026-03-20',
     readTime: '8 min read',
     tags: ['Performance', 'Next.js', 'WooCommerce', 'Core Web Vitals'],
-    content: `<h2>The real problem with WooCommerce performance</h2>
+    content: `<h2>Where the standard advice stops</h2>
 <p>After tuning 30+ production WooCommerce sites, I've learned that the standard advice (enable caching, compress images, use a CDN) gets you to a 70 Lighthouse score. Pushing past 90 means rethinking the render path itself.</p>
 <h2>Critical CSS inlining</h2>
 <p>The single biggest LCP win on static Next.js sites is eliminating render-blocking CSS. With the <code>critters</code> library in the postbuild step, above-the-fold styles are inlined into the HTML and the full stylesheet is loaded asynchronously.</p>
@@ -192,15 +192,15 @@ await sharp(src)
 <p>Using <code>next/font</code> with <code>display: 'swap'</code> eliminates FOIT but can cause CLS if the fallback font has different metrics. The fix: use <code>adjustFontFallback: false</code> and manually set <code>size-adjust</code> in the font-face fallback.</p>
 <p>For monospace fonts used in code blocks, <code>preload: false</code> avoids an unnecessary preload hint for a font that's only visible after scroll.</p>
 <h2>Eliminating third-party JS</h2>
-<p>Every third-party script (analytics, chat widgets, cookie banners) adds to INP. On the portfolio itself, there is zero third-party JavaScript. Analytics can wait, but the user experience can't.</p>
+<p>Every third-party script (analytics, chat widgets, cookie banners) adds to INP. On the portfolio itself, there is zero third-party JavaScript.</p>
 <p>For client sites where analytics is non-negotiable, <code>next/script</code> with <code>strategy="afterInteractive"</code> defers execution until after the page is interactive.</p>
-<h2>Measuring what matters</h2>
+<h2>Measuring field performance</h2>
 <p>Lighthouse scores are a proxy. Field data from CrUX is the metric that counts. A page can score 95 in Lighthouse and still have poor field LCP if the server is slow for real users.</p>
 <p>The workflow: tune locally with Lighthouse, verify with PageSpeed Insights (which uses real CrUX data), then monitor with Core Web Vitals in Search Console.</p>`,
   },
   {
     slug: 'building-mcp-server-wordpress',
-    title: 'Building an MCP Server for WordPress Site Management',
+    title: 'Building an MCP server for WordPress site management',
     description: 'Why SSH + WP-CLI beat a pure-JS implementation when I built the MCP server that lets Claude manage 30+ WordPress sites, and what broke on the way there.',
     date: '2026-03-15',
     readTime: '10 min read',
@@ -272,7 +272,7 @@ async function findWpCli(conn) {
   },
   {
     slug: 'zero-downtime-wordpress-migrations',
-    title: 'Zero-Downtime WordPress Migrations: Lessons from 30+ Sites',
+    title: 'Zero-downtime WordPress migrations: lessons from 30+ sites',
     description: 'The silent failures that cause WordPress migrations to roll back at 2am, and the go-live simulation I now run before any production cutover.',
     date: '2026-03-10',
     readTime: '12 min read',
@@ -310,7 +310,7 @@ async function findWpCli(conn) {
   },
   {
     slug: 'ai-augmented-development-workflow',
-    title: 'My AI-Augmented Development Workflow with Claude Code',
+    title: 'My AI-augmented development workflow with Claude Code',
     description: 'How 48 custom skills and a handful of safety gates turn Claude Code into something I trust on production WordPress, instead of a fancier autocomplete.',
     date: '2026-03-05',
     readTime: '9 min read',
@@ -318,7 +318,6 @@ async function findWpCli(conn) {
     content: `<h2>Beyond code autocomplete</h2>
 <p>Most developers use AI as a faster Stack Overflow: paste an error, get a fix. That's useful, but it covers only a small part of what's possible.</p>
 <p>After a year of building with Claude Code, I've developed a workflow where Claude can independently execute multi-hour development tasks, manage WordPress migrations, run E2E test suites, and make architecture decisions inside guardrails I trust.</p>
-<p>It's structured like this.</p>
 <h2>The skills system</h2>
 <p>Claude Code supports custom "skills", markdown files with detailed instructions that Claude loads on demand. I've built 48+ skills covering everything from WordPress migration protocols to ClickUp documentation workflows.</p>
 <p>Each skill is a domain-specific playbook. The <code>migration-production-to-staging</code> skill, for example, is ~600 lines covering pre-flight checks, rsync transfer, database manipulation, WooCommerce configuration, and a 27-scenario E2E verification gate.</p>
@@ -334,7 +333,7 @@ async function findWpCli(conn) {
 <p>These gates run as shell scripts, so they're fast and deterministic, and Claude doesn't have to "remember" the rules.</p>
 <h2>Parallel agent patterns</h2>
 <p>Claude Code can spawn sub-agents that run in parallel. For a task like "audit the portfolio site", one agent can explore the codebase while another fetches GitHub PR history while a third searches MCP memory for relevant past decisions.</p>
-<p>The results feed back into the main agent's context, which synthesizes them into an implementation plan. A senior engineer would approach a large task the same way: delegate the research, synthesize the findings, implement with full context.</p>
+<p>The results feed back into the main agent's context, which synthesizes them into an implementation plan.</p>
 <h2>Session handoffs</h2>
 <p>Long tasks span multiple sessions. The system writes a <code>HANDOFF.md</code> file at 50% context usage, capturing the current task, decisions made, files modified, and blockers. The next session reads this file first.</p>
 <p>Combined with Claude Code's <code>--resume</code> flag (which restores the full conversation context), complex multi-day tasks maintain continuity without losing context.</p>

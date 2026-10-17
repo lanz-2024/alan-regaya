@@ -79,7 +79,7 @@ export const csBlurbs: Record<number, string> = {
 export const cliftonMeta = {
   leadDomain: 'Strategic Thinking' as CSDomain,
   intro:
-    'Gallup\'s CliftonStrengths ranks 34 talent themes by how naturally each shows up. My top ten lean toward Strategic Thinking and Executing, the same "see the pattern, then ship it" instinct behind everything else on this page.',
+    'Gallup\'s CliftonStrengths ranks 34 talent themes by how naturally each shows up. My top ten lean toward Strategic Thinking and Executing: see the pattern, then ship it.',
   assessedOn: 'October 2022',
   source: {
     label: 'Gallup CliftonStrengths 34',

@@ -11,7 +11,7 @@ export interface Lesson {
 export const lessons: Lesson[] = [
   {
     id: 'cache-key-collision',
-    title: 'A cache key collision quietly served the wrong product page for hours.',
+    title: 'A cache key collision served the wrong product page for hours.',
     context:
       'Headless WooCommerce storefront with edge caching keyed by product slug. Two products in different categories ended up with overlapping cache keys after a slug normalization change.',
     whatHappened:
