@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 ### Fixed
+- Security: upgrade next and eslint-config-next 16.2.7 to 16.4.2 (critical Next.js advisories: middleware bypass, Server Actions DoS/SSRF, image optimizer issues), which also pulls patched postcss and sharp (v0.9.1).
 - `api/contact/route.ts`: Capitalize "New Enquiry" in notify email subject/heading/text and replace colon with pipe divider in subject (`New Enquiry | {topic} — {name}`)
 - `experience.ts`: Replace Algolia with Typesense (actual search tech used across client sites)
 - `experience.ts`: Remove fabricated "66 semantic releases" stat — unverifiable, not from any known source
