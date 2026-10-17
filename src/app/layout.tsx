@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CommandPaletteLoader } from '@/components/layout/CommandPaletteLoader';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
+import { ReferralSourceCapture } from '@/components/layout/ReferralSourceCapture';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { siteConfig } from '@/data/site-config';
 
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <ScrollToTop />
+        <ReferralSourceCapture />
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
