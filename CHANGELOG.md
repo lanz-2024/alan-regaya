@@ -14,6 +14,9 @@
 - `github.ts`: Remove inflated +4500/+990 commit/PR offsets; update fallback stats to verified totals (9,438 commits / 1,454 PRs via GraphQL all-years query)
 
 ### Added
+- Contact enquiries record the referring site (v0.9.0). `ReferralSourceCapture` in the root layout reads `?source=` / `?utm_source=` / `?ref=` or `document.referrer` on landing, normalizes it to a bare hostname (aliases for lnkd.in, t.co, l.facebook.com and Android app referrers such as `android-app://com.linkedin.android/`), ignores this site's own referrers, and keeps it in `sessionStorage` for the tab.
+- `api/contact/route.ts`: notification email logo links to `https://alanregaya.dev/?source=<host>` when a valid source is known; plain link when it is not.
+- Privacy policy "Referral Source" section; contact form notice mentions the referring site and links to the policy.
 - Custom 404 page (`not-found.tsx`) with branded dark theme and "Go Home" button
 - TechStack: group technologies by category (Frontend/Backend/Data/Systems/DevOps) with colored labels
 - FeaturedProjects: project screenshot images with `aspect-video` / `object-cover` layout

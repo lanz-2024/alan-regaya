@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { siteConfig } from '@/data/site-config';
+import { SOURCE_STORAGE_KEY } from '@/lib/referral-source';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -117,6 +118,13 @@ export function ContactForm() {
     setErrors({});
     setStatus('sending');
 
+    let source: string | null = null;
+    try {
+      source = sessionStorage.getItem(SOURCE_STORAGE_KEY);
+    } catch {
+      /* storage blocked — send without a source */
+    }
+
     const payload = {
       name: (formData.get('name') as string ?? '').trim(),
       email: (formData.get('email') as string ?? '').trim(),
@@ -124,6 +132,7 @@ export function ContactForm() {
       message: (formData.get('message') as string ?? '').trim(),
       botcheck: formData.get('botcheck') ? true : false,
       turnstileToken,
+      ...(source && { source }),
     };
 
     try {
@@ -250,7 +259,8 @@ export function ContactForm() {
       </button>
 
       <p className="mt-4 text-xs text-[var(--color-text-muted)]">
-        Your message is delivered directly to my inbox. You&apos;ll receive an automated confirmation. No data is stored.
+        Your message is delivered directly to my inbox, along with the website that referred you here (if any). You&apos;ll receive an automated confirmation. No data is stored. See the{' '}
+        <a href="/privacy" className="underline hover:text-[var(--color-text)] transition-colors">privacy policy</a>.
       </p>
 
       {status === 'success' && (

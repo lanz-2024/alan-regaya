@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { siteConfig } from '@/data/site-config';
+import { normalizeSource, sourceLink } from '@/lib/referral-source';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,7 +31,7 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Invalid JSON.' }, { status: 400 });
   }
 
-  const { name, email, topic, message, botcheck, turnstileToken } = (body ?? {}) as Record<string, unknown>;
+  const { name, email, topic, message, botcheck, turnstileToken, source } = (body ?? {}) as Record<string, unknown>;
 
   if (botcheck) {
     return Response.json({ success: true });
@@ -90,6 +91,8 @@ export async function POST(request: Request) {
   const emailSafe = escapeHtml(e);
   const topicSafe = escapeHtml(topicSentence);
   const messageSafe = escapeHtml(m).replace(/\n/g, '<br>');
+  // Referring site as a validated bare hostname; unknown → plain link with no ?source=.
+  const logoHref = escapeHtml(sourceLink('https://alanregaya.dev', normalizeSource(typeof source === 'string' ? source : null)));
 
   try {
     const notify = await resend.emails.send({
@@ -98,7 +101,7 @@ export async function POST(request: Request) {
       replyTo: e,
       subject: `New Enquiry | ${topicSentence} — ${nameTitle}`,
       html: `<div style="font-family:system-ui,sans-serif;line-height:1.6">
-  <p style="margin:0 0 20px;text-align:center"><a href="https://alanregaya.dev" style="text-decoration:none"><img src="https://alanregaya.dev/logo.png" alt="Alan Regaya" width="48" height="48" style="display:inline-block;max-width:100%;border:0"></a></p>
+  <p style="margin:0 0 20px;text-align:center"><a href="${logoHref}" style="text-decoration:none"><img src="https://alanregaya.dev/logo.png" alt="Alan Regaya" width="48" height="48" style="display:inline-block;max-width:100%;border:0"></a></p>
   <h2 style="margin:0 0 12px;text-align:center">New Enquiry</h2>
   <p style="text-align:center"><strong>From:</strong> ${nameSafe} &lt;${emailSafe}&gt;<br>
   <strong>Topic:</strong> ${topicSafe}</p>
