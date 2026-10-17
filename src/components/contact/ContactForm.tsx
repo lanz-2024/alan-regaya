@@ -54,6 +54,7 @@ export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const widgetContainerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
+  const resultRef = useRef<HTMLParagraphElement>(null);
 
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? '';
 
@@ -84,6 +85,13 @@ export function ContactForm() {
       }
     };
   }, [shouldLoadTurnstile, siteKey]);
+
+  // Bring the sent/failed message into view; on small screens it renders below the fold.
+  useEffect(() => {
+    if (status !== 'success' && status !== 'error') return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    resultRef.current?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+  }, [status]);
 
   const armTurnstile = () => setShouldLoadTurnstile(true);
 
@@ -264,12 +272,12 @@ export function ContactForm() {
       </p>
 
       {status === 'success' && (
-        <p className="mt-4 text-sm text-green-400" role="status">
+        <p ref={resultRef} className="mt-4 text-sm text-green-400" role="status">
           Message sent. I&apos;ll get back to you within 1 to 2 business days.
         </p>
       )}
       {status === 'error' && (
-        <p className="mt-4 text-sm text-red-400" role="alert">
+        <p ref={resultRef} className="mt-4 text-sm text-red-400" role="alert">
           Something went wrong. Please try again or email me directly at{' '}
           <a href={`mailto:${contactEmail}`} className="underline">{contactEmail}</a>.
         </p>
